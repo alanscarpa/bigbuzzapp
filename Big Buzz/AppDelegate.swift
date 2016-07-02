@@ -8,15 +8,24 @@
 
 import UIKit
 import Firebase
+import IntrepidSwiftWisdom
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    let navigationVC = UINavigationController()
+    let mainVC = QuestionViewController.ip_fromNib()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
         FIRApp.configure()
+    
+        navigationVC.viewControllers = [mainVC]
+        
+        self.window?.rootViewController = navigationVC
+        self.window?.makeKeyAndVisible()
         return true
     }
 
