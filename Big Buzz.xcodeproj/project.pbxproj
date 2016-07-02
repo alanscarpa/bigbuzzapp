@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0E0574F0BE595BC951C28F /* Pods_Big_Buzz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44FB6B07518E58FEBDD71E9 /* Pods_Big_Buzz.framework */; };
 		4519DADC1D2804D8008AF99B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DADB1D2804D8008AF99B /* AppDelegate.swift */; };
 		4519DADE1D2804D8008AF99B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DADD1D2804D8008AF99B /* ViewController.swift */; };
 		4519DAE11D2804D8008AF99B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4519DADF1D2804D8008AF99B /* Main.storyboard */; };
 		4519DAE31D2804D8008AF99B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4519DAE21D2804D8008AF99B /* Assets.xcassets */; };
 		4519DAE61D2804D8008AF99B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4519DAE41D2804D8008AF99B /* LaunchScreen.storyboard */; };
+		4519DAEE1D28066C008AF99B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4519DAED1D28066C008AF99B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13810BCDFA9F15C5C4C41F8F /* Pods-Big Buzz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Big Buzz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Big Buzz/Pods-Big Buzz.debug.xcconfig"; sourceTree = "<group>"; };
+		2752011DBB2AB489EA9576B7 /* Pods-Big Buzz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Big Buzz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Big Buzz/Pods-Big Buzz.release.xcconfig"; sourceTree = "<group>"; };
 		4519DAD81D2804D7008AF99B /* Big Buzz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Big Buzz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4519DADB1D2804D8008AF99B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4519DADD1D2804D8008AF99B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		4519DAE21D2804D8008AF99B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4519DAE51D2804D8008AF99B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4519DAE71D2804D8008AF99B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4519DAED1D28066C008AF99B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C44FB6B07518E58FEBDD71E9 /* Pods_Big_Buzz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Big_Buzz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B0E0574F0BE595BC951C28F /* Pods_Big_Buzz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,8 @@
 			children = (
 				4519DADA1D2804D8008AF99B /* Big Buzz */,
 				4519DAD91D2804D7008AF99B /* Products */,
+				6D836F0C11A54713D6F5BF10 /* Pods */,
+				9DD0B132BDE65240E450B5BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +69,26 @@
 				4519DAE21D2804D8008AF99B /* Assets.xcassets */,
 				4519DAE41D2804D8008AF99B /* LaunchScreen.storyboard */,
 				4519DAE71D2804D8008AF99B /* Info.plist */,
+				4519DAED1D28066C008AF99B /* GoogleService-Info.plist */,
 			);
 			path = "Big Buzz";
+			sourceTree = "<group>";
+		};
+		6D836F0C11A54713D6F5BF10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13810BCDFA9F15C5C4C41F8F /* Pods-Big Buzz.debug.xcconfig */,
+				2752011DBB2AB489EA9576B7 /* Pods-Big Buzz.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9DD0B132BDE65240E450B5BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C44FB6B07518E58FEBDD71E9 /* Pods_Big_Buzz.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4519DAEA1D2804D8008AF99B /* Build configuration list for PBXNativeTarget "Big Buzz" */;
 			buildPhases = (
+				00B30D2215804593109F8DA2 /* [CP] Check Pods Manifest.lock */,
 				4519DAD41D2804D7008AF99B /* Sources */,
 				4519DAD51D2804D7008AF99B /* Frameworks */,
 				4519DAD61D2804D7008AF99B /* Resources */,
+				FA43A3C5C3810D1615103DB2 /* [CP] Embed Pods Frameworks */,
+				405C665ACF3781C700E4FEDE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,12 +153,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				4519DAE61D2804D8008AF99B /* LaunchScreen.storyboard in Resources */,
+				4519DAEE1D28066C008AF99B /* GoogleService-Info.plist in Resources */,
 				4519DAE31D2804D8008AF99B /* Assets.xcassets in Resources */,
 				4519DAE11D2804D8008AF99B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00B30D2215804593109F8DA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		405C665ACF3781C700E4FEDE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Big Buzz/Pods-Big Buzz-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA43A3C5C3810D1615103DB2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Big Buzz/Pods-Big Buzz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4519DAD41D2804D7008AF99B /* Sources */ = {
@@ -247,6 +326,7 @@
 		};
 		4519DAEB1D2804D8008AF99B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13810BCDFA9F15C5C4C41F8F /* Pods-Big Buzz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Big Buzz/Info.plist";
@@ -259,6 +339,7 @@
 		};
 		4519DAEC1D2804D8008AF99B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2752011DBB2AB489EA9576B7 /* Pods-Big Buzz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Big Buzz/Info.plist";
@@ -288,6 +369,7 @@
 				4519DAEC1D2804D8008AF99B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
