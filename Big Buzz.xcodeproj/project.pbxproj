@@ -17,6 +17,13 @@
 		45AA6DE61D2C6F85007F6A29 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA6DE51D2C6F85007F6A29 /* Question.swift */; };
 		45AA6DE81D2C7F71007F6A29 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA6DE71D2C7F71007F6A29 /* ResultsViewController.swift */; };
 		45AA6DEA1D2C7F81007F6A29 /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6DE91D2C7F81007F6A29 /* ResultsViewController.xib */; };
+		45AA6E101D2C9867007F6A29 /* Dosis-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E091D2C9867007F6A29 /* Dosis-Bold.ttf */; };
+		45AA6E111D2C9867007F6A29 /* Dosis-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0A1D2C9867007F6A29 /* Dosis-Book.ttf */; };
+		45AA6E121D2C9867007F6A29 /* Dosis-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0B1D2C9867007F6A29 /* Dosis-ExtraBold.ttf */; };
+		45AA6E131D2C9867007F6A29 /* Dosis-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0C1D2C9867007F6A29 /* Dosis-ExtraLight.ttf */; };
+		45AA6E141D2C9867007F6A29 /* Dosis-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0D1D2C9867007F6A29 /* Dosis-Light.ttf */; };
+		45AA6E151D2C9867007F6A29 /* Dosis-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0E1D2C9867007F6A29 /* Dosis-Medium.ttf */; };
+		45AA6E161D2C9867007F6A29 /* Dosis-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0F1D2C9867007F6A29 /* Dosis-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +40,13 @@
 		45AA6DE51D2C6F85007F6A29 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		45AA6DE71D2C7F71007F6A29 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		45AA6DE91D2C7F81007F6A29 /* ResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
+		45AA6E091D2C9867007F6A29 /* Dosis-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Bold.ttf"; sourceTree = "<group>"; };
+		45AA6E0A1D2C9867007F6A29 /* Dosis-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Book.ttf"; sourceTree = "<group>"; };
+		45AA6E0B1D2C9867007F6A29 /* Dosis-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-ExtraBold.ttf"; sourceTree = "<group>"; };
+		45AA6E0C1D2C9867007F6A29 /* Dosis-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-ExtraLight.ttf"; sourceTree = "<group>"; };
+		45AA6E0D1D2C9867007F6A29 /* Dosis-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Light.ttf"; sourceTree = "<group>"; };
+		45AA6E0E1D2C9867007F6A29 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.ttf"; sourceTree = "<group>"; };
+		45AA6E0F1D2C9867007F6A29 /* Dosis-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.ttf"; sourceTree = "<group>"; };
 		C44FB6B07518E58FEBDD71E9 /* Pods_Big_Buzz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Big_Buzz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -69,6 +83,8 @@
 		4519DADA1D2804D8008AF99B /* Big Buzz */ = {
 			isa = PBXGroup;
 			children = (
+				451D32981D2DC127006F64F3 /* Images */,
+				45AA6E171D2C986C007F6A29 /* Fonts */,
 				4519DADB1D2804D8008AF99B /* AppDelegate.swift */,
 				45AA6DE51D2C6F85007F6A29 /* Question.swift */,
 				4519DADD1D2804D8008AF99B /* QuestionViewController.swift */,
@@ -81,6 +97,27 @@
 				4519DAED1D28066C008AF99B /* GoogleService-Info.plist */,
 			);
 			path = "Big Buzz";
+			sourceTree = "<group>";
+		};
+		451D32981D2DC127006F64F3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		45AA6E171D2C986C007F6A29 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				45AA6E091D2C9867007F6A29 /* Dosis-Bold.ttf */,
+				45AA6E0A1D2C9867007F6A29 /* Dosis-Book.ttf */,
+				45AA6E0B1D2C9867007F6A29 /* Dosis-ExtraBold.ttf */,
+				45AA6E0C1D2C9867007F6A29 /* Dosis-ExtraLight.ttf */,
+				45AA6E0D1D2C9867007F6A29 /* Dosis-Light.ttf */,
+				45AA6E0E1D2C9867007F6A29 /* Dosis-Medium.ttf */,
+				45AA6E0F1D2C9867007F6A29 /* Dosis-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		6D836F0C11A54713D6F5BF10 /* Pods */ = {
@@ -135,6 +172,7 @@
 				TargetAttributes = {
 					4519DAD71D2804D7008AF99B = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 98E8SVTQ29;
 					};
 				};
 			};
@@ -161,10 +199,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45AA6E101D2C9867007F6A29 /* Dosis-Bold.ttf in Resources */,
 				4519DAE61D2804D8008AF99B /* LaunchScreen.storyboard in Resources */,
+				45AA6E131D2C9867007F6A29 /* Dosis-ExtraLight.ttf in Resources */,
 				4519DAEE1D28066C008AF99B /* GoogleService-Info.plist in Resources */,
+				45AA6E151D2C9867007F6A29 /* Dosis-Medium.ttf in Resources */,
+				45AA6E121D2C9867007F6A29 /* Dosis-ExtraBold.ttf in Resources */,
 				45AA6DEA1D2C7F81007F6A29 /* ResultsViewController.xib in Resources */,
 				45AA6DE41D2C6B57007F6A29 /* QuestionViewController.xib in Resources */,
+				45AA6E161D2C9867007F6A29 /* Dosis-SemiBold.ttf in Resources */,
+				45AA6E111D2C9867007F6A29 /* Dosis-Book.ttf in Resources */,
+				45AA6E141D2C9867007F6A29 /* Dosis-Light.ttf in Resources */,
 				4519DAE31D2804D8008AF99B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +378,7 @@
 			baseConfigurationReference = 13810BCDFA9F15C5C4C41F8F /* Pods-Big Buzz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Big Buzz/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -346,6 +392,7 @@
 			baseConfigurationReference = 2752011DBB2AB489EA9576B7 /* Pods-Big Buzz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Big Buzz/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -10,6 +10,8 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 import IntrepidSwiftWisdom
+import EasyAnimation
+import PureLayout
 
 extension NSDate {
     func currentDateInDayMonthYear() -> String {
@@ -24,7 +26,7 @@ class QuestionViewController: UIViewController {
     var ref = FIRDatabaseReference()
     var question = Question() {
         didSet {
-            self.questionLabel.text = question.question
+            self.questionLabel.text = question.question.uppercaseString
         }
     }
     var questionRef: FIRDatabaseReference {
@@ -46,7 +48,6 @@ class QuestionViewController: UIViewController {
             }
         })
     
-
         // This overwrites any value and children
         // ref.child("users").child("244634").setValue(["username": "bigAl"])
         
@@ -60,6 +61,48 @@ class QuestionViewController: UIViewController {
 //        }
         // You can create new nodes
         // ref.child("users/244634/age").setValue(28)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        addFloatingCircles()
+    }
+    
+    func addFloatingCircles() {
+        for i in 0..<8 {
+            let circle = UIImageView(image: UIImage(named: "Oval_Big"))
+            let percentageOfCircle = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (1 - 0.25) + 0.25
+            let circleSize = CGFloat(100 * percentageOfCircle)
+            let animationDuration = 4.0 + (Double(i) / 2)
+            self.view.insertSubview(circle, atIndex: 1)
+            
+            let yLayoutConstraint = circle.autoAlignAxisToSuperviewAxis(.Horizontal)
+            yLayoutConstraint.constant = CGFloat(i * 3)
+            let xLayoutConstraint = circle.autoAlignAxisToSuperviewAxis(.Vertical)
+            xLayoutConstraint.constant = CGFloat(i * 3)
+            
+            circle.autoSetDimension(.Height, toSize: circleSize)
+            circle.autoSetDimension(.Width, toSize: circleSize)
+            
+            let multiplier: CGFloat = i % 2 == 0 ? 1 : -1
+            var rand1 = CGFloat(arc4random_uniform(100) + 50)
+            rand1 = rand1 * multiplier
+            var rand2 = CGFloat(arc4random_uniform(100) + 50)
+            rand2 = rand2 * multiplier
+            
+            self.view.layoutIfNeeded()
+            UIView.animateWithDuration(animationDuration, delay:0, options: [.Repeat, .Autoreverse], animations: {
+                yLayoutConstraint.constant = rand1
+                xLayoutConstraint.constant = rand2
+                circle.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.0)
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     deinit {

@@ -5,5 +5,7 @@ target 'Big Buzz' do
 pod 'Firebase'
 pod 'Firebase/Database'
 pod 'IntrepidSwiftWisdom'
+pod 'EasyAnimation'
+pod 'PureLayout'
 end
 

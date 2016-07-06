@@ -5,6 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Dosis-Bold.ttf">
+            <string>Dosis-Bold</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionViewController" customModule="Big_Buzz" customModuleProvider="target">
             <connections>
@@ -17,52 +22,74 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="tvU-g5-M5v">
-                    <rect key="frame" x="24" y="80" width="552" height="406"/>
-                    <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="100"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="ZKm-xN-mWS">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="tvU-g5-M5v">
+                    <rect key="frame" x="24" y="80" width="552" height="388"/>
+                    <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="36"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgg-dn-Lyn">
-                    <rect key="frame" x="30" y="510" width="240" height="60"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgg-dn-Lyn" userLabel="YES Button">
+                    <rect key="frame" x="112" y="495" width="75" height="75"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="75" id="5Si-6H-J0I"/>
                         <constraint firstAttribute="height" constant="60" id="BFe-xI-7tG"/>
+                        <constraint firstAttribute="height" constant="75" id="mAu-AU-si8"/>
                     </constraints>
-                    <state key="normal" title="YES">
+                    <state key="normal" title="YES" backgroundImage="bTNAgree">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="BFe-xI-7tG"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="yesButtonTapped" destination="-1" eventType="touchUpInside" id="tld-Gp-MIn"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJr-fo-kdA">
-                    <rect key="frame" x="330" y="510" width="240" height="60"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJr-fo-kdA" userLabel="NO Button">
+                    <rect key="frame" x="412.5" y="495" width="75" height="75"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="75" id="FfW-52-Z8m"/>
                         <constraint firstAttribute="height" constant="60" id="GPX-vu-Hkt"/>
+                        <constraint firstAttribute="height" constant="75" id="Pro-jh-D9Z"/>
                     </constraints>
-                    <state key="normal" title="NO">
+                    <state key="normal" image="bTNDisagree">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="GPX-vu-Hkt"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="noButtonTapped" destination="-1" eventType="touchUpInside" id="O2Z-0J-Asg"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.95686274766921997" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Pgg-dn-Lyn" secondAttribute="bottom" constant="30" id="0jV-aD-TBE"/>
                 <constraint firstItem="tvU-g5-M5v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="9sP-Cf-rSr"/>
                 <constraint firstAttribute="trailing" secondItem="tvU-g5-M5v" secondAttribute="trailing" constant="24" id="NBX-Xq-6gm"/>
+                <constraint firstAttribute="bottom" secondItem="ZKm-xN-mWS" secondAttribute="bottom" id="RKc-eU-7kb"/>
                 <constraint firstAttribute="bottom" secondItem="PJr-fo-kdA" secondAttribute="bottom" constant="30" id="ReN-19-xhU"/>
                 <constraint firstItem="Pgg-dn-Lyn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="0.5" id="Slu-md-cSf"/>
-                <constraint firstItem="tvU-g5-M5v" firstAttribute="bottom" secondItem="Pgg-dn-Lyn" secondAttribute="top" constant="-24" id="alZ-Ow-BM0"/>
-                <constraint firstItem="Pgg-dn-Lyn" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="mL8-o1-2gc"/>
+                <constraint firstAttribute="trailing" secondItem="ZKm-xN-mWS" secondAttribute="trailing" id="b8V-qs-6K8"/>
+                <constraint firstItem="Pgg-dn-Lyn" firstAttribute="top" secondItem="tvU-g5-M5v" secondAttribute="bottom" constant="27" id="cf4-JR-cV3"/>
+                <constraint firstItem="ZKm-xN-mWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kDC-bP-kqu"/>
+                <constraint firstItem="ZKm-xN-mWS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lGw-A7-ipI"/>
                 <constraint firstItem="PJr-fo-kdA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="1.5" id="rhp-eL-NQi"/>
-                <constraint firstItem="PJr-fo-kdA" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="tNv-lJ-Wwo"/>
                 <constraint firstItem="tvU-g5-M5v" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="wOQ-WJ-HP4"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="bTNAgree" width="75" height="75"/>
+        <image name="bTNDisagree" width="75" height="75"/>
+        <image name="gradient" width="320" height="568"/>
+    </resources>
 </document>
