@@ -12,6 +12,7 @@ import Firebase
 import IntrepidSwiftWisdom
 import EasyAnimation
 import PureLayout
+import Pulsator
 
 extension NSDate {
     func currentDateInDayMonthYear() -> String {
@@ -61,6 +62,7 @@ class QuestionViewController: UIViewController {
 //        }
         // You can create new nodes
         // ref.child("users/244634/age").setValue(28)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -103,6 +105,17 @@ class QuestionViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        let pulsator = Pulsator()
+        questionLabel.layer.addSublayer(pulsator)
+        questionLabel.superview?.layer.insertSublayer(pulsator, below: questionLabel.layer)
+        pulsator.position = questionLabel.center
+        
+        pulsator.numPulse = 5
+        pulsator.radius = 200
+        pulsator.animationDuration = 2
+        pulsator.backgroundColor = UIColor.whiteColor().CGColor
+        
+        pulsator.start()
     }
     
     deinit {

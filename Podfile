@@ -7,5 +7,6 @@ pod 'Firebase/Database'
 pod 'IntrepidSwiftWisdom'
 pod 'EasyAnimation'
 pod 'PureLayout'
+pod 'Pulsator'
 end
 
