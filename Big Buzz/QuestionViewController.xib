@@ -13,8 +13,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionViewController" customModule="Big_Buzz" customModuleProvider="target">
             <connections>
+                <outlet property="noButton" destination="PJr-fo-kdA" id="uJJ-yG-ACm"/>
                 <outlet property="questionLabel" destination="tvU-g5-M5v" id="BQK-IF-dcc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="pvh-oH-vN6"/>
+                <outlet property="yesButton" destination="Pgg-dn-Lyn" id="lfT-6O-2fE"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

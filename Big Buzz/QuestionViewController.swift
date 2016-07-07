@@ -34,7 +34,8 @@ class QuestionViewController: UIViewController {
         return ref.child("questions/\(NSDate().currentDateInDayMonthYear())")
     }
     let pulsator = Pulsator()
-    
+    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
     
     override func viewDidLoad() {
@@ -115,7 +116,14 @@ class QuestionViewController: UIViewController {
     }
 
     @IBAction func yesButtonTapped() {
-//        submitYesVote(true)
+        submitYesVote(true)
+    }
+    
+    @IBAction func noButtonTapped() {
+        submitYesVote(false)
+    }
+    
+    func submitYesVote(yesVote: Bool) {
         questionLabel.layer.addSublayer(pulsator)
         questionLabel.superview?.layer.insertSublayer(pulsator, above: questionLabel.layer)
         pulsator.position = questionLabel.center
@@ -123,24 +131,10 @@ class QuestionViewController: UIViewController {
         pulsator.numPulse = 10
         pulsator.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         pulsator.radius = questionLabel.frame.size.width
-        pulsator.animationDuration = 2
         pulsator.backgroundColor = UIColor(colorLiteralRed: 255, green: 255, blue: 255, alpha: 1.0).CGColor
         
         pulsator.start()
-//        let timer = 
-        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(stopPulsator), userInfo: nil, repeats: true)
-//        pulsator.animationDidStop(<#T##anim: CAAnimation##CAAnimation#>, finished: <#T##Bool#>)
-    }
-    
-    func stopPulsator() {
-        pulsator.stop()
-    }
-    
-    @IBAction func noButtonTapped() {
-        submitYesVote(false)
-    }
-    
-    private func submitYesVote(yesVote: Bool) {
+        
         questionRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
             if var question = currentData.value as? [String : AnyObject] {
                 var noCount = question["no"] as? Int ?? 0
@@ -162,10 +156,22 @@ class QuestionViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                let resultsVC = ResultsViewController.ip_fromNib()
-                resultsVC.question = self.question
-                self.navigationController?.pushViewController(resultsVC, animated: true)
+                self.stopPulsator()
             }
+        }
+    }
+    
+    func stopPulsator() {
+        UIView.animateWithDuration(2.0, animations: {
+            self.questionLabel.alpha = 0
+            self.yesButton.alpha = 0
+            self.noButton.alpha = 0
+        }) { [weak self] finished in
+            guard let strongSelf = self else { return }
+            strongSelf.pulsator.stop()
+            let resultsVC = ResultsViewController.ip_fromNib()
+            resultsVC.question = strongSelf.question
+            strongSelf.navigationController?.push(viewController: resultsVC, transitionType: kCATransitionFade, duration: 1.0)
         }
     }
     
