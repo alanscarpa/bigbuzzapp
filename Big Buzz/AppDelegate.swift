@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = navigationVC
         self.window?.makeKeyAndVisible()
+        
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+
         return true
     }
 
