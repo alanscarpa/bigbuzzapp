@@ -76,8 +76,8 @@ class QuestionViewController: UIViewController {
     func addFloatingCircles() {
         for i in 0..<8 {
             let circle = UIImageView(image: UIImage(named: "Oval_Big"))
-            let percentageOfCircle = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (1 - 0.25) + 0.25
-            let circleSize = CGFloat(100 * percentageOfCircle)
+            let percentageOfCircle = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (1 - 0.35) + 0.35
+            let circleSize = CGFloat(200 * percentageOfCircle)
             let animationDuration = 4.0 + (Double(i) / 2)
             self.view.insertSubview(circle, atIndex: 1)
             
@@ -129,6 +129,7 @@ class QuestionViewController: UIViewController {
         pulsator.position = questionLabel.center
         
         pulsator.numPulse = 10
+        pulsator.animationDuration = 2.0
         pulsator.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         pulsator.radius = questionLabel.frame.size.width
         pulsator.backgroundColor = UIColor(colorLiteralRed: 255, green: 255, blue: 255, alpha: 1.0).CGColor
@@ -162,7 +163,7 @@ class QuestionViewController: UIViewController {
     }
     
     func stopPulsator() {
-        UIView.animateWithDuration(2.0, animations: {
+        UIView.animateWithDuration(1.0, animations: {
             self.questionLabel.alpha = 0
             self.yesButton.alpha = 0
             self.noButton.alpha = 0
@@ -171,7 +172,7 @@ class QuestionViewController: UIViewController {
             strongSelf.pulsator.stop()
             let resultsVC = ResultsViewController.ip_fromNib()
             resultsVC.question = strongSelf.question
-            strongSelf.navigationController?.push(viewController: resultsVC, transitionType: kCATransitionFade, duration: 1.0)
+            strongSelf.navigationController?.push(viewController: resultsVC, transitionType: kCATransitionFade, duration: 0.5)
         }
     }
     
