@@ -33,6 +33,7 @@ class QuestionViewController: UIViewController {
     var questionRef: FIRDatabaseReference {
         return ref.child("questions/\(NSDate().currentDateInDayMonthYear())")
     }
+    let pulsator = Pulsator()
     
     @IBOutlet weak var questionLabel: UILabel!
     
@@ -105,25 +106,34 @@ class QuestionViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let pulsator = Pulsator()
-        questionLabel.layer.addSublayer(pulsator)
-        questionLabel.superview?.layer.insertSublayer(pulsator, below: questionLabel.layer)
-        pulsator.position = questionLabel.center
         
-        pulsator.numPulse = 5
-        pulsator.radius = 200
-        pulsator.animationDuration = 2
-        pulsator.backgroundColor = UIColor.whiteColor().CGColor
-        
-        pulsator.start()
     }
     
     deinit {
         ref.removeAllObservers()
+        
     }
 
     @IBAction func yesButtonTapped() {
-        submitYesVote(true)
+//        submitYesVote(true)
+        questionLabel.layer.addSublayer(pulsator)
+        questionLabel.superview?.layer.insertSublayer(pulsator, above: questionLabel.layer)
+        pulsator.position = questionLabel.center
+        
+        pulsator.numPulse = 10
+        pulsator.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        pulsator.radius = questionLabel.frame.size.width
+        pulsator.animationDuration = 2
+        pulsator.backgroundColor = UIColor(colorLiteralRed: 255, green: 255, blue: 255, alpha: 1.0).CGColor
+        
+        pulsator.start()
+//        let timer = 
+        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(stopPulsator), userInfo: nil, repeats: true)
+//        pulsator.animationDidStop(<#T##anim: CAAnimation##CAAnimation#>, finished: <#T##Bool#>)
+    }
+    
+    func stopPulsator() {
+        pulsator.stop()
     }
     
     @IBAction func noButtonTapped() {
