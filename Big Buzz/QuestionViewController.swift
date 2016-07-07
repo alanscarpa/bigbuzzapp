@@ -37,6 +37,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var answerLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +125,7 @@ class QuestionViewController: UIViewController {
     }
     
     func submitYesVote(yesVote: Bool) {
+        answerLabel.text = yesVote ? "AGREE" : "DISAGREE"
         questionLabel.layer.addSublayer(pulsator)
         questionLabel.superview?.layer.insertSublayer(pulsator, above: questionLabel.layer)
         pulsator.position = questionLabel.center
@@ -167,6 +169,7 @@ class QuestionViewController: UIViewController {
             self.questionLabel.alpha = 0
             self.yesButton.alpha = 0
             self.noButton.alpha = 0
+            self.answerLabel.alpha = 1
         }) { [weak self] finished in
             guard let strongSelf = self else { return }
             strongSelf.pulsator.stop()
