@@ -64,6 +64,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		450CB2EF1D314006001F6850 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				45AA6DE51D2C6F85007F6A29 /* Question.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		450CB2F01D31400F001F6850 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				450CB2F21D31402F001F6850 /* Results */,
+				450CB2F11D314028001F6850 /* Question */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		450CB2F11D314028001F6850 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				4519DADD1D2804D8008AF99B /* QuestionViewController.swift */,
+				45AA6DE31D2C6B57007F6A29 /* QuestionViewController.xib */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
+		450CB2F21D31402F001F6850 /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				45AA6DE71D2C7F71007F6A29 /* ResultsViewController.swift */,
+				45AA6DE91D2C7F81007F6A29 /* ResultsViewController.xib */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
 		4519DACF1D2804D7008AF99B = {
 			isa = PBXGroup;
 			children = (
@@ -89,11 +124,8 @@
 				451D32981D2DC127006F64F3 /* Images */,
 				45AA6E171D2C986C007F6A29 /* Fonts */,
 				4519DADB1D2804D8008AF99B /* AppDelegate.swift */,
-				45AA6DE51D2C6F85007F6A29 /* Question.swift */,
-				4519DADD1D2804D8008AF99B /* QuestionViewController.swift */,
-				45AA6DE31D2C6B57007F6A29 /* QuestionViewController.xib */,
-				45AA6DE71D2C7F71007F6A29 /* ResultsViewController.swift */,
-				45AA6DE91D2C7F81007F6A29 /* ResultsViewController.xib */,
+				450CB2EF1D314006001F6850 /* Models */,
+				450CB2F01D31400F001F6850 /* Screens */,
 				4519DAE21D2804D8008AF99B /* Assets.xcassets */,
 				4519DAE41D2804D8008AF99B /* LaunchScreen.storyboard */,
 				4519DAE71D2804D8008AF99B /* Info.plist */,
