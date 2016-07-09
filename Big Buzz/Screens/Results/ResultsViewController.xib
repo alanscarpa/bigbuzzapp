@@ -7,6 +7,8 @@
     <customFonts key="customFonts">
         <mutableArray key="Dosis-Bold.ttf">
             <string>Dosis-Bold</string>
+            <string>Dosis-Bold</string>
+            <string>Dosis-Bold</string>
         </mutableArray>
         <mutableArray key="Dosis-ExtraBold.ttf">
             <string>Dosis-ExtraBold</string>
@@ -16,7 +18,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultsViewController" customModule="Big_Buzz" customModuleProvider="target">
             <connections>
                 <outlet property="agreePercentageHeightConstraint" destination="6Xs-GX-ir4" id="BpK-Xz-PbB"/>
+                <outlet property="agreePercentageLabel" destination="bt2-CH-2Ll" id="xB3-Ks-iNW"/>
                 <outlet property="disagreePercentageHeighConstraint" destination="r6c-G9-Gx0" id="mAg-av-AxQ"/>
+                <outlet property="disagreePercentageLabel" destination="VCp-wK-CTK" id="F3U-bx-c13"/>
                 <outlet property="noLabel" destination="ryn-FF-nfl" id="g8S-iF-l3o"/>
                 <outlet property="view" destination="iN0-l3-epB" id="yhX-SR-2ja"/>
                 <outlet property="yesLabel" destination="HK4-FQ-TXF" id="7sD-K6-oGr"/>
@@ -69,12 +73,20 @@
                                 <constraint firstAttribute="height" id="6Xs-GX-ir4"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bt2-CH-2Ll">
+                            <rect key="frame" x="12" y="76.5" width="70.5" height="40.5"/>
+                            <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="32"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.086274512112140656" green="0.67058825492858887" blue="0.69803923368453979" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="qDB-cx-CdV" firstAttribute="centerX" secondItem="WGu-oD-EkJ" secondAttribute="centerX" id="B0K-zq-cmK"/>
                         <constraint firstItem="qDB-cx-CdV" firstAttribute="width" secondItem="WGu-oD-EkJ" secondAttribute="width" id="HGu-1R-hJl"/>
+                        <constraint firstItem="bt2-CH-2Ll" firstAttribute="centerX" secondItem="WGu-oD-EkJ" secondAttribute="centerX" id="Slg-7E-iuP"/>
                         <constraint firstAttribute="height" constant="193" id="UVG-yI-wNa"/>
+                        <constraint firstItem="bt2-CH-2Ll" firstAttribute="centerY" secondItem="WGu-oD-EkJ" secondAttribute="centerY" id="gPU-sE-fNV"/>
                         <constraint firstAttribute="bottom" secondItem="qDB-cx-CdV" secondAttribute="bottom" id="iUM-Wy-ij0"/>
                         <constraint firstAttribute="width" constant="94" id="sgS-EG-ZNu"/>
                     </constraints>
@@ -94,12 +106,20 @@
                                 <constraint firstAttribute="height" id="r6c-G9-Gx0"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCp-wK-CTK">
+                            <rect key="frame" x="11" y="76.5" width="70.5" height="40.5"/>
+                            <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="32"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.086274512112140656" green="0.67058825492858887" blue="0.69803923368453979" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="VCp-wK-CTK" firstAttribute="centerY" secondItem="5dB-0H-vfK" secondAttribute="centerY" id="0DU-hg-dK3"/>
                         <constraint firstItem="3Bp-ws-MNL" firstAttribute="centerX" secondItem="5dB-0H-vfK" secondAttribute="centerX" id="HMB-ym-9Ja"/>
                         <constraint firstAttribute="width" constant="94" id="HiW-ue-77y"/>
                         <constraint firstAttribute="height" constant="193" id="Wdg-Sb-88W"/>
+                        <constraint firstItem="VCp-wK-CTK" firstAttribute="centerX" secondItem="5dB-0H-vfK" secondAttribute="centerX" id="X43-ZQ-8uJ"/>
                         <constraint firstItem="3Bp-ws-MNL" firstAttribute="width" secondItem="5dB-0H-vfK" secondAttribute="width" id="YTU-7V-hHN"/>
                         <constraint firstAttribute="bottom" secondItem="3Bp-ws-MNL" secondAttribute="bottom" id="lhR-cn-Rkg"/>
                     </constraints>

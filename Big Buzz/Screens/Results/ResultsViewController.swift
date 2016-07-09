@@ -14,11 +14,15 @@ class ResultsViewController: UIViewController {
     @IBOutlet weak var yesLabel: UILabel!
     @IBOutlet weak var noLabel: UILabel!
     
+    @IBOutlet weak var agreePercentageLabel: UILabel!
+    @IBOutlet weak var disagreePercentageLabel: UILabel!
+    
     // A height constant of 193 == 100%
     let kOneHundredPercent: CGFloat = 193
     
     @IBOutlet weak var agreePercentageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var disagreePercentageHeighConstraint: NSLayoutConstraint!
+    
     var question = Question()
     
     override func viewDidLoad() {
@@ -27,14 +31,33 @@ class ResultsViewController: UIViewController {
         yesLabel.text = String(question.yesVotes)
         noLabel.text = String(question.noVotes)
         
-        setPercentageForAgree(0.5, andDisagree: 0.9)
+        setPollResults()
     }
     
-    func setPercentageForAgree(agreePercentage: CGFloat, andDisagree disagreePercentage: CGFloat) {
+    func setPollResults() {
+        let totalVotes = question.yesVotes + question.noVotes
+        
+        let agreePercentage = CGFloat(question.yesVotes) / CGFloat(totalVotes)
+        let disagreePercentage = CGFloat(question.noVotes) / CGFloat(totalVotes)
+        
         let agreeHeightConstraint = kOneHundredPercent * agreePercentage
         let disagreeHeightConstraint = kOneHundredPercent * disagreePercentage
-        agreePercentageHeightConstraint.constant = agreeHeightConstraint
-        disagreePercentageHeighConstraint.constant = disagreeHeightConstraint
+        
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .PercentStyle
+        numberFormatter.minimumFractionDigits = 0
+        agreePercentageLabel.text = numberFormatter.stringFromNumber(NSNumber(float: Float(agreePercentage)))
+        disagreePercentageLabel.text = numberFormatter.stringFromNumber(NSNumber(float: Float(disagreePercentage)))
+        
+        self.view.layoutIfNeeded()
+        UIView.animateWithDuration(2.0) {
+            self.agreePercentageHeightConstraint.constant = agreeHeightConstraint
+            self.disagreePercentageHeighConstraint.constant = disagreeHeightConstraint
+            self.agreePercentageLabel.alpha = 1
+            self.disagreePercentageLabel.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+        
     }
     
     @IBAction func xButtonTapped() {

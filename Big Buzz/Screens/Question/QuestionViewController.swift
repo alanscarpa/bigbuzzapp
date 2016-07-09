@@ -142,6 +142,9 @@ class QuestionViewController: UIViewController {
                     noCount += 1
                     question["no"] = noCount
                 }
+                
+                self.question.yesVotes = yesCount
+                self.question.noVotes = noCount
     
                 currentData.value = question
                 return FIRTransactionResult.successWithValue(currentData)
