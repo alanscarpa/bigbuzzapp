@@ -14,14 +14,6 @@ import EasyAnimation
 import PureLayout
 import Pulsator
 
-extension NSDate {
-    func currentDateInDayMonthYear() -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        return dateFormatter.stringFromDate(self)
-    }
-}
-
 class QuestionViewController: UIViewController {
 
     var ref = FIRDatabaseReference()

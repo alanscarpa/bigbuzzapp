@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B0E0574F0BE595BC951C28F /* Pods_Big_Buzz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44FB6B07518E58FEBDD71E9 /* Pods_Big_Buzz.framework */; };
+		450CB2F41D3148E1001F6850 /* NSDate+BigBuzz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CB2F31D3148E1001F6850 /* NSDate+BigBuzz.swift */; };
 		4519DADC1D2804D8008AF99B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DADB1D2804D8008AF99B /* AppDelegate.swift */; };
 		4519DADE1D2804D8008AF99B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DADD1D2804D8008AF99B /* QuestionViewController.swift */; };
 		4519DAE31D2804D8008AF99B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4519DAE21D2804D8008AF99B /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		13810BCDFA9F15C5C4C41F8F /* Pods-Big Buzz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Big Buzz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Big Buzz/Pods-Big Buzz.debug.xcconfig"; sourceTree = "<group>"; };
 		2752011DBB2AB489EA9576B7 /* Pods-Big Buzz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Big Buzz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Big Buzz/Pods-Big Buzz.release.xcconfig"; sourceTree = "<group>"; };
+		450CB2F31D3148E1001F6850 /* NSDate+BigBuzz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+BigBuzz.swift"; sourceTree = "<group>"; };
 		4519DAD81D2804D7008AF99B /* Big Buzz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Big Buzz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4519DADB1D2804D8008AF99B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4519DADD1D2804D8008AF99B /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
@@ -75,8 +77,8 @@
 		450CB2F01D31400F001F6850 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				450CB2F21D31402F001F6850 /* Results */,
 				450CB2F11D314028001F6850 /* Question */,
+				450CB2F21D31402F001F6850 /* Results */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				45D993C91D2DDCF100775E30 /* UINavigationController+BigBuzz.swift */,
+				450CB2F31D3148E1001F6850 /* NSDate+BigBuzz.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			files = (
 				45AA6DE61D2C6F85007F6A29 /* Question.swift in Sources */,
 				4519DADE1D2804D8008AF99B /* QuestionViewController.swift in Sources */,
+				450CB2F41D3148E1001F6850 /* NSDate+BigBuzz.swift in Sources */,
 				45D993CA1D2DDCF100775E30 /* UINavigationController+BigBuzz.swift in Sources */,
 				4519DADC1D2804D8008AF99B /* AppDelegate.swift in Sources */,
 				45AA6DE81D2C7F71007F6A29 /* ResultsViewController.swift in Sources */,
