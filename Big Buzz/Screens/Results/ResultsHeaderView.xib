@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Dosis-ExtraBold.ttf">
+            <string>Dosis-ExtraBold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ResultsHeaderView" customModule="Big_Buzz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5E-fl-yaK">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RELATED ARTICLES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUX-oh-BeK">
+                            <rect key="frame" x="227" y="20.5" width="146" height="23"/>
+                            <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.086274512110000007" green="0.67058825489999996" blue="0.69803923369999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="jUX-oh-BeK" firstAttribute="centerY" secondItem="n5E-fl-yaK" secondAttribute="centerY" id="Z12-i2-Imw"/>
+                        <constraint firstItem="jUX-oh-BeK" firstAttribute="centerX" secondItem="n5E-fl-yaK" secondAttribute="centerX" id="bHk-cr-EwD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.086274512112140656" green="0.67058825492858887" blue="0.69803923368453979" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="n5E-fl-yaK" secondAttribute="trailing" id="S0M-Yo-2en"/>
+                <constraint firstAttribute="bottom" secondItem="n5E-fl-yaK" secondAttribute="bottom" id="eU0-RA-smW"/>
+                <constraint firstItem="n5E-fl-yaK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rgu-Ps-ymN"/>
+                <constraint firstItem="n5E-fl-yaK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z2t-DJ-E9X"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="278" y="190"/>
+        </view>
+    </objects>
+</document>

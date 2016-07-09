@@ -8,12 +8,10 @@
 
 import Foundation
 import UIKit
+import IntrepidSwiftWisdom
 
-class ResultsViewController: UIViewController {
+class ResultsViewController: UITableViewController {
 
-    @IBOutlet weak var yesLabel: UILabel!
-    @IBOutlet weak var noLabel: UILabel!
-    
     @IBOutlet weak var agreePercentageLabel: UILabel!
     @IBOutlet weak var disagreePercentageLabel: UILabel!
     
@@ -28,8 +26,9 @@ class ResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Results"
-        yesLabel.text = String(question.yesVotes)
-        noLabel.text = String(question.noVotes)
+        automaticallyAdjustsScrollViewInsets = false
+        
+        tableView.registerNib(UINib(nibName: ResultsHeaderView.ip_nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: ResultsHeaderView.ip_nibName)
         
         setPollResults()
     }
@@ -58,6 +57,29 @@ class ResultsViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
         
+    }
+    
+    // MARK: - UITableViewDataSource
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView =  tableView.dequeueReusableHeaderFooterViewWithIdentifier(ResultsHeaderView.ip_nibName)
+        return headerView
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    // MARK: - UITableViewDelegate
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
     }
     
     @IBAction func xButtonTapped() {
