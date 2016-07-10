@@ -32,23 +32,6 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     
-    func articleRef(articleId: String) -> FIRDatabaseReference {
-        return ref.child("articles/\(articleId)")
-    }
-    
-    func getArticles() {
-        for article in self.question.articles {
-            let articleRef = self.articleRef(article.id)
-            articleRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-                if let article = self.question.articles.filter({ $0.id == snapshot.key }).first {
-                    if let articleDictionary = snapshot.value as? [String: AnyObject] {
-                        article.setUpWithValues(articleDictionary)
-                    }
-                }
-            })
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Question Of The Day"
@@ -115,13 +98,22 @@ class QuestionViewController: UIViewController {
                 }, completion: nil)
         }
     }
-
-    @IBAction func yesButtonTapped() {
-        submitYesVote(true)
+    
+    func articleRef(articleId: String) -> FIRDatabaseReference {
+        return ref.child("articles/\(articleId)")
     }
     
-    @IBAction func noButtonTapped() {
-        submitYesVote(false)
+    func getArticles() {
+        for article in self.question.articles {
+            let articleRef = self.articleRef(article.id)
+            articleRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                if let article = self.question.articles.filter({ $0.id == snapshot.key }).first {
+                    if let articleDictionary = snapshot.value as? [String: AnyObject] {
+                        article.setUpWithValues(articleDictionary)
+                    }
+                }
+            })
+        }
     }
     
     func submitYesVote(yesVote: Bool) {
@@ -180,6 +172,16 @@ class QuestionViewController: UIViewController {
             resultsVC.question = strongSelf.question
             strongSelf.navigationController?.push(viewController: resultsVC, transitionType: kCATransitionFade, duration: 0.5)
         }
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func yesButtonTapped() {
+        submitYesVote(true)
+    }
+    
+    @IBAction func noButtonTapped() {
+        submitYesVote(false)
     }
     
 }

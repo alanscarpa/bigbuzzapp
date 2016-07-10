@@ -36,13 +36,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT POLL STATUS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpa-OF-0aS" userLabel="Poll Status Label">
-                        <rect key="frame" x="25" y="94" width="550" height="38"/>
+                        <rect key="frame" x="25" y="74" width="550" height="38"/>
                         <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="30"/>
                         <color key="textColor" red="0.0" green="0.88627451658248901" blue="0.92549020051956177" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0f-0A-djZ">
-                        <rect key="frame" x="30" y="30" width="44" height="44"/>
+                        <rect key="frame" x="20" y="10" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="Hla-vL-JKL"/>
                             <constraint firstAttribute="width" constant="44" id="KRz-oG-h5r"/>
@@ -56,7 +56,7 @@
                         </connections>
                     </button>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGu-oD-EkJ" userLabel="Agree Container View">
-                        <rect key="frame" x="183" y="173" width="94" height="193"/>
+                        <rect key="frame" x="183" y="153" width="94" height="193"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDB-cx-CdV" userLabel="Agree Percentage View">
                                 <rect key="frame" x="0.0" y="193" width="94" height="0.0"/>
@@ -89,7 +89,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dB-0H-vfK" userLabel="Disagree Container View">
-                        <rect key="frame" x="323" y="173" width="94" height="193"/>
+                        <rect key="frame" x="323" y="153" width="94" height="193"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bp-ws-MNL" userLabel="Disagree Percentage">
                                 <rect key="frame" x="0.0" y="193" width="94" height="0.0"/>
@@ -122,13 +122,13 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AGREE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0n-Gg-Ydp" userLabel="Poll Status Label">
-                        <rect key="frame" x="202" y="375" width="56.5" height="25.5"/>
+                        <rect key="frame" x="202" y="355" width="56.5" height="25.5"/>
                         <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.52549022436141968" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISAGREE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2b-pM-sAt" userLabel="Poll Status Label">
-                        <rect key="frame" x="328" y="375" width="85" height="26"/>
+                        <rect key="frame" x="328" y="355" width="85" height="26"/>
                         <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.52549022440000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -138,11 +138,11 @@
                 <constraints>
                     <constraint firstItem="5dB-0H-vfK" firstAttribute="top" secondItem="jpa-OF-0aS" secondAttribute="bottom" constant="41" id="4uP-HH-TmA"/>
                     <constraint firstItem="d0n-Gg-Ydp" firstAttribute="centerX" secondItem="WGu-oD-EkJ" secondAttribute="centerX" id="5Ke-Yd-Zqm"/>
-                    <constraint firstItem="N0f-0A-djZ" firstAttribute="leading" secondItem="Rbr-o9-5AV" secondAttribute="leading" constant="30" id="65S-C1-dsT"/>
+                    <constraint firstItem="N0f-0A-djZ" firstAttribute="leading" secondItem="Rbr-o9-5AV" secondAttribute="leading" constant="20" id="65S-C1-dsT"/>
                     <constraint firstItem="d0n-Gg-Ydp" firstAttribute="top" secondItem="WGu-oD-EkJ" secondAttribute="bottom" constant="9" id="6kS-Tv-tsX"/>
                     <constraint firstItem="K2b-pM-sAt" firstAttribute="top" secondItem="5dB-0H-vfK" secondAttribute="bottom" constant="9" id="9Sm-si-wX6"/>
                     <constraint firstAttribute="trailing" secondItem="jpa-OF-0aS" secondAttribute="trailing" constant="25" id="bWS-Xb-lYy"/>
-                    <constraint firstItem="N0f-0A-djZ" firstAttribute="top" secondItem="Rbr-o9-5AV" secondAttribute="top" constant="30" id="dZn-SL-M7Q"/>
+                    <constraint firstItem="N0f-0A-djZ" firstAttribute="top" secondItem="Rbr-o9-5AV" secondAttribute="top" constant="10" id="dZn-SL-M7Q"/>
                     <constraint firstItem="jpa-OF-0aS" firstAttribute="top" secondItem="N0f-0A-djZ" secondAttribute="bottom" constant="20" id="iQq-B5-XoI"/>
                     <constraint firstItem="WGu-oD-EkJ" firstAttribute="centerX" secondItem="Rbr-o9-5AV" secondAttribute="centerX" constant="-70" id="ikw-xD-BhK"/>
                     <constraint firstItem="K2b-pM-sAt" firstAttribute="centerX" secondItem="5dB-0H-vfK" secondAttribute="centerX" id="lDB-cr-6Ra"/>

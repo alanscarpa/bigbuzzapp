@@ -33,6 +33,11 @@ class ResultsViewController: UITableViewController {
         setPollResults()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func setPollResults() {
         let totalVotes = question.yesVotes + question.noVotes
         
@@ -61,7 +66,7 @@ class ResultsViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return question.articles.count
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -75,12 +80,15 @@ class ResultsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ResultsArticleTableViewCell.ip_nibName) as! ResultsArticleTableViewCell
+        cell.configureForArticle(question.articles[indexPath.row])
         return cell
     }
     
     // MARK: - UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        let articleVC = ArticleViewController.ip_fromNib()
+        articleVC.article = question.articles[indexPath.row]
+        self.navigationController?.pushViewController(articleVC, animated: true)
     }
     
     @IBAction func xButtonTapped() {

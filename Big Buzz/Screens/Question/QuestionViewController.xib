@@ -30,13 +30,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="tvU-g5-M5v">
-                    <rect key="frame" x="24" y="80" width="552" height="388"/>
+                    <rect key="frame" x="24" y="60" width="552" height="408"/>
                     <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="36"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AGREE" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000298023224" translatesAutoresizingMaskIntoConstraints="NO" id="RH7-W7-E6U" userLabel="Answer Label">
-                    <rect key="frame" x="250" y="251" width="100" height="46"/>
+                    <rect key="frame" x="250" y="241" width="100" height="46"/>
                     <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="36"/>
                     <color key="textColor" red="0.0" green="0.88627451658248901" blue="0.92549020051956177" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
             <color key="backgroundColor" red="0.0" green="0.95686274766921997" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Pgg-dn-Lyn" secondAttribute="bottom" constant="30" id="0jV-aD-TBE"/>
-                <constraint firstItem="tvU-g5-M5v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="9sP-Cf-rSr"/>
+                <constraint firstItem="tvU-g5-M5v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="9sP-Cf-rSr"/>
                 <constraint firstItem="RH7-W7-E6U" firstAttribute="centerX" secondItem="tvU-g5-M5v" secondAttribute="centerX" id="KA4-7X-f4R"/>
                 <constraint firstAttribute="trailing" secondItem="tvU-g5-M5v" secondAttribute="trailing" constant="24" id="NBX-Xq-6gm"/>
                 <constraint firstItem="RH7-W7-E6U" firstAttribute="centerY" secondItem="tvU-g5-M5v" secondAttribute="centerY" id="NwQ-aq-smh"/>

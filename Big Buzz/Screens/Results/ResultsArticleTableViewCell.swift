@@ -10,15 +10,13 @@ import UIKit
 
 class ResultsArticleTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var articleThumbnailImageView: UIImageView!
+    @IBOutlet weak var articleTitleLabel: UILabel!
+    @IBOutlet weak var articleLedeLabel: UILabel!
+    
+    func configureForArticle(article: Article) {
+        articleTitleLabel.text = article.title
+        articleLedeLabel.text = article.lede
     }
     
 }

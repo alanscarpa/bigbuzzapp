@@ -14,6 +14,8 @@
 		450CB2FD1D3184E4001F6850 /* ResultsArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CB2FB1D3184E4001F6850 /* ResultsArticleTableViewCell.swift */; };
 		450CB2FE1D3184E4001F6850 /* ResultsArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 450CB2FC1D3184E4001F6850 /* ResultsArticleTableViewCell.xib */; };
 		450CB3001D318981001F6850 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CB2FF1D318981001F6850 /* Article.swift */; };
+		450CB3041D31D7ED001F6850 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CB3021D31D7ED001F6850 /* ArticleViewController.swift */; };
+		450CB3051D31D7ED001F6850 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 450CB3031D31D7ED001F6850 /* ArticleViewController.xib */; };
 		4519DADC1D2804D8008AF99B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DADB1D2804D8008AF99B /* AppDelegate.swift */; };
 		4519DADE1D2804D8008AF99B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519DADD1D2804D8008AF99B /* QuestionViewController.swift */; };
 		4519DAE31D2804D8008AF99B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4519DAE21D2804D8008AF99B /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		450CB2FB1D3184E4001F6850 /* ResultsArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsArticleTableViewCell.swift; sourceTree = "<group>"; };
 		450CB2FC1D3184E4001F6850 /* ResultsArticleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsArticleTableViewCell.xib; sourceTree = "<group>"; };
 		450CB2FF1D318981001F6850 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		450CB3021D31D7ED001F6850 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		450CB3031D31D7ED001F6850 /* ArticleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
 		4519DAD81D2804D7008AF99B /* Big Buzz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Big Buzz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4519DADB1D2804D8008AF99B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4519DADD1D2804D8008AF99B /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 		450CB2F01D31400F001F6850 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				450CB3011D31D7CC001F6850 /* Article */,
 				450CB2F11D314028001F6850 /* Question */,
 				450CB2F21D31402F001F6850 /* Results */,
 			);
@@ -114,6 +119,15 @@
 				450CB2FC1D3184E4001F6850 /* ResultsArticleTableViewCell.xib */,
 			);
 			path = Results;
+			sourceTree = "<group>";
+		};
+		450CB3011D31D7CC001F6850 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				450CB3021D31D7ED001F6850 /* ArticleViewController.swift */,
+				450CB3031D31D7ED001F6850 /* ArticleViewController.xib */,
+			);
+			path = Article;
 			sourceTree = "<group>";
 		};
 		4519DACF1D2804D7008AF99B = {
@@ -267,6 +281,7 @@
 				45AA6E151D2C9867007F6A29 /* Dosis-Medium.ttf in Resources */,
 				45AA6E121D2C9867007F6A29 /* Dosis-ExtraBold.ttf in Resources */,
 				45AA6DEA1D2C7F81007F6A29 /* ResultsViewController.xib in Resources */,
+				450CB3051D31D7ED001F6850 /* ArticleViewController.xib in Resources */,
 				450CB2FA1D317F76001F6850 /* ResultsHeaderView.xib in Resources */,
 				45AA6DE41D2C6B57007F6A29 /* QuestionViewController.xib in Resources */,
 				45AA6E161D2C9867007F6A29 /* Dosis-SemiBold.ttf in Resources */,
@@ -339,6 +354,7 @@
 				450CB2F81D317F36001F6850 /* ResultsHeaderView.swift in Sources */,
 				45D993CA1D2DDCF100775E30 /* UINavigationController+BigBuzz.swift in Sources */,
 				4519DADC1D2804D8008AF99B /* AppDelegate.swift in Sources */,
+				450CB3041D31D7ED001F6850 /* ArticleViewController.swift in Sources */,
 				45AA6DE81D2C7F71007F6A29 /* ResultsViewController.swift in Sources */,
 				450CB2FD1D3184E4001F6850 /* ResultsArticleTableViewCell.swift in Sources */,
 			);
