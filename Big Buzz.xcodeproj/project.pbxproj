@@ -151,10 +151,10 @@
 		4519DADA1D2804D8008AF99B /* Big Buzz */ = {
 			isa = PBXGroup;
 			children = (
+				4519DADB1D2804D8008AF99B /* AppDelegate.swift */,
 				45D993C81D2DDCC900775E30 /* Extensions */,
 				451D32981D2DC127006F64F3 /* Images */,
 				45AA6E171D2C986C007F6A29 /* Fonts */,
-				4519DADB1D2804D8008AF99B /* AppDelegate.swift */,
 				450CB2EF1D314006001F6850 /* Models */,
 				450CB2F01D31400F001F6850 /* Screens */,
 				4519DAE21D2804D8008AF99B /* Assets.xcassets */,
