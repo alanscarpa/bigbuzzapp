@@ -25,22 +25,40 @@ class QuestionViewController: UIViewController {
     var questionRef: FIRDatabaseReference {
         return ref.child("questions/\(NSDate().currentDateInDayMonthYear())")
     }
+
     let pulsator = Pulsator()
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     
+    func articleRef(articleId: String) -> FIRDatabaseReference {
+        return ref.child("articles/\(articleId)")
+    }
+    
+    func getArticles() {
+        for article in self.question.articles {
+            let articleRef = self.articleRef(article.id)
+            articleRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                if let article = self.question.articles.filter({ $0.id == snapshot.key }).first {
+                    if let articleDictionary = snapshot.value as? [String: AnyObject] {
+                        article.setUpWithValues(articleDictionary)
+                    }
+                }
+            })
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Question Of The Day"
         
         ref = FIRDatabase.database().reference()
-        
-        questionRef.observeEventType(.Value, withBlock: { snapshot in
+
+        questionRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let question = snapshot.value as? [String: AnyObject] {
                 self.question = Question(questionDictionary: question, withDate: NSDate())
-                print(self.question.yesVotes)
+                self.getArticles()
             }
         })
     
@@ -96,16 +114,6 @@ class QuestionViewController: UIViewController {
                 self.view.layoutIfNeeded()
                 }, completion: nil)
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
-    deinit {
-        ref.removeAllObservers()
-        
     }
 
     @IBAction func yesButtonTapped() {
