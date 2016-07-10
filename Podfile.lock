@@ -27,6 +27,9 @@ PODS:
   - IntrepidSwiftWisdom/Core (0.0.15)
   - Pulsator (0.1.1)
   - PureLayout (3.0.2)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
 
 DEPENDENCIES:
   - EasyAnimation
@@ -35,6 +38,7 @@ DEPENDENCIES:
   - IntrepidSwiftWisdom
   - Pulsator
   - PureLayout
+  - SDWebImage
 
 SPEC CHECKSUMS:
   EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d
@@ -48,7 +52,8 @@ SPEC CHECKSUMS:
   IntrepidSwiftWisdom: 3a5acc3cb436abd489c1dd50923a5b1f26cc243f
   Pulsator: 9486579ab8eeb0585aedefdc2c688ab589497d9a
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 45cf36bd5e9c5e843ece48abd4f13f6ba5f5dfaf
+PODFILE CHECKSUM: 36f32424e0f07cc34c3c5658968cd9b8d4783d4f
 
 COCOAPODS: 1.0.1

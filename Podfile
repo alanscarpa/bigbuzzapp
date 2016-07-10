@@ -8,5 +8,6 @@ pod 'IntrepidSwiftWisdom'
 pod 'EasyAnimation'
 pod 'PureLayout'
 pod 'Pulsator'
+pod 'SDWebImage'
 end
 

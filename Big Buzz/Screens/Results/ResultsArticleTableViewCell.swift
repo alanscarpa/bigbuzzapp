@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ResultsArticleTableViewCell: UITableViewCell {
 
@@ -17,6 +18,11 @@ class ResultsArticleTableViewCell: UITableViewCell {
     func configureForArticle(article: Article) {
         articleTitleLabel.text = article.title
         articleLedeLabel.text = article.lede
+        articleThumbnailImageView.layer.cornerRadius = articleThumbnailImageView.frame.size.width / 2
+
+        if let imageURL = NSURL(string: article.thumbnailURLString) {
+            articleThumbnailImageView.sd_setImageWithURL(imageURL)
+        }
     }
     
 }
