@@ -26,12 +26,11 @@ class Question {
         if let noVotes = questionDictionary["no"] as? Int {
             self.noVotes = noVotes
         }
-        
-        let articles = NSArray(array: questionDictionary["articles"] as! [Int])
-        for articleId in articles {
-            self.articles.append(Article(id: String(articleId)))
+        if let articleIDs = questionDictionary["articles"] as? [Int] {
+            for id in articleIDs {
+                self.articles.append(Article(id: String(id)))
+            }
         }
-        
         self.date = date
     }
 }
