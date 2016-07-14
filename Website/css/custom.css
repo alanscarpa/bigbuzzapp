@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Libre Baskerville', serif;
+  line-height: 1.5;
+  color: #171717;
+  background: #fbfbfb;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 700;
+  font-size: 5.0em; }
+
+@media screen and (min-width: 40em) {
+  h1 {
+    font-size: 10rem; } }
+
+@media screen and (min-width: 64em) {
+  h1 {
+    font-size: 20rem; } }
+
+h2 {
+font-family: 'Libre Baskerville', serif;
+font-weight: 700; }
+
+h3, h4 {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400; }
+
+
+.row {
+  max-width: 100%; }
+
+.spacer {
+  height: 100px; }
+
+.rowPaddingTopBottom {
+  padding-top: 50px;
+  padding-bottom: 50px; }
+
+.lightBg {
+  background-color: #fff4e2; }
+
+.darkText {
+  color: #171717; }
