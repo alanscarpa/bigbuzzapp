@@ -26,9 +26,9 @@ class Question {
         if let noVotes = questionDictionary["no"] as? Int {
             self.noVotes = noVotes
         }
-        if let articleIDs = questionDictionary["articles"] as? [Int] {
+        if let articleIDs = questionDictionary["articles"] as? [String] {
             for id in articleIDs {
-                self.articles.append(Article(id: String(id)))
+                self.articles.append(Article(id: id))
             }
         }
         self.date = date
