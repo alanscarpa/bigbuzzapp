@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
+    <title>Big Buzz - Article Submission</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/custom.css">
   </head>
@@ -54,7 +54,7 @@
              Article 2 Thumbnail URL: <input type='text' id='article2ThumbnailURL' />
              </p>
              <p>
-             <button id="submitButton">submit</button>
+             <button id="submitButton" class="subButton">submit</button>
              </p>
         </center>
       </div>
@@ -66,6 +66,7 @@
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.min.js"></script>
+    <script src="js/customJs.js"></script>
     <!-- FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>    
     <script>
@@ -84,62 +85,7 @@
       // Set up submit button
       document.getElementById("submitButton").addEventListener("click", function () {
         writeNewPost();
-      });
-    </script>
-
-
-    <script type="text/javascript">
-      function writeNewPost() {
-
-        // Get a key for a new article.
-        var articleKey1 = firebase.database().ref().child('articles').push().key;
-        var articleKey2 = firebase.database().ref().child('articles').push().key;
-
-        var question = $('#question').val();
-        var article1URL = $('#article1URL').val();
-        var article1Title = $('#article1Title').val();
-        var article1Lede = $('#article1Lede').val();
-        var article1ThumbnailURL = $('#article1ThumbnailURL').val();
-        var article2URL = $('#article2URL').val();
-        var article2Title = $('#article2Title').val();
-        var article2Lede = $('#article2Lede').val();
-        var article2ThumbnailURL = $('#article2ThumbnailURL').val();
-
-        var articleData1 = {
-          lede: article1Lede,
-          thumbnailURLString: article1ThumbnailURL,
-          title: article1Title,
-          urlString: article1URL
-        };
-
-        var articleData2 = {
-          lede: article2Lede,
-          thumbnailURLString: article2ThumbnailURL,
-          title: article2Title,
-          urlString: article2URL
-        };
-
-        var questionData = {
-          yes: 0,
-          no: 0,
-          question: question,
-          articles: [articleKey1, articleKey2]
-        };
-
-        var updates = {};
-        updates['/questions/07-13-2016/'] = questionData;
-        updates['/articles/' + articleKey1] = articleData1;
-        updates['/articles/' + articleKey2] = articleData2;
-
-        firebase.database().ref().update(updates, function(error) {
-          if (error) {
-            alert("Data could not be saved." + error);
-          } else {
-            alert("Data saved successfully.");
-            location.reload();
-          }
-        });
-      }
+      });      
     </script>
 
   </body>
