@@ -26,6 +26,13 @@ class QuestionViewController: UIViewController {
         return ref.child("questions/\(NSDate().currentDateInDayMonthYear())")
     }
     let pulsator = Pulsator()
+    var adjustedDays = 0
+    var adjustedDaysInSeconds: NSTimeInterval {
+        return NSTimeInterval(adjustedDays * 86400)
+    }
+    var adjustedDate: String {
+        return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds).currentDateInDayMonthYear()
+    }
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
@@ -81,6 +88,30 @@ class QuestionViewController: UIViewController {
     
     @IBAction func showResultsButtonTapped() {
         transitionToResultsViewController()
+    }
+    
+    @IBAction func leftDateButtonTapped() {
+        adjustedDays -= 1
+        ref.child("questions/\(adjustedDate)").observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let question = snapshot.value as? [String: AnyObject] {
+                self.question = Question(questionDictionary: question, withDate: NSDate())
+                self.getArticles()
+            } else {
+                print("No Question For This Day")
+            }
+        })
+    }
+    
+    @IBAction func rightDateButtonTapped() {
+        adjustedDays += 1
+        ref.child("questions/\(adjustedDate)").observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let question = snapshot.value as? [String: AnyObject] {
+                self.question = Question(questionDictionary: question, withDate: NSDate())
+                self.getArticles()
+            } else {
+                print("No Question For This Day")
+            }
+        })
     }
     
     func submitYesVote(yesVote: Bool) {
