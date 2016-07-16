@@ -10,6 +10,9 @@
             <string>Dosis-Bold</string>
             <string>Dosis-Bold</string>
         </mutableArray>
+        <mutableArray key="Dosis-ExtraBold.ttf">
+            <string>Dosis-ExtraBold</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionViewController" customModule="Big_Buzz" customModuleProvider="target">
@@ -17,6 +20,7 @@
                 <outlet property="answerLabel" destination="RH7-W7-E6U" id="AuP-Br-iYG"/>
                 <outlet property="noButton" destination="PJr-fo-kdA" id="uJJ-yG-ACm"/>
                 <outlet property="questionLabel" destination="tvU-g5-M5v" id="BQK-IF-dcc"/>
+                <outlet property="showResultsButton" destination="YQv-PZ-Z9A" id="Q5o-tG-Jb6"/>
                 <outlet property="view" destination="iN0-l3-epB" id="pvh-oH-vN6"/>
                 <outlet property="yesButton" destination="Pgg-dn-Lyn" id="lfT-6O-2fE"/>
             </connections>
@@ -36,7 +40,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YES" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000298023224" translatesAutoresizingMaskIntoConstraints="NO" id="RH7-W7-E6U" userLabel="Answer Label">
-                    <rect key="frame" x="270.5" y="241" width="59" height="46"/>
+                    <rect key="frame" x="270" y="241" width="59" height="46"/>
                     <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="36"/>
                     <color key="textColor" red="0.0" green="0.88627451658248901" blue="0.92549020051956177" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -79,22 +83,42 @@
                         <action selector="noButtonTapped" destination="-1" eventType="touchUpInside" id="O2Z-0J-Asg"/>
                     </connections>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQv-PZ-Z9A" userLabel="Show Results Button">
+                    <rect key="frame" x="112" y="506.5" width="375" height="52.5"/>
+                    <color key="backgroundColor" red="0.086274512112140656" green="0.67058825492858887" blue="0.69803923368453979" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="24"/>
+                    <state key="normal" title="Show Results">
+                        <color key="titleColor" red="0.97254902124404907" green="0.97254902124404907" blue="0.97254902124404907" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="showResultsButtonTapped" destination="-1" eventType="touchUpInside" id="ouH-OU-Mf6"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.95686274766921997" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Pgg-dn-Lyn" secondAttribute="bottom" constant="30" id="0jV-aD-TBE"/>
                 <constraint firstItem="tvU-g5-M5v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="9sP-Cf-rSr"/>
+                <constraint firstItem="YQv-PZ-Z9A" firstAttribute="trailing" secondItem="PJr-fo-kdA" secondAttribute="trailing" id="HWj-ak-H0y"/>
                 <constraint firstItem="RH7-W7-E6U" firstAttribute="centerX" secondItem="tvU-g5-M5v" secondAttribute="centerX" id="KA4-7X-f4R"/>
                 <constraint firstAttribute="trailing" secondItem="tvU-g5-M5v" secondAttribute="trailing" constant="24" id="NBX-Xq-6gm"/>
                 <constraint firstItem="RH7-W7-E6U" firstAttribute="centerY" secondItem="tvU-g5-M5v" secondAttribute="centerY" id="NwQ-aq-smh"/>
+                <constraint firstItem="YQv-PZ-Z9A" firstAttribute="leading" secondItem="Pgg-dn-Lyn" secondAttribute="leading" id="O0p-O6-Rqr"/>
                 <constraint firstAttribute="bottom" secondItem="ZKm-xN-mWS" secondAttribute="bottom" id="RKc-eU-7kb"/>
                 <constraint firstAttribute="bottom" secondItem="PJr-fo-kdA" secondAttribute="bottom" constant="30" id="ReN-19-xhU"/>
                 <constraint firstItem="Pgg-dn-Lyn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="0.5" id="Slu-md-cSf"/>
                 <constraint firstAttribute="trailing" secondItem="ZKm-xN-mWS" secondAttribute="trailing" id="b8V-qs-6K8"/>
                 <constraint firstItem="Pgg-dn-Lyn" firstAttribute="top" secondItem="tvU-g5-M5v" secondAttribute="bottom" constant="27" id="cf4-JR-cV3"/>
+                <constraint firstItem="YQv-PZ-Z9A" firstAttribute="centerY" secondItem="Pgg-dn-Lyn" secondAttribute="centerY" id="hqO-Ea-sdJ"/>
                 <constraint firstItem="ZKm-xN-mWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kDC-bP-kqu"/>
                 <constraint firstItem="ZKm-xN-mWS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lGw-A7-ipI"/>
                 <constraint firstItem="PJr-fo-kdA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="1.5" id="rhp-eL-NQi"/>
+                <constraint firstItem="YQv-PZ-Z9A" firstAttribute="height" secondItem="Pgg-dn-Lyn" secondAttribute="height" multiplier="0.7" id="sQM-j5-oMJ"/>
                 <constraint firstItem="tvU-g5-M5v" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="wOQ-WJ-HP4"/>
             </constraints>
         </view>

@@ -30,6 +30,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var showResultsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +77,10 @@ class QuestionViewController: UIViewController {
     
     @IBAction func noButtonTapped() {
         submitYesVote(false)
+    }
+    
+    @IBAction func showResultsButtonTapped() {
+        transitionToResultsViewController()
     }
     
     func submitYesVote(yesVote: Bool) {
@@ -127,7 +132,7 @@ class QuestionViewController: UIViewController {
     
     func stopPulsatorWithCompletion(completion: () -> Void) {
         UIView.animateWithDuration(1.0, animations: {
-            self.showAnswer()
+            self.animateShowAnswer()
         }) { [weak self] finished in
             guard let strongSelf = self else { return }
             AnimationManager.sharedManager.stopPulsator(strongSelf.pulsator)
@@ -146,9 +151,10 @@ class QuestionViewController: UIViewController {
     private func showAlreadyAnsweredState() {
         questionLabel.alpha = 1
         answerLabel.alpha = 0
+        showResultsButton.hidden = false
     }
     
-    private func showAnswer() {
+    private func animateShowAnswer() {
         questionLabel.alpha = 0
         yesButton.alpha = 0
         noButton.alpha = 0
