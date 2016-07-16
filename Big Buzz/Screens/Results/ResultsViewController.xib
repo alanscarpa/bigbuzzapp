@@ -19,11 +19,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultsViewController" customModule="Big_Buzz" customModuleProvider="target">
             <connections>
-                <outlet property="agreePercentageHeightConstraint" destination="6Xs-GX-ir4" id="BpK-Xz-PbB"/>
-                <outlet property="agreePercentageLabel" destination="bt2-CH-2Ll" id="xB3-Ks-iNW"/>
-                <outlet property="disagreePercentageHeighConstraint" destination="r6c-G9-Gx0" id="mAg-av-AxQ"/>
-                <outlet property="disagreePercentageLabel" destination="VCp-wK-CTK" id="F3U-bx-c13"/>
+                <outlet property="noPercentageHeighConstraint" destination="r6c-G9-Gx0" id="QlJ-XM-xBH"/>
+                <outlet property="noPercentageLabel" destination="VCp-wK-CTK" id="aYA-9E-8i8"/>
                 <outlet property="view" destination="vaF-Sq-Kr4" id="Fj5-Hp-LTi"/>
+                <outlet property="yesPercentageHeightConstraint" destination="6Xs-GX-ir4" id="fdD-1Q-ozY"/>
+                <outlet property="yesPercentageLabel" destination="bt2-CH-2Ll" id="SK2-SH-HGi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -55,17 +55,17 @@
                             <action selector="xButtonTapped" destination="-1" eventType="touchUpInside" id="8zy-XK-zPb"/>
                         </connections>
                     </button>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGu-oD-EkJ" userLabel="Agree Container View">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGu-oD-EkJ" userLabel="Yes Container View">
                         <rect key="frame" x="183" y="163" width="94" height="193"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDB-cx-CdV" userLabel="Agree Percentage View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDB-cx-CdV" userLabel="Yes Percentage View">
                                 <rect key="frame" x="0.0" y="193" width="94" height="0.0"/>
                                 <color key="backgroundColor" red="0.0" green="0.95686274766921997" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="6Xs-GX-ir4"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bt2-CH-2Ll">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bt2-CH-2Ll" userLabel="Yes Percentage Label">
                                 <rect key="frame" x="12" y="76" width="70.5" height="40.5"/>
                                 <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -88,17 +88,17 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dB-0H-vfK" userLabel="Disagree Container View">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dB-0H-vfK" userLabel="No Container View">
                         <rect key="frame" x="323" y="163" width="94" height="193"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bp-ws-MNL" userLabel="Disagree Percentage">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bp-ws-MNL" userLabel="No Percentage View">
                                 <rect key="frame" x="0.0" y="193" width="94" height="0.0"/>
                                 <color key="backgroundColor" red="0.0" green="0.95686274766921997" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="r6c-G9-Gx0"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCp-wK-CTK">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCp-wK-CTK" userLabel="No Percentage Label">
                                 <rect key="frame" x="11" y="76" width="70.5" height="40.5"/>
                                 <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,14 +121,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AGREE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0n-Gg-Ydp" userLabel="Poll Status Label">
-                        <rect key="frame" x="202" y="365" width="56.5" height="25.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0n-Gg-Ydp" userLabel="Poll Status Label">
+                        <rect key="frame" x="213.5" y="365" width="33.5" height="26"/>
                         <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.52549022436141968" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISAGREE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2b-pM-sAt" userLabel="Poll Status Label">
-                        <rect key="frame" x="328" y="365" width="85" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2b-pM-sAt" userLabel="Poll Status Label">
+                        <rect key="frame" x="358" y="365" width="25" height="26"/>
                         <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.52549022440000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>

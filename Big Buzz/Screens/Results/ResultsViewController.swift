@@ -12,14 +12,14 @@ import IntrepidSwiftWisdom
 
 class ResultsViewController: UITableViewController {
 
-    @IBOutlet weak var agreePercentageLabel: UILabel!
-    @IBOutlet weak var disagreePercentageLabel: UILabel!
+    @IBOutlet weak var yesPercentageLabel: UILabel!
+    @IBOutlet weak var noPercentageLabel: UILabel!
     
     // A height constant of 193 == 100%
     let kOneHundredPercent: CGFloat = 193
     
-    @IBOutlet weak var agreePercentageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var disagreePercentageHeighConstraint: NSLayoutConstraint!
+    @IBOutlet weak var yesPercentageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var noPercentageHeighConstraint: NSLayoutConstraint!
     
     var question = Question()
     
@@ -45,24 +45,24 @@ class ResultsViewController: UITableViewController {
     func setPollResults() {
         let totalVotes = question.yesVotes + question.noVotes
         
-        let agreePercentage = CGFloat(question.yesVotes) / CGFloat(totalVotes)
-        let disagreePercentage = CGFloat(question.noVotes) / CGFloat(totalVotes)
+        let yesPercentage = CGFloat(question.yesVotes) / CGFloat(totalVotes)
+        let noPercentage = CGFloat(question.noVotes) / CGFloat(totalVotes)
         
-        let agreeHeightConstraint = kOneHundredPercent * agreePercentage
-        let disagreeHeightConstraint = kOneHundredPercent * disagreePercentage
+        let yesHeightConstraint = kOneHundredPercent * yesPercentage
+        let noHeightConstraint = kOneHundredPercent * noPercentage
         
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = .PercentStyle
         numberFormatter.minimumFractionDigits = 0
-        agreePercentageLabel.text = numberFormatter.stringFromNumber(NSNumber(float: Float(agreePercentage)))
-        disagreePercentageLabel.text = numberFormatter.stringFromNumber(NSNumber(float: Float(disagreePercentage)))
+        yesPercentageLabel.text = numberFormatter.stringFromNumber(NSNumber(float: Float(yesPercentage)))
+        noPercentageLabel.text = numberFormatter.stringFromNumber(NSNumber(float: Float(noPercentage)))
         
         self.view.layoutIfNeeded()
         UIView.animateWithDuration(2.0) {
-            self.agreePercentageHeightConstraint.constant = agreeHeightConstraint
-            self.disagreePercentageHeighConstraint.constant = disagreeHeightConstraint
-            self.agreePercentageLabel.alpha = 1
-            self.disagreePercentageLabel.alpha = 1
+            self.yesPercentageHeightConstraint.constant = yesHeightConstraint
+            self.noPercentageHeighConstraint.constant = noHeightConstraint
+            self.yesPercentageLabel.alpha = 1
+            self.noPercentageLabel.alpha = 1
             self.view.layoutIfNeeded()
         }
         

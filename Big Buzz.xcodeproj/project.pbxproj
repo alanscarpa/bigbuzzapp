@@ -248,6 +248,11 @@
 					4519DAD71D2804D7008AF99B = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 98E8SVTQ29;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

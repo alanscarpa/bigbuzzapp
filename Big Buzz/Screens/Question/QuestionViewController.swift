@@ -117,7 +117,7 @@ class QuestionViewController: UIViewController {
     }
     
     func submitYesVote(yesVote: Bool) {
-        answerLabel.text = yesVote ? "AGREE" : "DISAGREE"
+        answerLabel.text = yesVote ? "YES" : "NO"
         questionLabel.layer.addSublayer(pulsator)
         questionLabel.superview?.layer.insertSublayer(pulsator, above: questionLabel.layer)
         pulsator.position = questionLabel.center
