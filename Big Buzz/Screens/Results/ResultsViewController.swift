@@ -44,6 +44,7 @@ class ResultsViewController: UITableViewController {
     
     func setPollResults() {
         let totalVotes = question.yesVotes + question.noVotes
+        guard totalVotes > 0 else { return }
         
         let yesPercentage = CGFloat(question.yesVotes) / CGFloat(totalVotes)
         let noPercentage = CGFloat(question.noVotes) / CGFloat(totalVotes)

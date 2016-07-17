@@ -22,7 +22,7 @@ class QuestionViewController: UIViewController {
             self.questionLabel.text = question.question.uppercaseString
         }
     }
-    var questionRef: FIRDatabaseReference {
+    var questionForTodayRef: FIRDatabaseReference {
         return ref.child("questions/\(NSDate().currentDateInDayMonthYear())")
     }
     let pulsator = Pulsator()
@@ -33,6 +33,13 @@ class QuestionViewController: UIViewController {
     var adjustedDate: String {
         return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds).currentDateInDayMonthYear()
     }
+    var daysWithoutQuestion = 0
+    var canGoBackADay: Bool {
+        return daysWithoutQuestion < 7
+    }
+//    var canGoForwardADay: Bool {
+//        return
+//    }
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
@@ -45,12 +52,22 @@ class QuestionViewController: UIViewController {
         
         ref = FIRDatabase.database().reference()
 
-        questionRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        questionForTodayRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let question = snapshot.value as? [String: AnyObject] {
                 self.question = Question(questionDictionary: question, withDate: NSDate())
                 self.getArticles()
             }
-        })
+        }) { error in
+            print(error)
+        }
+//        questionForTodayRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+//            if let question = snapshot.value as? [String: AnyObject] {
+//                self.question = Question(questionDictionary: question, withDate: NSDate())
+//                self.getArticles()
+//            } else {
+//                snapshot
+//            }
+//        })
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -91,25 +108,36 @@ class QuestionViewController: UIViewController {
     }
     
     @IBAction func leftDateButtonTapped() {
-        adjustedDays -= 1
-        ref.child("questions/\(adjustedDate)").observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if let question = snapshot.value as? [String: AnyObject] {
-                self.question = Question(questionDictionary: question, withDate: NSDate())
-                self.getArticles()
-            } else {
-                print("No Question For This Day")
-            }
-        })
+        if canGoBackADay {
+            adjustedDays -= 1
+            showAlreadyAnsweredState()
+            getQuestionForAdjustedDay(dayBefore: true)
+        }
     }
     
     @IBAction func rightDateButtonTapped() {
         adjustedDays += 1
+        showAlreadyAnsweredState()
+        getQuestionForAdjustedDay(dayBefore: false)
+    }
+    
+    func getQuestionForAdjustedDay(dayBefore dayBefore: Bool) {
         ref.child("questions/\(adjustedDate)").observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let question = snapshot.value as? [String: AnyObject] {
                 self.question = Question(questionDictionary: question, withDate: NSDate())
                 self.getArticles()
+                self.daysWithoutQuestion = 0
             } else {
-                print("No Question For This Day")
+                self.daysWithoutQuestion += 1
+                print("No Question For This Day \(self.daysWithoutQuestion)")
+                guard self.daysWithoutQuestion < 7 else { return }
+                if dayBefore {
+                    self.adjustedDays -= 1
+                    self.getQuestionForAdjustedDay(dayBefore: true)
+                } else {
+                    self.adjustedDays += 1
+                    self.getQuestionForAdjustedDay(dayBefore: false)
+                }
             }
         })
     }
@@ -132,7 +160,7 @@ class QuestionViewController: UIViewController {
     }
     
     func sendVoteToFirebase(yesVote: Bool, completion: (NSError?) -> Void) {
-        questionRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+        questionForTodayRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
             if var question = currentData.value as? [String : AnyObject] {
                 var noCount = question["no"] as? Int ?? 0
                 var yesCount = question["yes"] as? Int ?? 0
@@ -182,6 +210,8 @@ class QuestionViewController: UIViewController {
     private func showAlreadyAnsweredState() {
         questionLabel.alpha = 1
         answerLabel.alpha = 0
+        yesButton.alpha = 0
+        noButton.alpha = 0
         showResultsButton.hidden = false
     }
     
