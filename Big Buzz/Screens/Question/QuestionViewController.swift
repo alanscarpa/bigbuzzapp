@@ -61,10 +61,14 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         title = "Question Of The Day"
-        
+        AnimationManager.sharedManager.addFloatingCirclesToView(self.view)
+        if UserDefaultsManager.sharedManager.didVoteToday() {
+            showVotedState()
+        }
+        // Called here because storyboard loads this VC before AppDelegate
         ref = FIRDatabase.database().reference()
-
         questionForTodayRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let question = snapshot.value as? [String: AnyObject] {
                 self.question = Question(questionDictionary: question, withDate: NSDate())
@@ -77,12 +81,6 @@ class QuestionViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        AnimationManager.sharedManager.addFloatingCirclesToView(self.view)
-    }
-    
-    func articleRef(articleId: String) -> FIRDatabaseReference {
-        return ref.child("articles/\(articleId)")
     }
     
     func getArticles() {
@@ -96,6 +94,10 @@ class QuestionViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    func articleRef(articleId: String) -> FIRDatabaseReference {
+        return ref.child("articles/\(articleId)")
     }
     
     // MARK: Actions
@@ -123,14 +125,14 @@ class QuestionViewController: UIViewController {
     func getQuestionForPreviousDay() {
         guard canGoBackADay else { return }
         adjustedDays -= 1
-        showAlreadyAnsweredState()
+        showVotedState()
         getQuestionForAdjustedDay(dayBefore: true)
     }
     
     func getQuestionForNextDay() {
         guard canGoForwardADay else { return }
         adjustedDays += 1
-        showAlreadyAnsweredState()
+        showVotedState()
         getQuestionForAdjustedDay(dayBefore: false)
     }
     
@@ -151,6 +153,7 @@ class QuestionViewController: UIViewController {
     
     func submitYesVote(yesVote: Bool) {
         answerLabel.text = yesVote ? "YES" : "NO"
+        UserDefaultsManager.sharedManager.setDidVoteToday()
         AnimationManager.sharedManager.startPulsator(pulsator, onView: questionLabel)
         sendVoteToFirebase(yesVote) { error in
             if let error = error {
@@ -160,7 +163,7 @@ class QuestionViewController: UIViewController {
                 self.stopPulsatorWithCompletion({ [weak self] _ in
                     guard let strongSelf = self else { return }
                     strongSelf.transitionToResultsViewController()
-                    strongSelf.showAlreadyAnsweredState()
+                    strongSelf.showVotedState()
                 })
             }
         }
@@ -214,7 +217,7 @@ class QuestionViewController: UIViewController {
         navigationController?.push(viewController: resultsVC, transitionType: kCATransitionFade, duration: 0.5)
     }
     
-    private func showAlreadyAnsweredState() {
+    private func showVotedState() {
         questionLabel.alpha = 1
         answerLabel.alpha = 0
         yesButton.alpha = 0

@@ -4,17 +4,18 @@ TODO
   [] Date picker to allow for multiple questions in 1 sitting
 
 - iOS
-  [] Change agree/disagree to yes/no
-  [] Close results should show already voted state of question screen
-      [] Need design
-  [] Add back + forward date button on question page
+  [x] Change agree/disagree to yes/no
+  [x] Close results should show already voted state of question screen
+      [x] Need design
+  [x] Add back + forward date functionality
+  [] Add back/forward design
   [] Previous questions section under related articles 
     - (q): If you go back a day, does previous questions show current day or more previous  questions?
   [] If greater than 100? votes, show number of votes
       [] Need design for this
   [] Feedback/contact section?
       [] Design
-  [] If no question for current date, go back until last question
+  [x] If no question for current date, go back until next question (goes back as far as Jul 17)
   [] Update copy for results when voting is over
   [] Countdown on results page 
       [] Need Design
