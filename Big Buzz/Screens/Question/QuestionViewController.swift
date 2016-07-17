@@ -33,13 +33,26 @@ class QuestionViewController: UIViewController {
     var adjustedDate: String {
         return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds).currentDateInDayMonthYear()
     }
-    var daysWithoutQuestion = 0
     var canGoBackADay: Bool {
-        return daysWithoutQuestion < 7
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        let minimumDate = dateFormatter.dateFromString("07-16-2016")
+        if dateFormatter.dateFromString(adjustedDate) <= minimumDate {
+            return false
+        } else {
+            return true
+        }
     }
-//    var canGoForwardADay: Bool {
-//        return
-//    }
+    var canGoForwardADay: Bool {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        let currentDate = dateFormatter.dateFromString(NSDate().currentDateInDayMonthYear())
+        if dateFormatter.dateFromString(adjustedDate) >= currentDate {
+            return false
+        } else {
+            return true
+        }
+    }
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
@@ -60,14 +73,6 @@ class QuestionViewController: UIViewController {
         }) { error in
             print(error)
         }
-//        questionForTodayRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-//            if let question = snapshot.value as? [String: AnyObject] {
-//                self.question = Question(questionDictionary: question, withDate: NSDate())
-//                self.getArticles()
-//            } else {
-//                snapshot
-//            }
-//        })
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -108,14 +113,22 @@ class QuestionViewController: UIViewController {
     }
     
     @IBAction func leftDateButtonTapped() {
-        if canGoBackADay {
-            adjustedDays -= 1
-            showAlreadyAnsweredState()
-            getQuestionForAdjustedDay(dayBefore: true)
-        }
+        getQuestionForPreviousDay()
     }
     
     @IBAction func rightDateButtonTapped() {
+        getQuestionForNextDay()
+    }
+    
+    func getQuestionForPreviousDay() {
+        guard canGoBackADay else { return }
+        adjustedDays -= 1
+        showAlreadyAnsweredState()
+        getQuestionForAdjustedDay(dayBefore: true)
+    }
+    
+    func getQuestionForNextDay() {
+        guard canGoForwardADay else { return }
         adjustedDays += 1
         showAlreadyAnsweredState()
         getQuestionForAdjustedDay(dayBefore: false)
@@ -126,17 +139,11 @@ class QuestionViewController: UIViewController {
             if let question = snapshot.value as? [String: AnyObject] {
                 self.question = Question(questionDictionary: question, withDate: NSDate())
                 self.getArticles()
-                self.daysWithoutQuestion = 0
             } else {
-                self.daysWithoutQuestion += 1
-                print("No Question For This Day \(self.daysWithoutQuestion)")
-                guard self.daysWithoutQuestion < 7 else { return }
                 if dayBefore {
-                    self.adjustedDays -= 1
-                    self.getQuestionForAdjustedDay(dayBefore: true)
+                    self.getQuestionForPreviousDay()
                 } else {
-                    self.adjustedDays += 1
-                    self.getQuestionForAdjustedDay(dayBefore: false)
+                    self.getQuestionForNextDay()
                 }
             }
         })
