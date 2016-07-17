@@ -1,7 +1,4 @@
 TODO
-- Web 
-  [] Pick number of articles
-  [] Date picker to allow for multiple questions in 1 sitting
 
 - iOS
   [x] Change agree/disagree to yes/no
@@ -11,10 +8,6 @@ TODO
   [] Add back/forward design
   [] Previous questions section under related articles 
     - (q): If you go back a day, does previous questions show current day or more previous  questions?
-  [] If greater than 100? votes, show number of votes
-      [] Need design for this
-  [] Feedback/contact section?
-      [] Design
   [x] If no question for current date, go back until next question (goes back as far as Jul 17)
   [] Update copy for results when voting is over
   [] Countdown on results page 
@@ -27,4 +20,13 @@ TODO
        (q) - Local or remote?  I think Local because then everyday at 9am? 2pm? whenever - the user will get a push saying, "Hey check out the latest question in big buzz!". The downside is, if we don't have a questino up, this notification will still happen.  The remote notifications would require us to log in to Firebase everyday, and write out our notification and send manually.  I vote for local, automatic notifications for simplicity;s sake.
 
   - V2
+  - iOS
     [] Firebase Invites - use to allow users to invite others to app
+    [] If greater than 100? votes, show number of votes
+      [] Need design for this
+    [] Feedback/contact section?
+      [] Design
+
+  - Web 
+    [] Pick number of articles
+    [] Date picker to allow for multiple questions in 1 sitting

@@ -9,5 +9,5 @@
 import UIKit
 
 class ResultsHeaderView: UITableViewHeaderFooterView {
-
+    @IBOutlet weak var titleLabel: UILabel!
 }

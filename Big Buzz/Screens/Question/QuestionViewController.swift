@@ -79,10 +79,6 @@ class QuestionViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     func getArticles() {
         for article in self.question.articles {
             let articleRef = self.articleRef(article.id)
