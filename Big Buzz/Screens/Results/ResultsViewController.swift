@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import IntrepidSwiftWisdom
+import Firebase
 
 class ResultsViewController: UITableViewController {
 
@@ -30,6 +31,16 @@ class ResultsViewController: UITableViewController {
         
         tableView.registerNib(UINib(nibName: ResultsHeaderView.ip_nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: ResultsHeaderView.ip_nibName)
         tableView.registerNib(UINib(nibName: ResultsArticleTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: ResultsArticleTableViewCell.ip_nibName)
+        
+        FIRDatabase.database().reference().child("questions/").observeSingleEventOfType(.Value, withBlock: { snapshot in
+            print(snapshot.childrenCount)
+//            if let question = snapshot.value as? [String: AnyObject] {
+//                self.question = Question(questionDictionary: question, withDate: NSDate())
+//                self.getArticles()
+//            }
+        }) { error in
+            print(error)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -76,7 +87,11 @@ class ResultsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return question.articles.count
+        if section == 0 {
+            return question.articles.count
+        } else {
+            return question.articles.count
+        }
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -92,9 +107,21 @@ class ResultsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(ResultsArticleTableViewCell.ip_nibName) as! ResultsArticleTableViewCell
-        cell.configureForArticle(question.articles[indexPath.row])
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(ResultsArticleTableViewCell.ip_nibName) as! ResultsArticleTableViewCell
+            cell.configureForArticle(question.articles[indexPath.row])
+            return cell
+        } else {
+//            FIRDatabase.database().reference().child("questions/\(NSDate().currentDateInDayMonthYear())").observeSingleEventOfType(.Value, withBlock: { snapshot in
+//                if let question = snapshot.value as? [String: AnyObject] {
+//                    self.question = Question(questionDictionary: question, withDate: NSDate())
+//                    self.getArticles()
+//                }
+//            }) { error in
+//                print(error)
+//            }
+            return UITableViewCell()
+        }
     }
     
     // MARK: - UITableViewDelegate
