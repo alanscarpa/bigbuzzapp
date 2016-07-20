@@ -25,6 +25,7 @@ PODS:
   - IntrepidSwiftWisdom (0.0.15):
     - IntrepidSwiftWisdom/Core (= 0.0.15)
   - IntrepidSwiftWisdom/Core (0.0.15)
+  - Kanna (1.1.0)
   - Pulsator (0.1.1)
   - PureLayout (3.0.2)
   - SDWebImage (3.8.1):
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Database
   - IntrepidSwiftWisdom
+  - Kanna (~> 1.1.0)
   - Pulsator
   - PureLayout
   - SDWebImage
@@ -50,10 +52,11 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   IntrepidSwiftWisdom: 3a5acc3cb436abd489c1dd50923a5b1f26cc243f
+  Kanna: 355ed0193e5d8caf4fd996856b5bc98d586c11b6
   Pulsator: 9486579ab8eeb0585aedefdc2c688ab589497d9a
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
-PODFILE CHECKSUM: 36f32424e0f07cc34c3c5658968cd9b8d4783d4f
+PODFILE CHECKSUM: dcc85e0492ef553fa85c8751d642420eb472f446
 
 COCOAPODS: 1.0.1

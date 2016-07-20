@@ -9,5 +9,6 @@ pod 'EasyAnimation'
 pod 'PureLayout'
 pod 'Pulsator'
 pod 'SDWebImage'
+pod 'Kanna', '~> 1.1.0'
 end
 
