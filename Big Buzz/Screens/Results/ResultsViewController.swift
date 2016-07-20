@@ -23,6 +23,8 @@ class ResultsViewController: UITableViewController {
     @IBOutlet weak var noPercentageHeighConstraint: NSLayoutConstraint!
     
     var question = Question()
+    var otherQuestions = 0
+    var questions = [Question]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +34,11 @@ class ResultsViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: ResultsHeaderView.ip_nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: ResultsHeaderView.ip_nibName)
         tableView.registerNib(UINib(nibName: ResultsArticleTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: ResultsArticleTableViewCell.ip_nibName)
         
-        FIRDatabase.database().reference().child("questions/").observeSingleEventOfType(.Value, withBlock: { snapshot in
-            print(snapshot.childrenCount)
-//            if let question = snapshot.value as? [String: AnyObject] {
-//                self.question = Question(questionDictionary: question, withDate: NSDate())
-//                self.getArticles()
-//            }
+        FIRDatabase.database().reference().child("number-of-questions/").observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let value = snapshot.value as? [String: AnyObject] {
+                self.otherQuestions = value["amount"] as? Int ?? 0
+                self.tableView.reloadData()
+            }
         }) { error in
             print(error)
         }
@@ -90,7 +91,7 @@ class ResultsViewController: UITableViewController {
         if section == 0 {
             return question.articles.count
         } else {
-            return question.articles.count
+            return otherQuestions
         }
     }
     
@@ -112,15 +113,18 @@ class ResultsViewController: UITableViewController {
             cell.configureForArticle(question.articles[indexPath.row])
             return cell
         } else {
-//            FIRDatabase.database().reference().child("questions/\(NSDate().currentDateInDayMonthYear())").observeSingleEventOfType(.Value, withBlock: { snapshot in
-//                if let question = snapshot.value as? [String: AnyObject] {
-//                    self.question = Question(questionDictionary: question, withDate: NSDate())
-//                    self.getArticles()
-//                }
-//            }) { error in
-//                print(error)
-//            }
-            return UITableViewCell()
+            if indexPath.row > questions.count {
+                
+            }
+            let cell = UITableViewCell()
+            FIRDatabase.database().reference().child("questions/\(NSDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400)).currentDateInDayMonthYear())").observeSingleEventOfType(.Value, withBlock: { snapshot in
+                if let question = snapshot.value as? [String: AnyObject] {
+                    cell.textLabel?.text = question["question"] as! String
+                }
+            }) { error in
+                print(error)
+            }
+            return cell
         }
     }
     
