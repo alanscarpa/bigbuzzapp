@@ -13,6 +13,7 @@ import IntrepidSwiftWisdom
 import EasyAnimation
 import PureLayout
 import Pulsator
+import Kanna
 
 class QuestionViewController: UIViewController {
 
@@ -61,6 +62,15 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let url = NSURL(string: "https://www.pollshare.com/top-stories")
+        if let doc = HTML(url: url!, encoding: NSUTF8StringEncoding) {
+            // Search for nodes by XPath
+            for question in doc.xpath("(//div[@data-real-poll-id]//h4)[1]") {
+                print(question.text)
+            }
+        }
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         title = "Question Of The Day"
         AnimationManager.sharedManager.addFloatingCirclesToView(self.view)
