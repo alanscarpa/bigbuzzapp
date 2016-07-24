@@ -10,5 +10,6 @@ pod 'PureLayout'
 pod 'Pulsator'
 pod 'SDWebImage'
 pod 'Alamofire', '~> 3.4'
+pod 'SwiftyJSON'
 end
 

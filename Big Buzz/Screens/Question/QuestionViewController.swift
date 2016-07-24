@@ -14,6 +14,7 @@ import EasyAnimation
 import PureLayout
 import Pulsator
 import Alamofire
+import SwiftyJSON
 
 class QuestionViewController: UIViewController {
 
@@ -63,15 +64,21 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Alamofire.request(.GET, "https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=should tesla be responsible for car crashes", parameters: ["foo": "bar"])
+        Alamofire.request(.GET, "https://api.cognitive.microsoft.com/bing/v5.0/news/search", parameters: ["q": "should tesla be responsible for car crashes"], headers: ["Ocp-Apim-Subscription-Key": kBingNewsKey])
             .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        for (_, subJson):(String, JSON) in json["value"] {
+                            print(subJson["name"])
+                            print(subJson["description"])
+                            print(subJson["image"]["thumbnail"]["contentUrl"])
+                            print(subJson["url"])
+                        }
+                    }
+                case .Failure(let error):
+                    print(error)
                 }
         }
         
