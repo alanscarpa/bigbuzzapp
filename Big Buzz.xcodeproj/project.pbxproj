@@ -34,6 +34,7 @@
 		45AA6E141D2C9867007F6A29 /* Dosis-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0D1D2C9867007F6A29 /* Dosis-Light.ttf */; };
 		45AA6E151D2C9867007F6A29 /* Dosis-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0E1D2C9867007F6A29 /* Dosis-Medium.ttf */; };
 		45AA6E161D2C9867007F6A29 /* Dosis-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6E0F1D2C9867007F6A29 /* Dosis-SemiBold.ttf */; };
+		45B3427F1D453B7200CDA9BB /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3427E1D453B7200CDA9BB /* APIKeys.swift */; };
 		45D993CA1D2DDCF100775E30 /* UINavigationController+BigBuzz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D993C91D2DDCF100775E30 /* UINavigationController+BigBuzz.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		45AA6E0D1D2C9867007F6A29 /* Dosis-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Light.ttf"; sourceTree = "<group>"; };
 		45AA6E0E1D2C9867007F6A29 /* Dosis-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Medium.ttf"; sourceTree = "<group>"; };
 		45AA6E0F1D2C9867007F6A29 /* Dosis-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-SemiBold.ttf"; sourceTree = "<group>"; };
+		45B3427E1D453B7200CDA9BB /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		45D993C91D2DDCF100775E30 /* UINavigationController+BigBuzz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+BigBuzz.swift"; sourceTree = "<group>"; };
 		C44FB6B07518E58FEBDD71E9 /* Pods_Big_Buzz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Big_Buzz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				450DE8F21D3C2B5400C887B5 /* UserDefaultsManager.swift */,
+				45B3427E1D453B7200CDA9BB /* APIKeys.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 			files = (
 				45AA6DE61D2C6F85007F6A29 /* Question.swift in Sources */,
 				4519DADE1D2804D8008AF99B /* QuestionViewController.swift in Sources */,
+				45B3427F1D453B7200CDA9BB /* APIKeys.swift in Sources */,
 				450DE8F31D3C2B5400C887B5 /* UserDefaultsManager.swift in Sources */,
 				450CB3001D318981001F6850 /* Article.swift in Sources */,
 				450CB2F41D3148E1001F6850 /* NSDate+BigBuzz.swift in Sources */,

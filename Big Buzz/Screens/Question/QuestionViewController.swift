@@ -13,7 +13,7 @@ import IntrepidSwiftWisdom
 import EasyAnimation
 import PureLayout
 import Pulsator
-import Kanna
+import Alamofire
 
 class QuestionViewController: UIViewController {
 
@@ -63,20 +63,26 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string: "https://www.pollshare.com/top-stories")
-        if let doc = HTML(url: url!, encoding: NSUTF8StringEncoding) {
-            // Search for nodes by XPath
-            for question in doc.xpath("(//div[@data-real-poll-id]//h4)[1]") {
-                print(question.text)
-            }
+        Alamofire.request(.GET, "https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=should tesla be responsible for car crashes", parameters: ["foo": "bar"])
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
         }
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         title = "Question Of The Day"
         AnimationManager.sharedManager.addFloatingCirclesToView(self.view)
+        
         if UserDefaultsManager.sharedManager.didVoteToday() {
             showVotedState()
         }
+        
         // Called here because storyboard loads this VC before AppDelegate
         ref = FIRDatabase.database().reference()
         questionForTodayRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
