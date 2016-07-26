@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B0E0574F0BE595BC951C28F /* Pods_Big_Buzz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44FB6B07518E58FEBDD71E9 /* Pods_Big_Buzz.framework */; };
+		4502C87A1D479DEC00AC3015 /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4502C8791D479DEC00AC3015 /* QuestionManager.swift */; };
 		450CB2F41D3148E1001F6850 /* NSDate+BigBuzz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CB2F31D3148E1001F6850 /* NSDate+BigBuzz.swift */; };
 		450CB2F81D317F36001F6850 /* ResultsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CB2F71D317F36001F6850 /* ResultsHeaderView.swift */; };
 		450CB2FA1D317F76001F6850 /* ResultsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 450CB2F91D317F76001F6850 /* ResultsHeaderView.xib */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		13810BCDFA9F15C5C4C41F8F /* Pods-Big Buzz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Big Buzz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Big Buzz/Pods-Big Buzz.debug.xcconfig"; sourceTree = "<group>"; };
 		2752011DBB2AB489EA9576B7 /* Pods-Big Buzz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Big Buzz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Big Buzz/Pods-Big Buzz.release.xcconfig"; sourceTree = "<group>"; };
+		4502C8791D479DEC00AC3015 /* QuestionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		450CB2F31D3148E1001F6850 /* NSDate+BigBuzz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+BigBuzz.swift"; sourceTree = "<group>"; };
 		450CB2F71D317F36001F6850 /* ResultsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsHeaderView.swift; sourceTree = "<group>"; };
 		450CB2F91D317F76001F6850 /* ResultsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsHeaderView.xib; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				450DE8F21D3C2B5400C887B5 /* UserDefaultsManager.swift */,
 				45B3427E1D453B7200CDA9BB /* APIKeys.swift */,
+				4502C8791D479DEC00AC3015 /* QuestionManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45AA6DE61D2C6F85007F6A29 /* Question.swift in Sources */,
+				4502C87A1D479DEC00AC3015 /* QuestionManager.swift in Sources */,
 				4519DADE1D2804D8008AF99B /* QuestionViewController.swift in Sources */,
 				45B3427F1D453B7200CDA9BB /* APIKeys.swift in Sources */,
 				450DE8F31D3C2B5400C887B5 /* UserDefaultsManager.swift in Sources */,
