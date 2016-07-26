@@ -15,9 +15,35 @@ class QuestionManager {
     
     static let sharedManager = QuestionManager()
     let kMaxAmountOfArticles = 3
-
     var questionForTodayRef: FIRDatabaseReference {
         return FIRDatabase.database().reference().child("questions/\(NSDate().currentDateInDayMonthYear())")
+    }
+    var adjustedDays = 0
+    var adjustedDaysInSeconds: NSTimeInterval {
+        return NSTimeInterval(adjustedDays * 86400)
+    }
+    var adjustedDate: String {
+        return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds).currentDateInDayMonthYear()
+    }
+    var canGoBackADay: Bool {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        let minimumDate = dateFormatter.dateFromString("07-16-2016")
+        if dateFormatter.dateFromString(adjustedDate) <= minimumDate {
+            return false
+        } else {
+            return true
+        }
+    }
+    var canGoForwardADay: Bool {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        let currentDate = dateFormatter.dateFromString(NSDate().currentDateInDayMonthYear())
+        if dateFormatter.dateFromString(adjustedDate) >= currentDate {
+            return false
+        } else {
+            return true
+        }
     }
     
     func articleRef(articleId: String) -> FIRDatabaseReference {
@@ -130,10 +156,68 @@ class QuestionManager {
                         article.setUpWithValues(articleDictionary)
                     }
                 }
+                // TODO: handle potential error
                 if articlesFetched == numberOfArticles {
                     completion(true)
                 }
             })
         }
     }
+    
+    func getQuestionForAdjustedDay(dayBefore dayBefore: Bool) {
+        FIRDatabase.database().reference().child("questions/\(adjustedDate)").observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let question = snapshot.value as? [String: AnyObject] {
+                self.question = Question(questionDictionary: question, withDate: NSDate())
+                self.getArticlesFromFirebase()
+            } else {
+                if dayBefore {
+                    self.getQuestionForPreviousDay()
+                } else {
+                    self.getQuestionForNextDay()
+                }
+            }
+        })
+    }
+    
+    func submitYesVoteForQuestion(question: Question, yesVote: Bool, completion: (NSError?) -> Void) {
+        UserDefaultsManager.sharedManager.setDidVoteToday()
+        sendVoteToFirebaseForQuestion(question, yesVote: yesVote) { error in
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func sendVoteToFirebaseForQuestion(question: Question, yesVote: Bool, completion: (NSError?) -> Void) {
+        questionForTodayRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            if var questionDictionary = currentData.value as? [String : AnyObject] {
+                var noCount = questionDictionary["no"] as? Int ?? 0
+                var yesCount = questionDictionary["yes"] as? Int ?? 0
+                
+                if yesVote {
+                    yesCount += 1
+                    questionDictionary["yes"] = yesCount
+                } else {
+                    noCount += 1
+                    questionDictionary["no"] = noCount
+                }
+                
+                question.yesVotes = yesCount
+                question.noVotes = noCount
+                
+                currentData.value = question
+                return FIRTransactionResult.successWithValue(currentData)
+            }
+            return FIRTransactionResult.successWithValue(currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
 }
