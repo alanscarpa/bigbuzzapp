@@ -55,6 +55,8 @@ class QuestionViewController: UIViewController {
             return true
         }
     }
+    let kMaxAmountOfArticles = 3
+    
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
@@ -101,15 +103,19 @@ class QuestionViewController: UIViewController {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
+                        var articleCount = 0
                         for (_, subJson):(String, JSON) in json["value"] {
-                            var articleDictionary = [String: AnyObject]()
-                            articleDictionary["title"] = subJson["name"].string
-                            articleDictionary["lede"] = subJson["description"].string
-                            articleDictionary["thumbnailURLString"] = subJson["image"]["thumbnail"]["contentUrl"].string
-                            articleDictionary["urlString"] = subJson["url"].string
-                            let article = Article()
-                            article.setUpWithValues(articleDictionary)
-                            self.question.articles.append(article)
+                            if articleCount < self.kMaxAmountOfArticles {
+                                var articleDictionary = [String: AnyObject]()
+                                articleDictionary["title"] = subJson["name"].string
+                                articleDictionary["lede"] = subJson["description"].string
+                                articleDictionary["thumbnailURLString"] = subJson["image"]["thumbnail"]["contentUrl"].string
+                                articleDictionary["urlString"] = subJson["url"].string
+                                let article = Article()
+                                article.setUpWithValues(articleDictionary)
+                                self.question.articles.append(article)
+                                articleCount += 1
+                            }
                         }
                         self.createArticlesOnFirebaseForQuestion(self.question)
                     }
@@ -166,7 +172,7 @@ class QuestionViewController: UIViewController {
             keys.append(key)
         }
         
-        let post = ["question": "question",
+        let post = ["question": question.question,
                     "no": 0,
                     "yes": 0,
                     "articles": keys]
