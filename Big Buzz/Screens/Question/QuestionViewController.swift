@@ -64,24 +64,25 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Alamofire.request(.GET, "https://api.cognitive.microsoft.com/bing/v5.0/news/search", parameters: ["q": "should tesla be responsible for car crashes"], headers: ["Ocp-Apim-Subscription-Key": kBingNewsKey])
-            .responseJSON { response in
-                switch response.result {
-                case .Success:
-                    if let value = response.result.value {
-                        let json = JSON(value)
-                        for (_, subJson):(String, JSON) in json["value"] {
-                            print(subJson["name"])
-                            print(subJson["description"])
-                            print(subJson["image"]["thumbnail"]["contentUrl"])
-                            print(subJson["url"])
-                        }
-                    }
-                case .Failure(let error):
-                    print(error)
-                }
-        }
+        // Called here because storyboard loads this VC before AppDelegate
+        ref = FIRDatabase.database().reference()
         
+        // Get question for today
+        
+        // See if articles key exists, if so, getArticlesFromFirebase()
+        
+        // If it does not exist, make call to getArticlesFromBing() and update question
+        
+        
+//        createArticles()
+        
+        // todo: make sure this works
+//        createQuestion()
+        getQuestion()
+
+        
+//        getArticlesFromBing()
+
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         title = "Question Of The Day"
         AnimationManager.sharedManager.addFloatingCirclesToView(self.view)
@@ -90,19 +91,99 @@ class QuestionViewController: UIViewController {
             showVotedState()
         }
         
-        // Called here because storyboard loads this VC before AppDelegate
-        ref = FIRDatabase.database().reference()
+        
+    }
+    
+    func getArticlesFromBing() {
+        Alamofire.request(.GET, "https://api.cognitive.microsoft.com/bing/v5.0/news/search", parameters: ["q": self.question.question], headers: ["Ocp-Apim-Subscription-Key": kBingNewsKey])
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        for (_, subJson):(String, JSON) in json["value"] {
+                            var articleDictionary = [String: AnyObject]()
+                            articleDictionary["title"] = subJson["name"].string
+                            articleDictionary["lede"] = subJson["description"].string
+                            articleDictionary["thumbnailURLString"] = subJson["image"]["thumbnail"]["contentUrl"].string
+                            articleDictionary["urlString"] = subJson["url"].string
+                            let article = Article()
+                            article.setUpWithValues(articleDictionary)
+                            self.question.articles.append(article)
+                        }
+                        self.createArticlesOnFirebaseForQuestion(self.question)
+                    }
+                case .Failure(let error):
+                    print(error)
+                }
+        }
+    }
+    
+    func getQuestion() {
         questionForTodayRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let question = snapshot.value as? [String: AnyObject] {
                 self.question = Question(questionDictionary: question, withDate: NSDate())
-                self.getArticles()
+                if self.question.articles.count == 0 {
+                    self.getArticlesFromBing()
+                } else {
+                    self.getArticlesFromFirebase()
+                }
+            } else {
+                // TODO:  Handle gracefully
+                print("There is no question today.")
             }
         }) { error in
             print(error)
         }
     }
     
-    func getArticles() {
+    func createQuestion() {
+        let post = ["question": "question of the day",
+                    "no": 0,
+                    "yes": 0
+                    ]
+        
+        let childUpdates = ["/questions/07-26-2016": post]
+        
+        ref.updateChildValues(childUpdates) { (error, reference) in
+            if let error = error {
+                print("error saving question/article \(error)")
+            }
+        }
+    }
+    
+    func createArticlesOnFirebaseForQuestion(question: Question) {
+        var keys = [String]()
+        var articles = [[String: String]]()
+        
+        for article in question.articles {
+            let key = ref.child("articles").childByAutoId().key
+            let article1 = ["lede": article.lede,
+                            "thumbnailURLString" : article.thumbnailURLString,
+                            "title" : article.title,
+                            "urlString" : article.urlString]
+            articles.append(article1)
+            keys.append(key)
+        }
+        
+        let post = ["question": "question",
+                    "no": 0,
+                    "yes": 0,
+                    "articles": keys]
+        
+        var childUpdates = ["questions/\(NSDate().currentDateInDayMonthYear())" : post]
+        for (index, key) in keys.enumerate() {
+            childUpdates["/articles/\(key)/"] = articles[index]
+        }
+        
+        ref.updateChildValues(childUpdates) { (error, reference) in
+            if let error = error {
+                print("error saving question/article \(error)")
+            }
+        }
+    }
+    
+    func getArticlesFromFirebase() {
         for article in self.question.articles {
             let articleRef = self.articleRef(article.id)
             articleRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -159,7 +240,7 @@ class QuestionViewController: UIViewController {
         ref.child("questions/\(adjustedDate)").observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let question = snapshot.value as? [String: AnyObject] {
                 self.question = Question(questionDictionary: question, withDate: NSDate())
-                self.getArticles()
+                self.getArticlesFromFirebase()
             } else {
                 if dayBefore {
                     self.getQuestionForPreviousDay()
