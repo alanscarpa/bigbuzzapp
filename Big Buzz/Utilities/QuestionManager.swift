@@ -16,21 +16,21 @@ class QuestionManager {
     static let sharedManager = QuestionManager()
     let kMaxAmountOfArticles = 3
     var questionForTodayRef: FIRDatabaseReference {
-        return FIRDatabase.database().reference().child("questions/\(NSDate().currentDateInDayMonthYear())")
+        return FIRDatabase.database().reference().child("questions/\(NSDate().dayMonthYear())")
     }
     var adjustedDays = 0
     var adjustedDaysInSeconds: NSTimeInterval {
         return NSTimeInterval(adjustedDays * 86400)
     }
-    var adjustedDate: String {
-        return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds).currentDateInDayMonthYear()
+    var adjustedDate: NSDate {
+        return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds)
     }
     var canGoBackADay: Bool {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
         // TODO:  Changee to 08-15-2016
         let minimumDate = dateFormatter.dateFromString("07-15-2016")
-        if dateFormatter.dateFromString(adjustedDate) <= minimumDate {
+        if dateFormatter.dateFromString(adjustedDate.dayMonthYear()) <= minimumDate {
             return false
         } else {
             return true
@@ -39,8 +39,8 @@ class QuestionManager {
     var canGoForwardADay: Bool {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
-        let currentDate = dateFormatter.dateFromString(NSDate().currentDateInDayMonthYear())
-        if dateFormatter.dateFromString(adjustedDate) >= currentDate {
+        let currentDate = dateFormatter.dateFromString(NSDate().dayMonthYear())
+        if dateFormatter.dateFromString(adjustedDate.dayMonthYear()) >= currentDate {
             return false
         } else {
             return true
@@ -55,10 +55,10 @@ class QuestionManager {
         return FIRDatabase.database().reference().child("questions/\(date)")
     }
     
-    func getQuestionForDate(date: String, completion: (Question?, NSError?) -> Void) {
-        questionRefForDate(date).observeSingleEventOfType(.Value, withBlock: { snapshot in
+    func getQuestionForDate(date: NSDate, completion: (Question?, NSError?) -> Void) {
+        questionRefForDate(date.dayMonthYear()).observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let questionDictionary = snapshot.value as? [String: AnyObject] {
-                let question = Question(questionDictionary: questionDictionary, withDate: NSDate())
+                let question = Question(questionDictionary: questionDictionary, withDate: date)
                 if question.articles.count == 0 {
                     self.getArticlesFromBingForQuestion(question, completion: { (question, error) in
                         if error != nil {
@@ -134,7 +134,7 @@ class QuestionManager {
                     "yes": 0,
                     "articles": keys]
         
-        var childUpdates = ["questions/\(NSDate().currentDateInDayMonthYear())" : post]
+        var childUpdates = ["questions/\(NSDate().dayMonthYear())" : post]
         for (index, key) in keys.enumerate() {
             childUpdates["/articles/\(key)/"] = articles[index]
         }

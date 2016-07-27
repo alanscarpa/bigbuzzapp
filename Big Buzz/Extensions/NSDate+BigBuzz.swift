@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSDate {
-    func currentDateInDayMonthYear() -> String {
+    func dayMonthYear() -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
         return dateFormatter.stringFromDate(self)

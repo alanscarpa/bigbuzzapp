@@ -1,6 +1,7 @@
 TODO
 
 - iOS
+  [] Add placeholder image for articles
   [x] Change agree/disagree to yes/no
   [x] Close results should show already voted state of question screen
       [x] Need design
@@ -26,7 +27,3 @@ TODO
       [] Need design for this
     [] Feedback/contact section?
       [] Design
-
-  - Web 
-    [] Pick number of articles
-    [] Date picker to allow for multiple questions in 1 sitting

@@ -12,9 +12,9 @@ class UserDefaultsManager {
     static let sharedManager = UserDefaultsManager()
     
     func setDidVoteToday() {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: NSDate().currentDateInDayMonthYear())
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: NSDate().dayMonthYear())
     }
     func didVoteToday() -> Bool {
-        return NSUserDefaults.standardUserDefaults().boolForKey(NSDate().currentDateInDayMonthYear())
+        return NSUserDefaults.standardUserDefaults().boolForKey(NSDate().dayMonthYear())
     }
 }

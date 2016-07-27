@@ -30,6 +30,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var showResultsButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +38,21 @@ class QuestionViewController: UIViewController {
         ref = FIRDatabase.database().reference()
 //        createQuestion()
         setUpUI()
-        getQuestion()
+        getQuestionForToday()
     }
     
     func setUpUI() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         title = "Question Of The Day"
+        dateLabel.text = NSDate().dayMonthYear()
         AnimationManager.sharedManager.addFloatingCirclesToView(view)
         if UserDefaultsManager.sharedManager.didVoteToday() {
             showVotedState()
         }
     }
     
-    func getQuestion() {
-        QuestionManager.sharedManager.getQuestionForDate(NSDate().currentDateInDayMonthYear()) { (question, error) in
+    func getQuestionForToday() {
+        QuestionManager.sharedManager.getQuestionForDate(NSDate()) { (question, error) in
             self.handleQuestion(question, error: error)
         }
     }
@@ -126,6 +128,7 @@ class QuestionViewController: UIViewController {
     
     func getQuestionForDayBefore(dayBefore: Bool) {
         QuestionManager.sharedManager.getQuestionForAdjustedDay(dayBefore: dayBefore) { (question, error) in
+            self.dateLabel.text = question?.date.dayMonthYear()
             self.handleQuestion(question, error: error)
         }
         showVotedState()

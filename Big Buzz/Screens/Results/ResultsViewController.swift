@@ -117,9 +117,9 @@ class ResultsViewController: UITableViewController {
                 
             }
             let cell = UITableViewCell()
-            FIRDatabase.database().reference().child("questions/\(NSDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400)).currentDateInDayMonthYear())").observeSingleEventOfType(.Value, withBlock: { snapshot in
+            FIRDatabase.database().reference().child("questions/\(NSDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400)).dayMonthYear())").observeSingleEventOfType(.Value, withBlock: { snapshot in
                 if let question = snapshot.value as? [String: AnyObject] {
-                    cell.textLabel?.text = question["question"] as! String
+                    cell.textLabel?.text = question["question"] as? String
                 }
             }) { error in
                 print(error)

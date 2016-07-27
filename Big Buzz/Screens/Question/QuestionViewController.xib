@@ -19,6 +19,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionViewController" customModule="Big_Buzz" customModuleProvider="target">
             <connections>
                 <outlet property="answerLabel" destination="RH7-W7-E6U" id="AuP-Br-iYG"/>
+                <outlet property="dateLabel" destination="wzF-iR-d3u" id="Sc9-eh-SLg"/>
                 <outlet property="noButton" destination="PJr-fo-kdA" id="uJJ-yG-ACm"/>
                 <outlet property="questionLabel" destination="tvU-g5-M5v" id="BQK-IF-dcc"/>
                 <outlet property="showResultsButton" destination="YQv-PZ-Z9A" id="Q5o-tG-Jb6"/>
