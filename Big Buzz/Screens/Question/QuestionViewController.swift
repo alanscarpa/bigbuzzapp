@@ -75,6 +75,18 @@ class QuestionViewController: UIViewController {
     
     // MARK: Actions
     
+    @IBAction func showResultsButtonTapped() {
+        transitionToResultsViewController()
+    }
+    
+    @IBAction func leftDateButtonTapped() {
+        getQuestionForDayBefore(true)
+    }
+    
+    @IBAction func rightDateButtonTapped() {
+        getQuestionForDayBefore(false)
+    }
+    
     @IBAction func yesButtonTapped() {
         answerLabel.text = "YES"
         AnimationManager.sharedManager.startPulsator(pulsator, onView: questionLabel)
@@ -91,6 +103,17 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    // MARK: Helpers
+    
+    private func handleQuestion(question: Question?, error: NSError?) {
+        if error != nil {
+            // TODO: handle
+            print(error)
+        } else if let question = question {
+            self.question = question
+        }
+    }
+    
     private func handleVote(error: NSError?) {
         if error != nil {
             // TODO: handle
@@ -103,27 +126,6 @@ class QuestionViewController: UIViewController {
                 strongSelf.showVotedState()
                 })
         }
-    }
-    
-    private func handleQuestion(question: Question?, error: NSError?) {
-        if error != nil {
-            // TODO: handle
-            print(error)
-        } else if let question = question {
-            self.question = question
-        }
-    }
-    
-    @IBAction func showResultsButtonTapped() {
-        transitionToResultsViewController()
-    }
-    
-    @IBAction func leftDateButtonTapped() {
-        getQuestionForDayBefore(true)
-    }
-    
-    @IBAction func rightDateButtonTapped() {
-        getQuestionForDayBefore(false)
     }
     
     func getQuestionForDayBefore(dayBefore: Bool) {
@@ -144,7 +146,6 @@ class QuestionViewController: UIViewController {
         }
     }
     
-    // MARK: Helpers
     
     private func transitionToResultsViewController() {
         let resultsVC = ResultsViewController.ip_fromNib()
