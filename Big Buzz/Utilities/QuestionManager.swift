@@ -28,7 +28,8 @@ class QuestionManager {
     var canGoBackADay: Bool {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
-        let minimumDate = dateFormatter.dateFromString("07-16-2016")
+        // TODO:  Changee to 08-15-2016
+        let minimumDate = dateFormatter.dateFromString("07-15-2016")
         if dateFormatter.dateFromString(adjustedDate) <= minimumDate {
             return false
         } else {
@@ -46,12 +47,16 @@ class QuestionManager {
         }
     }
     
-    func articleRef(articleId: String) -> FIRDatabaseReference {
+    private func articleRef(articleId: String) -> FIRDatabaseReference {
         return FIRDatabase.database().reference().child("articles/\(articleId)")
     }
     
-    func getQuestionForToday(completion: (Question?, NSError?) -> Void) {
-        questionForTodayRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+    private func questionRefForDate(date: String) -> FIRDatabaseReference {
+        return FIRDatabase.database().reference().child("questions/\(date)")
+    }
+    
+    func getQuestionForDate(date: String, completion: (Question?, NSError?) -> Void) {
+        questionRefForDate(date).observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let questionDictionary = snapshot.value as? [String: AnyObject] {
                 let question = Question(questionDictionary: questionDictionary, withDate: NSDate())
                 if question.articles.count == 0 {
@@ -164,19 +169,26 @@ class QuestionManager {
         }
     }
     
-    func getQuestionForAdjustedDay(dayBefore dayBefore: Bool) {
-        FIRDatabase.database().reference().child("questions/\(adjustedDate)").observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if let question = snapshot.value as? [String: AnyObject] {
-                self.question = Question(questionDictionary: question, withDate: NSDate())
-                self.getArticlesFromFirebase()
-            } else {
-                if dayBefore {
-                    self.getQuestionForPreviousDay()
-                } else {
-                    self.getQuestionForNextDay()
-                }
-            }
-        })
+    func getQuestionForAdjustedDay(dayBefore dayBefore: Bool,  completion: (Question?, NSError?) -> Void) {
+        guard canAdjustDate(dayBefore) else {
+            print("boom")
+            return }
+        adjustedDays = dayBefore ? adjustedDays - 1 : adjustedDays + 1
+        getQuestionForDate(adjustedDate) { (question, error) in
+            completion(question, error)
+        }
+    }
+    
+    func canAdjustDate(dayBefore: Bool) -> Bool {
+        if dayBefore && !canGoBackADay {
+            // TODO: disable next button
+            return false
+        } else if !dayBefore && !canGoForwardADay {
+            // TODO: disable next button
+            return false
+        } else {
+            return true
+        }
     }
     
     func submitYesVoteForQuestion(question: Question, yesVote: Bool, completion: (NSError?) -> Void) {

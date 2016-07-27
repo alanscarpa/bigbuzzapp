@@ -50,7 +50,7 @@ class QuestionViewController: UIViewController {
     }
     
     func getQuestion() {
-        QuestionManager.sharedManager.getQuestionForToday { (question, error) in
+        QuestionManager.sharedManager.getQuestionForDate(NSDate().currentDateInDayMonthYear()) { (question, error) in
             if error != nil {
                 // TODO: handle
                 print(error)
@@ -121,17 +121,26 @@ class QuestionViewController: UIViewController {
     }
     
     func getQuestionForPreviousDay() {
-        guard canGoBackADay else { return }
-        adjustedDays -= 1
+        QuestionManager.sharedManager.getQuestionForAdjustedDay(dayBefore: true) { (question, error) in
+            if error != nil {
+                // TODO: handle
+                print(error)
+            } else if let question = question {
+                self.question = question
+            }
+        }
         showVotedState()
-        getQuestionForAdjustedDay(dayBefore: true)
     }
     
     func getQuestionForNextDay() {
-        guard canGoForwardADay else { return }
-        adjustedDays += 1
-        showVotedState()
-        getQuestionForAdjustedDay(dayBefore: false)
+        QuestionManager.sharedManager.getQuestionForAdjustedDay(dayBefore: false) { (question, error) in
+            if error != nil {
+                // TODO: handle
+                print(error)
+            } else if let question = question {
+                self.question = question
+            }
+        }
     }
     
     func stopPulsatorWithCompletion(completion: () -> Void) {
