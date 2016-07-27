@@ -219,7 +219,7 @@ class QuestionManager {
                 question.yesVotes = yesCount
                 question.noVotes = noCount
                 
-                currentData.value = question
+                currentData.value = questionDictionary
                 return FIRTransactionResult.successWithValue(currentData)
             }
             return FIRTransactionResult.successWithValue(currentData)

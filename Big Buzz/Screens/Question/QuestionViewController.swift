@@ -35,7 +35,7 @@ class QuestionViewController: UIViewController {
         super.viewDidLoad()
         // Called here because storyboard loads this VC before AppDelegate
         ref = FIRDatabase.database().reference()
-        
+//        createQuestion()
         setUpUI()
         getQuestion()
     }
@@ -51,23 +51,18 @@ class QuestionViewController: UIViewController {
     
     func getQuestion() {
         QuestionManager.sharedManager.getQuestionForDate(NSDate().currentDateInDayMonthYear()) { (question, error) in
-            if error != nil {
-                // TODO: handle
-                print(error)
-            } else if let question = question {
-                self.question = question
-            }
+            self.handleQuestion(question, error: error)
         }
     }
     
     // TODO: Create questions for next 100 days
     func createQuestion() {
-        let post = ["question": "question of the day",
+        let post = ["question": "question of the 27th",
                     "no": 0,
                     "yes": 0
                     ]
         
-        let childUpdates = ["/questions/07-26-2016": post]
+        let childUpdates = ["/questions/07-27-2016": post]
         
         ref.updateChildValues(childUpdates) { (error, reference) in
             if let error = error {
@@ -108,39 +103,32 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    private func handleQuestion(question: Question?, error: NSError?) {
+        if error != nil {
+            // TODO: handle
+            print(error)
+        } else if let question = question {
+            self.question = question
+        }
+    }
+    
     @IBAction func showResultsButtonTapped() {
         transitionToResultsViewController()
     }
     
     @IBAction func leftDateButtonTapped() {
-        getQuestionForPreviousDay()
+        getQuestionForDayBefore(true)
     }
     
     @IBAction func rightDateButtonTapped() {
-        getQuestionForNextDay()
+        getQuestionForDayBefore(false)
     }
     
-    func getQuestionForPreviousDay() {
-        QuestionManager.sharedManager.getQuestionForAdjustedDay(dayBefore: true) { (question, error) in
-            if error != nil {
-                // TODO: handle
-                print(error)
-            } else if let question = question {
-                self.question = question
-            }
+    func getQuestionForDayBefore(dayBefore: Bool) {
+        QuestionManager.sharedManager.getQuestionForAdjustedDay(dayBefore: dayBefore) { (question, error) in
+            self.handleQuestion(question, error: error)
         }
         showVotedState()
-    }
-    
-    func getQuestionForNextDay() {
-        QuestionManager.sharedManager.getQuestionForAdjustedDay(dayBefore: false) { (question, error) in
-            if error != nil {
-                // TODO: handle
-                print(error)
-            } else if let question = question {
-                self.question = question
-            }
-        }
     }
     
     func stopPulsatorWithCompletion(completion: () -> Void) {
