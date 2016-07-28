@@ -122,7 +122,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOk-r2-UTk" userLabel="Other Questions Button">
-                    <rect key="frame" x="24" y="10.5" width="63" height="63"/>
+                    <rect key="frame" x="0.0" y="10.5" width="63" height="63"/>
                     <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
                     <state key="normal" image="previousQuestions"/>
                     <connections>
@@ -148,7 +148,7 @@
                 <constraint firstItem="4kX-Ls-qQ1" firstAttribute="leading" secondItem="wzF-iR-d3u" secondAttribute="trailing" constant="8" id="WHC-8p-WZu"/>
                 <constraint firstAttribute="trailing" secondItem="ZKm-xN-mWS" secondAttribute="trailing" id="b8V-qs-6K8"/>
                 <constraint firstItem="Pgg-dn-Lyn" firstAttribute="top" secondItem="tvU-g5-M5v" secondAttribute="bottom" constant="27" id="cf4-JR-cV3"/>
-                <constraint firstItem="rOk-r2-UTk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="dIU-DQ-AHK"/>
+                <constraint firstItem="rOk-r2-UTk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dIU-DQ-AHK"/>
                 <constraint firstItem="YQv-PZ-Z9A" firstAttribute="centerY" secondItem="Pgg-dn-Lyn" secondAttribute="centerY" id="hqO-Ea-sdJ"/>
                 <constraint firstItem="ZKm-xN-mWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kDC-bP-kqu"/>
                 <constraint firstItem="wzF-iR-d3u" firstAttribute="centerX" secondItem="tvU-g5-M5v" secondAttribute="centerX" id="kUm-uL-GwJ"/>
