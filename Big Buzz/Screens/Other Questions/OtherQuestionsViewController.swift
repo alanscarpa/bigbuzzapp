@@ -8,18 +8,18 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class OtherQuestionsViewController: UICollectionViewController {
     
+    private let cellName = "OtherQuestionsCollectionViewCell"
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        let cellNib = UINib(nibName: cellName, bundle: nil)
+        collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: cellName)
 
     }
 
@@ -50,7 +50,7 @@ class OtherQuestionsViewController: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellName, forIndexPath: indexPath)
     
         // Configure the cell
     
