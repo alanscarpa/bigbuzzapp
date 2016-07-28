@@ -3,7 +3,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Dosis-Bold.ttf">
+            <string>Dosis-Bold</string>
+            <string>Dosis-Bold</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -13,22 +20,66 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="192" height="186"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8k-PQ-vTf">
-                        <rect key="frame" x="75" y="82" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.7725490196" green="0.81568627449999997" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRw-9J-wyu" userLabel="Content View">
+                        <rect key="frame" x="0.0" y="0.0" width="192" height="186"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xt-34-Yz6">
+                                <rect key="frame" x="81" y="12" width="28.5" height="19"/>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bTNAgree" translatesAutoresizingMaskIntoConstraints="NO" id="0bk-vC-Crs" userLabel="Thumb ImageView">
+                                <rect key="frame" x="10" y="12" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="cMW-h8-Eue"/>
+                                    <constraint firstAttribute="width" secondItem="0bk-vC-Crs" secondAttribute="height" multiplier="1:1" id="tzC-ra-yrv"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="100" text="Sample Question." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8k-PQ-vTf" userLabel="Question Label">
+                                <rect key="frame" x="8" y="41" width="176" height="135"/>
+                                <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0bk-vC-Crs" firstAttribute="leading" secondItem="CRw-9J-wyu" secondAttribute="leading" constant="10" id="Aou-Ey-BaM"/>
+                            <constraint firstItem="p8k-PQ-vTf" firstAttribute="leading" secondItem="CRw-9J-wyu" secondAttribute="leading" constant="8" id="R8c-Zn-IZQ"/>
+                            <constraint firstItem="p8k-PQ-vTf" firstAttribute="top" secondItem="3Xt-34-Yz6" secondAttribute="bottom" constant="10" id="Xbw-eT-3Qk"/>
+                            <constraint firstItem="3Xt-34-Yz6" firstAttribute="top" secondItem="CRw-9J-wyu" secondAttribute="top" constant="12" id="a91-Ym-Dyq"/>
+                            <constraint firstAttribute="trailing" secondItem="p8k-PQ-vTf" secondAttribute="trailing" constant="8" id="l8e-u4-am8"/>
+                            <constraint firstItem="0bk-vC-Crs" firstAttribute="centerY" secondItem="3Xt-34-Yz6" secondAttribute="centerY" id="oGm-xh-tv7"/>
+                            <constraint firstItem="3Xt-34-Yz6" firstAttribute="centerX" secondItem="CRw-9J-wyu" secondAttribute="centerX" id="rub-UO-Y8b"/>
+                            <constraint firstAttribute="bottom" secondItem="p8k-PQ-vTf" secondAttribute="bottom" constant="10" id="uyf-Vp-83e"/>
+                            <constraint firstItem="0bk-vC-Crs" firstAttribute="top" secondItem="CRw-9J-wyu" secondAttribute="top" constant="12" id="wwh-tD-lT8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="oGm-xh-tv7"/>
+                            </mask>
+                        </variation>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="0.39021381578947351" green="0.13430304276315788" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="p8k-PQ-vTf" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="9uj-CB-B5P"/>
-                <constraint firstItem="p8k-PQ-vTf" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="sAm-Ze-gpE"/>
+                <constraint firstAttribute="bottom" secondItem="CRw-9J-wyu" secondAttribute="bottom" id="Bd9-Wb-wf6"/>
+                <constraint firstItem="CRw-9J-wyu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KVN-cb-F2X"/>
+                <constraint firstItem="CRw-9J-wyu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rvQ-ew-8ux"/>
+                <constraint firstAttribute="trailing" secondItem="CRw-9J-wyu" secondAttribute="trailing" id="tFm-Bm-69e"/>
             </constraints>
             <size key="customSize" width="192" height="186"/>
+            <connections>
+                <outlet property="dateLabel" destination="3Xt-34-Yz6" id="9Fv-Hg-Ozm"/>
+                <outlet property="questionLabel" destination="p8k-PQ-vTf" id="p7A-KS-0Yc"/>
+                <outlet property="thumbImageView" destination="0bk-vC-Crs" id="Fmt-I0-5vD"/>
+            </connections>
             <point key="canvasLocation" x="310" y="311"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="bTNAgree" width="75" height="75"/>
+    </resources>
 </document>

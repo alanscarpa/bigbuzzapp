@@ -38,21 +38,19 @@ class OtherQuestionsViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellName, forIndexPath: indexPath)
         
         var colorNumber = indexPath.row + 1
-        if colorNumber % 6 > 0 {
-            colorNumber = colorNumber % 6
+        if colorNumber % 5 > 0 {
+            colorNumber = colorNumber % 5
         }
-        if colorNumber % 6 == 0 {
-            cell.backgroundColor = UIColor.blueColor()
-        } else if colorNumber % 5 == 0 {
-            cell.backgroundColor = UIColor.greenColor()
+        if colorNumber % 5 == 0 {
+            cell.backgroundColor = UIColor.bbRedPink()
         } else if colorNumber % 4 == 0 {
-            cell.backgroundColor = UIColor.redColor()
+            cell.backgroundColor = UIColor.bbUglyYellow()
         } else if colorNumber % 3 == 0 {
-            cell.backgroundColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor.bbOrangeish()
         } else if colorNumber % 2 == 0 {
-            cell.backgroundColor = UIColor.orangeColor()
+            cell.backgroundColor = UIColor.bbVibrantGreen()
         } else {
-            cell.backgroundColor = UIColor.purpleColor()
+            cell.backgroundColor = UIColor.bbCyanTwo()
         }
         return cell
     }
