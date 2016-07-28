@@ -23,21 +23,6 @@ class OtherQuestionsViewController: UICollectionViewController {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -51,10 +36,33 @@ class OtherQuestionsViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellName, forIndexPath: indexPath)
-    
-        // Configure the cell
-    
+        
+        var colorNumber = indexPath.row + 1
+        if colorNumber % 6 > 0 {
+            colorNumber = colorNumber % 6
+        }
+        if colorNumber % 6 == 0 {
+            cell.backgroundColor = UIColor.blueColor()
+        } else if colorNumber % 5 == 0 {
+            cell.backgroundColor = UIColor.greenColor()
+        } else if colorNumber % 4 == 0 {
+            cell.backgroundColor = UIColor.redColor()
+        } else if colorNumber % 3 == 0 {
+            cell.backgroundColor = UIColor.whiteColor()
+        } else if colorNumber % 2 == 0 {
+            cell.backgroundColor = UIColor.orangeColor()
+        } else {
+            cell.backgroundColor = UIColor.purpleColor()
+        }
         return cell
+    }
+    
+    // MARK: UICollectionViewDelegateFlowLayout
+    
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            return CGSizeMake(self.view.frame.width / 2, self.view.frame.width / 2)
     }
 
     // MARK: UICollectionViewDelegate
