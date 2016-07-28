@@ -121,6 +121,14 @@
                         <action selector="rightDateButtonTapped" destination="-1" eventType="touchUpInside" id="FS9-Kc-RmC"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOk-r2-UTk" userLabel="Other Questions Button">
+                    <rect key="frame" x="24" y="10.5" width="63" height="63"/>
+                    <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                    <state key="normal" image="previousQuestions"/>
+                    <connections>
+                        <action selector="otherQuestionsButtonTapped" destination="-1" eventType="touchUpInside" id="wEj-s6-uzx"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.95686274766921997" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
@@ -140,6 +148,7 @@
                 <constraint firstItem="4kX-Ls-qQ1" firstAttribute="leading" secondItem="wzF-iR-d3u" secondAttribute="trailing" constant="8" id="WHC-8p-WZu"/>
                 <constraint firstAttribute="trailing" secondItem="ZKm-xN-mWS" secondAttribute="trailing" id="b8V-qs-6K8"/>
                 <constraint firstItem="Pgg-dn-Lyn" firstAttribute="top" secondItem="tvU-g5-M5v" secondAttribute="bottom" constant="27" id="cf4-JR-cV3"/>
+                <constraint firstItem="rOk-r2-UTk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="dIU-DQ-AHK"/>
                 <constraint firstItem="YQv-PZ-Z9A" firstAttribute="centerY" secondItem="Pgg-dn-Lyn" secondAttribute="centerY" id="hqO-Ea-sdJ"/>
                 <constraint firstItem="ZKm-xN-mWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kDC-bP-kqu"/>
                 <constraint firstItem="wzF-iR-d3u" firstAttribute="centerX" secondItem="tvU-g5-M5v" secondAttribute="centerX" id="kUm-uL-GwJ"/>
@@ -148,6 +157,7 @@
                 <constraint firstItem="PJr-fo-kdA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="1.5" id="rhp-eL-NQi"/>
                 <constraint firstItem="YQv-PZ-Z9A" firstAttribute="height" secondItem="Pgg-dn-Lyn" secondAttribute="height" multiplier="0.7" id="sQM-j5-oMJ"/>
                 <constraint firstItem="tvU-g5-M5v" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="wOQ-WJ-HP4"/>
+                <constraint firstItem="rOk-r2-UTk" firstAttribute="centerY" secondItem="wzF-iR-d3u" secondAttribute="centerY" id="wYS-FI-e8V"/>
             </constraints>
         </view>
     </objects>
@@ -155,5 +165,6 @@
         <image name="bTNAgree" width="75" height="75"/>
         <image name="bTNDisagree" width="75" height="75"/>
         <image name="gradient" width="320" height="568"/>
+        <image name="previousQuestions" width="23" height="23"/>
     </resources>
 </document>

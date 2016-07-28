@@ -24,6 +24,8 @@
 		4519DAE31D2804D8008AF99B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4519DAE21D2804D8008AF99B /* Assets.xcassets */; };
 		4519DAE61D2804D8008AF99B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4519DAE41D2804D8008AF99B /* LaunchScreen.storyboard */; };
 		4519DAEE1D28066C008AF99B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4519DAED1D28066C008AF99B /* GoogleService-Info.plist */; };
+		45243DE61D498CB600E22E99 /* OtherQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45243DE41D498CB600E22E99 /* OtherQuestionsViewController.swift */; };
+		45243DE71D498CB600E22E99 /* OtherQuestionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45243DE51D498CB600E22E99 /* OtherQuestionsViewController.xib */; };
 		45AA6DE41D2C6B57007F6A29 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6DE31D2C6B57007F6A29 /* QuestionViewController.xib */; };
 		45AA6DE61D2C6F85007F6A29 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA6DE51D2C6F85007F6A29 /* Question.swift */; };
 		45AA6DE81D2C7F71007F6A29 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA6DE71D2C7F71007F6A29 /* ResultsViewController.swift */; };
@@ -60,6 +62,8 @@
 		4519DAE51D2804D8008AF99B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4519DAE71D2804D8008AF99B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4519DAED1D28066C008AF99B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		45243DE41D498CB600E22E99 /* OtherQuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherQuestionsViewController.swift; sourceTree = "<group>"; };
+		45243DE51D498CB600E22E99 /* OtherQuestionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherQuestionsViewController.xib; sourceTree = "<group>"; };
 		45AA6DE31D2C6B57007F6A29 /* QuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
 		45AA6DE51D2C6F85007F6A29 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		45AA6DE71D2C7F71007F6A29 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 		450CB2F01D31400F001F6850 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				45243DDF1D49875200E22E99 /* Other Questions */,
 				450CB3011D31D7CC001F6850 /* Article */,
 				450CB2F11D314028001F6850 /* Question */,
 				450CB2F21D31402F001F6850 /* Results */,
@@ -198,6 +203,15 @@
 			children = (
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		45243DDF1D49875200E22E99 /* Other Questions */ = {
+			isa = PBXGroup;
+			children = (
+				45243DE41D498CB600E22E99 /* OtherQuestionsViewController.swift */,
+				45243DE51D498CB600E22E99 /* OtherQuestionsViewController.xib */,
+			);
+			path = "Other Questions";
 			sourceTree = "<group>";
 		};
 		45AA6E171D2C986C007F6A29 /* Fonts */ = {
@@ -317,6 +331,7 @@
 				450CB3051D31D7ED001F6850 /* ArticleViewController.xib in Resources */,
 				450CB2FA1D317F76001F6850 /* ResultsHeaderView.xib in Resources */,
 				45AA6DE41D2C6B57007F6A29 /* QuestionViewController.xib in Resources */,
+				45243DE71D498CB600E22E99 /* OtherQuestionsViewController.xib in Resources */,
 				45AA6E161D2C9867007F6A29 /* Dosis-SemiBold.ttf in Resources */,
 				45AA6E111D2C9867007F6A29 /* Dosis-Book.ttf in Resources */,
 				450CB2FE1D3184E4001F6850 /* ResultsArticleTableViewCell.xib in Resources */,
@@ -381,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45AA6DE61D2C6F85007F6A29 /* Question.swift in Sources */,
+				45243DE61D498CB600E22E99 /* OtherQuestionsViewController.swift in Sources */,
 				4502C87A1D479DEC00AC3015 /* QuestionManager.swift in Sources */,
 				4519DADE1D2804D8008AF99B /* QuestionViewController.swift in Sources */,
 				45B3427F1D453B7200CDA9BB /* APIKeys.swift in Sources */,

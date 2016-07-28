@@ -103,6 +103,11 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    @IBAction func otherQuestionsButtonTapped() {
+        let otherQuestionsVC = OtherQuestionsViewController.ip_fromNib()
+        presentViewController(otherQuestionsVC, animated: true, completion: nil)
+    }
+    
     // MARK: Helpers
     
     private func handleQuestion(question: Question?, error: NSError?) {

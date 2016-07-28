@@ -1,7 +1,11 @@
 TODO
 
 - iOS
+  [] Add collection view of past questions
+  [] Animate expansion of cell in collection view going into results
   [] Add placeholder image for articles
+  [] add loading hud on questions vc
+  [] Change color for each day
   [x] Change agree/disagree to yes/no
   [x] Close results should show already voted state of question screen
       [x] Need design
@@ -9,10 +13,8 @@ TODO
   [] Add back/forward design
   [] Previous questions section under related articles 
     - (q): If you go back a day, does previous questions show current day or more previous  questions?
-  [x] If no question for current date, go back until next question (goes back as far as Jul 17)
-  [] Update copy for results when voting is over
-  [] Countdown on results page 
-      [] Need Design
+  [x] If no question for current date, go back until next question (goes back as far as Jul 17) 
+  [] Optimize for slow internet
 
   - Notifications
     (q) - I think we only only send 1 daily reminder that there is a new question.  I don't think we send a "Results are in" push.  Up for debate though.  
@@ -22,6 +24,8 @@ TODO
 
   - V2
   - iOS
+    [] Countdown on results page
+    [] Update copy for results when voting is over
     [] Firebase Invites - use to allow users to invite others to app
     [] If greater than 100? votes, show number of votes
       [] Need design for this
