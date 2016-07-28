@@ -8,10 +8,11 @@
 
 import UIKit
 
-class OtherQuestionsViewController: UICollectionViewController {
+class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHeaderViewDelegate {
     
     private let cellName = "OtherQuestionsCollectionViewCell"
-
+    private let headerViewName = "OtherQuestionsHeaderView"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +20,13 @@ class OtherQuestionsViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         let cellNib = UINib(nibName: cellName, bundle: nil)
+        let headerNib = UINib(nibName: headerViewName, bundle: nil)
         collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: cellName)
+        collectionView?.registerNib(headerNib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerViewName)
+        if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.headerReferenceSize = CGSizeMake(0, 50)
+            layout.sectionHeadersPinToVisibleBounds = true
+        }
 
     }
 
@@ -55,6 +62,12 @@ class OtherQuestionsViewController: UICollectionViewController {
         return cell
     }
     
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerViewName, forIndexPath: indexPath) as! OtherQuestionsHeaderView
+        headerView.delegate = self
+        return headerView
+    }
+    
     // MARK: UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView,
@@ -62,36 +75,11 @@ class OtherQuestionsViewController: UICollectionViewController {
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             return CGSizeMake(self.view.frame.width / 2, self.view.frame.width / 2)
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
+    // MARK: OtherQuestionsHeaderViewDelegate
+    
+    func backButtonTapped() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
-    */
     
 }

@@ -2,6 +2,7 @@ TODO
 
 - iOS
   [] Add collection view of past questions
+  [] Make back arrow an X - maybe put on right?
   [] Animate expansion of cell in collection view going into results
   [] Add placeholder image for articles
   [] add loading hud on questions vc
