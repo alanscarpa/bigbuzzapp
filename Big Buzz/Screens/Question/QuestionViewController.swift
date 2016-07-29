@@ -64,7 +64,7 @@ class QuestionViewController: UIViewController {
                     "yes": 0
                     ]
         
-        let childUpdates = ["/questions/07-27-2016": post]
+        let childUpdates = ["/questions/07-25-2016": post]
         
         ref.updateChildValues(childUpdates) { (error, reference) in
             if let error = error {

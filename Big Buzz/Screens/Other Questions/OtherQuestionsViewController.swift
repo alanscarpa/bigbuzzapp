@@ -12,6 +12,16 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     
     private let cellName = "OtherQuestionsCollectionViewCell"
     private let headerViewName = "OtherQuestionsHeaderView"
+    private var questions = [Question]()
+    var adjustedDays = 0
+    var adjustedDaysInSeconds: NSTimeInterval {
+        return NSTimeInterval(adjustedDays * 86400)
+    }
+    var adjustedDate: NSDate {
+        return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds)
+    }
+    let kNumberOfQuestionsToDownload = 10
+    var eligibleToDownloadMoreQuestions = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +38,25 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
             layout.sectionHeadersPinToVisibleBounds = true
         }
 
+        getBatchOfQuestions()
+    }
+    
+    func getBatchOfQuestions() {
+        var x = 0
+        var questionsDownloaded = 0
+        while x < kNumberOfQuestionsToDownload {
+            QuestionManager.sharedManager.getQuestionForDate(adjustedDate) { (question, error) in
+                print(question?.question)
+                self.questions.append(question ?? Question())
+                questionsDownloaded += 1
+                if questionsDownloaded == self.kNumberOfQuestionsToDownload {
+                    self.eligibleToDownloadMoreQuestions = true
+                    self.collectionView?.reloadData()
+                }
+            }
+            x += 1
+            adjustedDays = x
+        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -39,6 +68,13 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 99
+    }
+    
+    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row > questions.count && eligibleToDownloadMoreQuestions {
+            adjustedDays += 1
+            getBatchOfQuestions()
+        }
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
