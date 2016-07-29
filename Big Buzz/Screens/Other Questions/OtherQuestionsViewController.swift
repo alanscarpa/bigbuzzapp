@@ -18,7 +18,7 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
         return NSTimeInterval(adjustedDays * 86400)
     }
     var adjustedDate: NSDate {
-        return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds)
+        return NSDate().dateByAddingTimeInterval(-adjustedDaysInSeconds)
     }
     let kNumberOfQuestionsToDownload = 10
     var eligibleToDownloadMoreQuestions = false
@@ -45,8 +45,8 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
         var x = 0
         var questionsDownloaded = 0
         while x < kNumberOfQuestionsToDownload {
+            print(self.adjustedDate)
             QuestionManager.sharedManager.getQuestionForDate(adjustedDate) { (question, error) in
-                print(question?.question)
                 self.questions.append(question ?? Question())
                 questionsDownloaded += 1
                 if questionsDownloaded == self.kNumberOfQuestionsToDownload {
@@ -55,7 +55,7 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
                 }
             }
             x += 1
-            adjustedDays = x
+            adjustedDays += 1
         }
     }
 
@@ -72,7 +72,7 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row > questions.count && eligibleToDownloadMoreQuestions {
-            adjustedDays += 1
+            eligibleToDownloadMoreQuestions = false
             getBatchOfQuestions()
         }
     }
