@@ -21,6 +21,7 @@ class ResultsViewController: UITableViewController {
     
     @IBOutlet weak var yesPercentageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var noPercentageHeighConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pollStatusLabel: UILabel!
     
     var question = Question()
     var otherQuestions = 0
@@ -30,6 +31,7 @@ class ResultsViewController: UITableViewController {
         super.viewDidLoad()
         title = "Results"
         automaticallyAdjustsScrollViewInsets = false
+        pollStatusLabel.text = question.question.uppercaseString
         
         tableView.registerNib(UINib(nibName: ResultsHeaderView.ip_nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: ResultsHeaderView.ip_nibName)
         tableView.registerNib(UINib(nibName: ResultsArticleTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: ResultsArticleTableViewCell.ip_nibName)
@@ -47,7 +49,10 @@ class ResultsViewController: UITableViewController {
     
     func setPollResults() {
         let totalVotes = question.yesVotes + question.noVotes
-        guard totalVotes > 0 else { return }
+        guard totalVotes > 0 else {
+            showNoResults()
+            return
+        }
         
         let yesPercentage = CGFloat(question.yesVotes) / CGFloat(totalVotes)
         let noPercentage = CGFloat(question.noVotes) / CGFloat(totalVotes)
@@ -69,7 +74,13 @@ class ResultsViewController: UITableViewController {
             self.noPercentageLabel.alpha = 1
             self.view.layoutIfNeeded()
         }
-        
+    }
+    
+    private func showNoResults() {
+        yesPercentageLabel.text = "0%"
+        noPercentageLabel.text = "0%"
+        yesPercentageLabel.alpha = 1
+        noPercentageLabel.alpha = 1
     }
     
     // MARK: - UITableViewDataSource
@@ -90,9 +101,9 @@ class ResultsViewController: UITableViewController {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView =  tableView.dequeueReusableHeaderFooterViewWithIdentifier(ResultsHeaderView.ip_nibName) as! ResultsHeaderView
         if section == 0 {
-            headerView.titleLabel.text = "Related Articles"
+            headerView.titleLabel.text = "Related Articles".uppercaseString
         } else {
-            headerView.titleLabel.text = "Comments"
+            headerView.titleLabel.text = "Comments".uppercaseString
         }
         return headerView
     }
@@ -112,6 +123,7 @@ class ResultsViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDelegate
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let articleVC = ArticleViewController.ip_fromNib()
         articleVC.article = question.articles[indexPath.row]

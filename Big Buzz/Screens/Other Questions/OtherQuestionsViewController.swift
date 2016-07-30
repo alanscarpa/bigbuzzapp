@@ -110,6 +110,12 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
         return cell
     }
     
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let resultsVC = ResultsViewController.ip_fromNib()
+        resultsVC.question = questions[indexPath.row]
+        navigationController?.push(viewController: resultsVC, transitionType: kCATransitionFade, duration: 0.5)
+    }
+    
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerViewName, forIndexPath: indexPath) as! OtherQuestionsHeaderView
         headerView.delegate = self
@@ -127,7 +133,7 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     // MARK: OtherQuestionsHeaderViewDelegate
     
     func backButtonTapped() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
     
 }

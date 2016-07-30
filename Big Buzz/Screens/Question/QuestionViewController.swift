@@ -105,7 +105,7 @@ class QuestionViewController: UIViewController {
     
     @IBAction func otherQuestionsButtonTapped() {
         let otherQuestionsVC = OtherQuestionsViewController.ip_fromNib()
-        presentViewController(otherQuestionsVC, animated: true, completion: nil)
+        navigationController?.pushViewController(otherQuestionsVC, animated: true)
     }
     
     // MARK: Helpers
