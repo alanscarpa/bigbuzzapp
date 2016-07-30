@@ -1,6 +1,7 @@
 TODO
 
 - iOS
+  [x] Add global date constant which is dynamic based on date
   [] Add collection view of past questions
   [] Make back arrow an X - maybe put on right?
   [] Animate expansion of cell in collection view going into results

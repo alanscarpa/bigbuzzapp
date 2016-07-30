@@ -20,7 +20,6 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     var adjustedDate: NSDate {
         return NSDate().dateByAddingTimeInterval(-adjustedDaysInSeconds)
     }
-    let kNumberOfQuestionsToDownload = 10
     var eligibleToDownloadMoreQuestions = false
     var numberOfQuestionsToDisplay: Int {
         return NSDate.daysBetweenDates(NSDate.dateFromString(kStartDate)!, endDate: NSDate()) + 1
@@ -37,22 +36,27 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
             layout.headerReferenceSize = CGSizeMake(0, 50)
             layout.sectionHeadersPinToVisibleBounds = true
         }
-        
-        print(numberOfQuestionsToDisplay)
         getBatchOfQuestions()
     }
     
     func getBatchOfQuestions() {
         var x = 0
         var questionsDownloaded = 0
-        while x < kNumberOfQuestionsToDownload {
+        while x < numberOfQuestionsToDisplay {
             print(self.adjustedDate)
             QuestionManager.sharedManager.getQuestionForDate(adjustedDate) { (question, error) in
-                self.questions.append(question ?? Question())
-                questionsDownloaded += 1
-                if questionsDownloaded == self.kNumberOfQuestionsToDownload {
-                    self.eligibleToDownloadMoreQuestions = true
-                    self.collectionView?.reloadData()
+                if error != nil {
+                    x -= 1
+                    self.adjustedDays -= 1
+                    print("error! \(error)")
+                } else {
+                    self.questions.append(question ?? Question())
+                    questionsDownloaded += 1
+                    if questionsDownloaded == self.numberOfQuestionsToDisplay {
+                        self.eligibleToDownloadMoreQuestions = true
+                        self.questions.sortInPlace({ $0.date > $1.date })
+                        self.collectionView?.reloadData()
+                    }
                 }
             }
             x += 1
@@ -68,7 +72,7 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 99
+        return numberOfQuestionsToDisplay
     }
     
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
@@ -79,7 +83,10 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellName, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellName, forIndexPath: indexPath) as! OtherQuestionsCollectionViewCell
+        if indexPath.row < questions.count {
+            cell.configureWithQuestion(questions[indexPath.row])
+        }
         
         var colorNumber = indexPath.row + 1
         if colorNumber % 5 > 0 {

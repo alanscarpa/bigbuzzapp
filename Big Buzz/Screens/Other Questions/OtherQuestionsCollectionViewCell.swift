@@ -14,9 +14,10 @@ class OtherQuestionsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func configureWithQuestion(question: Question) {
+        dateLabel.text = question.date.dayMonthYear()
+        thumbImageView.image = question.yesVotes >= question.noVotes ? UIImage(named: "bTNAgree") : UIImage(named: "bTNDisagree")
+        questionLabel.text = question.question
     }
 
 }

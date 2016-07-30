@@ -33,15 +33,6 @@ class ResultsViewController: UITableViewController {
         
         tableView.registerNib(UINib(nibName: ResultsHeaderView.ip_nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: ResultsHeaderView.ip_nibName)
         tableView.registerNib(UINib(nibName: ResultsArticleTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: ResultsArticleTableViewCell.ip_nibName)
-        
-        FIRDatabase.database().reference().child("number-of-questions/").observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if let value = snapshot.value as? [String: AnyObject] {
-                self.otherQuestions = value["amount"] as? Int ?? 0
-                self.tableView.reloadData()
-            }
-        }) { error in
-            print(error)
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -91,14 +82,17 @@ class ResultsViewController: UITableViewController {
         if section == 0 {
             return question.articles.count
         } else {
-            return otherQuestions
+            // TODO: Update with number of comments
+            return 3
         }
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView =  tableView.dequeueReusableHeaderFooterViewWithIdentifier(ResultsHeaderView.ip_nibName) as! ResultsHeaderView
-        if section == 1 {
-            headerView.titleLabel.text = "More Questions"
+        if section == 0 {
+            headerView.titleLabel.text = "Related Articles"
+        } else {
+            headerView.titleLabel.text = "Comments"
         }
         return headerView
     }
@@ -113,18 +107,7 @@ class ResultsViewController: UITableViewController {
             cell.configureForArticle(question.articles[indexPath.row])
             return cell
         } else {
-            if indexPath.row > questions.count {
-                
-            }
-            let cell = UITableViewCell()
-            FIRDatabase.database().reference().child("questions/\(NSDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400)).dayMonthYear())").observeSingleEventOfType(.Value, withBlock: { snapshot in
-                if let question = snapshot.value as? [String: AnyObject] {
-                    cell.textLabel?.text = question["question"] as? String
-                }
-            }) { error in
-                print(error)
-            }
-            return cell
+            return UITableViewCell()
         }
     }
     
