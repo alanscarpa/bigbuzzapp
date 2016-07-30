@@ -10,9 +10,17 @@ import Foundation
 
 extension NSDate {
     func dayMonthYear() -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        return dateFormatter.stringFromDate(self)
+        return NSDateFormatter.bbFormatter().stringFromDate(self)
+    }
+    
+    class func dateFromString(string: String) -> NSDate? {
+        return NSDateFormatter.bbFormatter().dateFromString(string)
+    }
+    
+    class func daysBetweenDates(startDate: NSDate, endDate: NSDate) -> Int {
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day], fromDate: startDate, toDate: endDate, options: [])
+        return components.day
     }
     
 }

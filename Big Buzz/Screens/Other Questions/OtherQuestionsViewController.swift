@@ -22,12 +22,12 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     }
     let kNumberOfQuestionsToDownload = 10
     var eligibleToDownloadMoreQuestions = false
+    var numberOfQuestionsToDisplay: Int {
+        return NSDate.daysBetweenDates(NSDate.dateFromString(kStartDate)!, endDate: NSDate()) + 1
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         let cellNib = UINib(nibName: cellName, bundle: nil)
         let headerNib = UINib(nibName: headerViewName, bundle: nil)
@@ -37,7 +37,8 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
             layout.headerReferenceSize = CGSizeMake(0, 50)
             layout.sectionHeadersPinToVisibleBounds = true
         }
-
+        
+        print(numberOfQuestionsToDisplay)
         getBatchOfQuestions()
     }
     

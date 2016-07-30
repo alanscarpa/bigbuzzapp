@@ -26,21 +26,16 @@ class QuestionManager {
         return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds)
     }
     var canGoBackADay: Bool {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        // TODO:  Changee to 08-15-2016
-        let minimumDate = dateFormatter.dateFromString("07-15-2016")
-        if dateFormatter.dateFromString(adjustedDate.dayMonthYear()) <= minimumDate {
+        let minimumDate = NSDateFormatter.bbFormatter().dateFromString(kStartDate)
+        if NSDateFormatter.bbFormatter().dateFromString(adjustedDate.dayMonthYear()) <= minimumDate {
             return false
         } else {
             return true
         }
     }
     var canGoForwardADay: Bool {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy"
-        let currentDate = dateFormatter.dateFromString(NSDate().dayMonthYear())
-        if dateFormatter.dateFromString(adjustedDate.dayMonthYear()) >= currentDate {
+        let currentDate = NSDateFormatter.bbFormatter().dateFromString(NSDate().dayMonthYear())
+        if NSDateFormatter.bbFormatter().dateFromString(adjustedDate.dayMonthYear()) >= currentDate {
             return false
         } else {
             return true
@@ -170,9 +165,7 @@ class QuestionManager {
     }
     
     func getQuestionForAdjustedDay(dayBefore dayBefore: Bool,  completion: (Question?, NSError?) -> Void) {
-        guard canAdjustDate(dayBefore) else {
-            print("boom")
-            return }
+        guard canAdjustDate(dayBefore) else { return }
         adjustedDays = dayBefore ? adjustedDays - 1 : adjustedDays + 1
         getQuestionForDate(adjustedDate) { (question, error) in
             completion(question, error)
