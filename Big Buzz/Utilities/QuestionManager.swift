@@ -54,6 +54,7 @@ class QuestionManager {
         questionRefForDate(date.dayMonthYear()).observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let questionDictionary = snapshot.value as? [String: AnyObject] {
                 let question = Question(questionDictionary: questionDictionary, withDate: date)
+                print(question.question)
                 if question.articles.count == 0 {
                     self.getArticlesFromBingForQuestion(question, completion: { (question, error) in
                         if error != nil {
@@ -129,7 +130,7 @@ class QuestionManager {
                     "yes": 0,
                     "articles": keys]
         
-        var childUpdates = ["questions/\(NSDate().dayMonthYear())" : post]
+        var childUpdates = ["questions/\(question.date.dayMonthYear())" : post]
         for (index, key) in keys.enumerate() {
             childUpdates["/articles/\(key)/"] = articles[index]
         }
