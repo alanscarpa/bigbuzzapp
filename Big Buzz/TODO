@@ -2,13 +2,13 @@ TODO
 
 - iOS
   [] Add comments
+  [] update format of dates in UI (only)
   [] Random color on question view controller - fade to different color
   [x] Add global date constant which is dynamic based on date
   [] Add loading icon to other question cells for reuse
   [] Add loading to main question area
   [x] Add collection view of past questions
   [] Make back arrow an X - maybe put on right?
-  [] Animate expansion of cell in collection view going into results
   [] Add placeholder image for articles
   [] add loading hud on questions vc
   [] Change color for each day
@@ -17,10 +17,7 @@ TODO
       [x] Need design
   [x] Add back + forward date functionality
   [] Delete back/forward design
-  [] Previous questions section under related articles 
-    - (q): If you go back a day, does previous questions show current day or more previous  questions?
   [x] If no question for current date, go back until next question (goes back as far as Jul 17) 
-  [] Optimize for slow internet
 
   - Notifications
     (q) - I think we only only send 1 daily reminder that there is a new question.  I don't think we send a "Results are in" push.  Up for debate though.  
@@ -30,6 +27,8 @@ TODO
 
   - V2
   - iOS
+    [] Optimize for slow internet
+    [] Animate expansion of cell in collection view going into results
     [] Countdown on results page
     [] Update copy for results when voting is over
     [] Firebase Invites - use to allow users to invite others to app

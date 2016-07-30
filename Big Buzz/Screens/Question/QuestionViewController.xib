@@ -107,20 +107,6 @@
                         <action selector="showResultsButtonTapped" destination="-1" eventType="touchUpInside" id="ouH-OU-Mf6"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cv4-4r-Sj7" userLabel="Left Date Button">
-                    <rect key="frame" x="209" y="27" width="30" height="30"/>
-                    <state key="normal" title="&lt;"/>
-                    <connections>
-                        <action selector="leftDateButtonTapped" destination="-1" eventType="touchUpInside" id="Jzs-Ot-qsn"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kX-Ls-qQ1" userLabel="Right Date Button">
-                    <rect key="frame" x="361" y="27" width="30" height="30"/>
-                    <state key="normal" title="&gt;"/>
-                    <connections>
-                        <action selector="rightDateButtonTapped" destination="-1" eventType="touchUpInside" id="FS9-Kc-RmC"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOk-r2-UTk" userLabel="Other Questions Button">
                     <rect key="frame" x="0.0" y="10.5" width="63" height="63"/>
                     <inset key="contentEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
@@ -134,18 +120,14 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Pgg-dn-Lyn" secondAttribute="bottom" constant="30" id="0jV-aD-TBE"/>
                 <constraint firstItem="tvU-g5-M5v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="9sP-Cf-rSr"/>
-                <constraint firstItem="wzF-iR-d3u" firstAttribute="leading" secondItem="Cv4-4r-Sj7" secondAttribute="trailing" constant="8" id="DPa-1O-KhL"/>
-                <constraint firstItem="4kX-Ls-qQ1" firstAttribute="centerY" secondItem="wzF-iR-d3u" secondAttribute="centerY" id="Fuc-Mz-rhf"/>
                 <constraint firstItem="YQv-PZ-Z9A" firstAttribute="trailing" secondItem="PJr-fo-kdA" secondAttribute="trailing" id="HWj-ak-H0y"/>
                 <constraint firstItem="RH7-W7-E6U" firstAttribute="centerX" secondItem="tvU-g5-M5v" secondAttribute="centerX" id="KA4-7X-f4R"/>
                 <constraint firstAttribute="trailing" secondItem="tvU-g5-M5v" secondAttribute="trailing" constant="24" id="NBX-Xq-6gm"/>
-                <constraint firstItem="Cv4-4r-Sj7" firstAttribute="centerY" secondItem="wzF-iR-d3u" secondAttribute="centerY" id="NTo-ET-jxz"/>
                 <constraint firstItem="RH7-W7-E6U" firstAttribute="centerY" secondItem="tvU-g5-M5v" secondAttribute="centerY" id="NwQ-aq-smh"/>
                 <constraint firstItem="YQv-PZ-Z9A" firstAttribute="leading" secondItem="Pgg-dn-Lyn" secondAttribute="leading" id="O0p-O6-Rqr"/>
                 <constraint firstAttribute="bottom" secondItem="ZKm-xN-mWS" secondAttribute="bottom" id="RKc-eU-7kb"/>
                 <constraint firstAttribute="bottom" secondItem="PJr-fo-kdA" secondAttribute="bottom" constant="30" id="ReN-19-xhU"/>
                 <constraint firstItem="Pgg-dn-Lyn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="0.5" id="Slu-md-cSf"/>
-                <constraint firstItem="4kX-Ls-qQ1" firstAttribute="leading" secondItem="wzF-iR-d3u" secondAttribute="trailing" constant="8" id="WHC-8p-WZu"/>
                 <constraint firstAttribute="trailing" secondItem="ZKm-xN-mWS" secondAttribute="trailing" id="b8V-qs-6K8"/>
                 <constraint firstItem="Pgg-dn-Lyn" firstAttribute="top" secondItem="tvU-g5-M5v" secondAttribute="bottom" constant="27" id="cf4-JR-cV3"/>
                 <constraint firstItem="rOk-r2-UTk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dIU-DQ-AHK"/>

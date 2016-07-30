@@ -14,32 +14,16 @@ import SwiftyJSON
 class QuestionManager {
     
     static let sharedManager = QuestionManager()
-    let kMaxAmountOfArticles = 3
-    var questionForTodayRef: FIRDatabaseReference {
+    private let kMaxAmountOfArticles = 3
+    private var questionForTodayRef: FIRDatabaseReference {
         return FIRDatabase.database().reference().child("questions/\(NSDate().dayMonthYear())")
     }
-    var adjustedDays = 0
-    var adjustedDaysInSeconds: NSTimeInterval {
+    private var adjustedDays = 0
+    private var adjustedDaysInSeconds: NSTimeInterval {
         return NSTimeInterval(adjustedDays * 86400)
     }
-    var adjustedDate: NSDate {
+    private var adjustedDate: NSDate {
         return NSDate().dateByAddingTimeInterval(adjustedDaysInSeconds)
-    }
-    var canGoBackADay: Bool {
-        let minimumDate = NSDateFormatter.bbFormatter().dateFromString(kStartDate)
-        if NSDateFormatter.bbFormatter().dateFromString(adjustedDate.dayMonthYear()) <= minimumDate {
-            return false
-        } else {
-            return true
-        }
-    }
-    var canGoForwardADay: Bool {
-        let currentDate = NSDateFormatter.bbFormatter().dateFromString(NSDate().dayMonthYear())
-        if NSDateFormatter.bbFormatter().dateFromString(adjustedDate.dayMonthYear()) >= currentDate {
-            return false
-        } else {
-            return true
-        }
     }
     
     private func articleRef(articleId: String) -> FIRDatabaseReference {
@@ -49,6 +33,8 @@ class QuestionManager {
     private func questionRefForDate(date: String) -> FIRDatabaseReference {
         return FIRDatabase.database().reference().child("questions/\(date)")
     }
+    
+    // MARK: Public
     
     func getQuestionForDate(date: NSDate, completion: (Question?, NSError?) -> Void) {
         questionRefForDate(date.dayMonthYear()).observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -75,7 +61,20 @@ class QuestionManager {
         }
     }
     
-    func getArticlesFromBingForQuestion(question: Question, completion: (Question?, NSError?) -> Void) {
+    func submitVoteForQuestion(question: Question, yesVote: Bool, completion: (NSError?) -> Void) {
+        UserDefaultsManager.sharedManager.setDidVoteToday()
+        sendVoteToFirebaseForQuestion(question, yesVote: yesVote) { error in
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    // MARK: Private
+    
+    private func getArticlesFromBingForQuestion(question: Question, completion: (Question?, NSError?) -> Void) {
         Alamofire.request(.GET, "https://api.cognitive.microsoft.com/bing/v5.0/news/search", parameters: ["q": question.question], headers: ["Ocp-Apim-Subscription-Key": kBingNewsKey])
             .responseJSON { response in
                 switch response.result {
@@ -110,7 +109,7 @@ class QuestionManager {
         }
     }
     
-    func createArticlesOnFirebaseForQuestion(question: Question, completion: (NSError?) -> Void) {
+    private func createArticlesOnFirebaseForQuestion(question: Question, completion: (NSError?) -> Void) {
         var keys = [String]()
         var articles = [[String: String]]()
         
@@ -144,7 +143,7 @@ class QuestionManager {
         }
     }
     
-    func getArticlesFromFirebaseForQuestion(question: Question, completion: (Bool) -> Void) {
+    private func getArticlesFromFirebaseForQuestion(question: Question, completion: (Bool) -> Void) {
         let numberOfArticles = question.articles.count
         var articlesFetched = 0
         for article in question.articles {
@@ -164,38 +163,7 @@ class QuestionManager {
         }
     }
     
-    func getQuestionForAdjustedDay(dayBefore dayBefore: Bool,  completion: (Question?, NSError?) -> Void) {
-        guard canAdjustDate(dayBefore) else { return }
-        adjustedDays = dayBefore ? adjustedDays - 1 : adjustedDays + 1
-        getQuestionForDate(adjustedDate) { (question, error) in
-            completion(question, error)
-        }
-    }
-    
-    func canAdjustDate(dayBefore: Bool) -> Bool {
-        if dayBefore && !canGoBackADay {
-            // TODO: disable next button
-            return false
-        } else if !dayBefore && !canGoForwardADay {
-            // TODO: disable next button
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    func submitYesVoteForQuestion(question: Question, yesVote: Bool, completion: (NSError?) -> Void) {
-        UserDefaultsManager.sharedManager.setDidVoteToday()
-        sendVoteToFirebaseForQuestion(question, yesVote: yesVote) { error in
-            if let error = error {
-                completion(error)
-            } else {
-                completion(nil)
-            }
-        }
-    }
-    
-    func sendVoteToFirebaseForQuestion(question: Question, yesVote: Bool, completion: (NSError?) -> Void) {
+    private func sendVoteToFirebaseForQuestion(question: Question, yesVote: Bool, completion: (NSError?) -> Void) {
         questionForTodayRef.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
             if var questionDictionary = currentData.value as? [String : AnyObject] {
                 var noCount = questionDictionary["no"] as? Int ?? 0

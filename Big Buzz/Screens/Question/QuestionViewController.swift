@@ -79,18 +79,10 @@ class QuestionViewController: UIViewController {
         transitionToResultsViewController()
     }
     
-    @IBAction func leftDateButtonTapped() {
-        getQuestionForDayBefore(true)
-    }
-    
-    @IBAction func rightDateButtonTapped() {
-        getQuestionForDayBefore(false)
-    }
-    
     @IBAction func yesButtonTapped() {
         answerLabel.text = "YES"
         AnimationManager.sharedManager.startPulsator(pulsator, onView: questionLabel)
-        QuestionManager.sharedManager.submitYesVoteForQuestion(question, yesVote: true) { error in
+        QuestionManager.sharedManager.submitVoteForQuestion(question, yesVote: true) { error in
             self.handleVote(error)
         }
     }
@@ -98,7 +90,7 @@ class QuestionViewController: UIViewController {
     @IBAction func noButtonTapped() {
         answerLabel.text = "NO"
         AnimationManager.sharedManager.startPulsator(pulsator, onView: questionLabel)
-        QuestionManager.sharedManager.submitYesVoteForQuestion(question, yesVote: false) { error in
+        QuestionManager.sharedManager.submitVoteForQuestion(question, yesVote: false) { error in
             self.handleVote(error)
         }
     }
@@ -131,14 +123,6 @@ class QuestionViewController: UIViewController {
                 strongSelf.showVotedState()
                 })
         }
-    }
-    
-    func getQuestionForDayBefore(dayBefore: Bool) {
-        QuestionManager.sharedManager.getQuestionForAdjustedDay(dayBefore: dayBefore) { (question, error) in
-            self.dateLabel.text = question?.date.dayMonthYear()
-            self.handleQuestion(question, error: error)
-        }
-        showVotedState()
     }
     
     func stopPulsatorWithCompletion(completion: () -> Void) {
