@@ -44,7 +44,11 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
         var numberOfQuestionsToDownloadAtATime = 10
         for _ in (0..<numberOfQuestionsToDownloadAtATime) {
             guard adjustedDate > NSDate.dateFromString(kStartDate) else {
-                numberOfQuestionsToDownloadAtATime = adjustedDays - numberOfQuestionsToDownloadAtATime
+                if adjustedDays < numberOfQuestionsToDownloadAtATime {
+                    numberOfQuestionsToDownloadAtATime = adjustedDays
+                } else {
+                    numberOfQuestionsToDownloadAtATime = adjustedDays - numberOfQuestionsToDownloadAtATime
+                }
                 break
             }
             QuestionManager.sharedManager.getQuestionForDate(adjustedDate) { (question, error) in
@@ -76,7 +80,7 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     }
     
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row > questions.count && eligibleToDownloadMoreQuestions {
+        if indexPath.row >= questions.count && eligibleToDownloadMoreQuestions {
             eligibleToDownloadMoreQuestions = false
             getBatchOfQuestions()
         }
