@@ -19,5 +19,12 @@ class OtherQuestionsCollectionViewCell: UICollectionViewCell {
         thumbImageView.image = question.yesVotes >= question.noVotes ? UIImage(named: "bTNAgree") : UIImage(named: "bTNDisagree")
         questionLabel.text = question.question
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dateLabel.text = ""
+//        thumbImageView.image = question.yesVotes >= question.noVotes ? UIImage(named: "bTNAgree") : UIImage(named: "bTNDisagree")
+        questionLabel.text = ""
+    }
 
 }

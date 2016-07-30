@@ -40,26 +40,26 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     }
     
     func getBatchOfQuestions() {
-        var x = 0
         var questionsDownloaded = 0
-        while x < numberOfQuestionsToDisplay {
-            print(self.adjustedDate)
+        var numberOfQuestionsToDownloadAtATime = 10
+        for _ in (0..<numberOfQuestionsToDownloadAtATime) {
+            guard adjustedDate > NSDate.dateFromString(kStartDate) else {
+                numberOfQuestionsToDownloadAtATime = adjustedDays - numberOfQuestionsToDownloadAtATime
+                break
+            }
             QuestionManager.sharedManager.getQuestionForDate(adjustedDate) { (question, error) in
                 if error != nil {
-                    x -= 1
-                    self.adjustedDays -= 1
                     print("error! \(error)")
                 } else {
                     self.questions.append(question ?? Question())
                     questionsDownloaded += 1
-                    if questionsDownloaded == self.numberOfQuestionsToDisplay {
+                    if questionsDownloaded == numberOfQuestionsToDownloadAtATime {
                         self.eligibleToDownloadMoreQuestions = true
                         self.questions.sortInPlace({ $0.date > $1.date })
                         self.collectionView?.reloadData()
                     }
                 }
             }
-            x += 1
             adjustedDays += 1
         }
     }

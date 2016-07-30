@@ -2,7 +2,9 @@ TODO
 
 - iOS
   [x] Add global date constant which is dynamic based on date
-  [] Add collection view of past questions
+  [] Add loading icon to other question cells for reuse
+  [] Add loading to main question area
+  [x] Add collection view of past questions
   [] Make back arrow an X - maybe put on right?
   [] Animate expansion of cell in collection view going into results
   [] Add placeholder image for articles
