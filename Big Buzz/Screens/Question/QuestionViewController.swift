@@ -44,7 +44,7 @@ class QuestionViewController: UIViewController {
     func setUpUI() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         title = "Question Of The Day"
-        dateLabel.text = NSDate().dayMonthYear()
+        dateLabel.text = NSDate().fullMonthDayYear()
         AnimationManager.sharedManager.addFloatingCirclesToView(view)
         if UserDefaultsManager.sharedManager.didVoteToday() {
             showVotedState()

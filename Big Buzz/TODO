@@ -2,21 +2,23 @@ TODO
 
 - iOS
   [] Add comments
-  [] update format of dates in UI (only)
+  [] Add firebase + turn off read/write for all
+  [] Add the 100 questions to firebase
+  [x] update format of dates in UI (only)
   [] Random color on question view controller - fade to different color
-  [x] Add global date constant which is dynamic based on date
   [] Add loading icon to other question cells for reuse
   [] Add loading to main question area
-  [x] Add collection view of past questions
   [] Make back arrow an X - maybe put on right?
   [] Add placeholder image for articles
   [] add loading hud on questions vc
   [] Change color for each day
+  [x] Add global date constant which is dynamic based on date
+  [x] Add collection view of past questions
   [x] Change agree/disagree to yes/no
   [x] Close results should show already voted state of question screen
       [x] Need design
   [x] Add back + forward date functionality
-  [] Delete back/forward design
+  [x] Delete back/forward design
   [x] If no question for current date, go back until next question (goes back as far as Jul 17) 
 
   - Notifications

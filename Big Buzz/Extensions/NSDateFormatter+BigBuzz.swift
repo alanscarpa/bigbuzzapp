@@ -14,4 +14,17 @@ extension NSDateFormatter {
         dateFormatter.dateFormat = "MM-dd-yyyy"
         return dateFormatter
     }
+    
+    class func fullMonthFormatter() -> NSDateFormatter {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        return dateFormatter
+    }
+    
+    class func shortFormatter() -> NSDateFormatter {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM.dd"
+        return dateFormatter
+    }
 }
+

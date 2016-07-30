@@ -15,7 +15,7 @@ class OtherQuestionsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var questionLabel: UILabel!
     
     func configureWithQuestion(question: Question) {
-        dateLabel.text = question.date.dayMonthYear()
+        dateLabel.text = question.date.shortMonthDay()
         thumbImageView.image = question.yesVotes >= question.noVotes ? UIImage(named: "bTNAgree") : UIImage(named: "bTNDisagree")
         questionLabel.text = question.question
     }

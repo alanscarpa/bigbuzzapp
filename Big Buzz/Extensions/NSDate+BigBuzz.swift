@@ -13,6 +13,14 @@ extension NSDate {
         return NSDateFormatter.bbFormatter().stringFromDate(self)
     }
     
+    func fullMonthDayYear() -> String {
+        return NSDateFormatter.fullMonthFormatter().stringFromDate(self)
+    }
+    
+    func shortMonthDay() -> String {
+        return NSDateFormatter.shortFormatter().stringFromDate(self)
+    }
+    
     class func dateFromString(string: String) -> NSDate? {
         return NSDateFormatter.bbFormatter().dateFromString(string)
     }
