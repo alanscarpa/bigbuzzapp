@@ -20,7 +20,7 @@ class ResultsArticleTableViewCell: UITableViewCell {
         articleLedeLabel.text = article.lede
         articleThumbnailImageView.layer.cornerRadius = articleThumbnailImageView.frame.size.width / 2
 
-        if let imageURL = NSURL(string: article.thumbnailURLString) {
+        if let imageURL = NSURL(string: article.thumbnailURLString) where !imageURL.absoluteString.isEmpty {
             articleThumbnailImageView.sd_setImageWithURL(imageURL)
         }
     }

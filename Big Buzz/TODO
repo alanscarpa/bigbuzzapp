@@ -4,14 +4,13 @@ TODO
   [] Add comments
   [] Add firebase + turn off read/write for all
   [] Add the 100 questions to firebase
+  [] Get back arrow
   [x] update format of dates in UI (only)
   [x] Random color on question view controller - fade to different color
-  [] Add loading icon to other question cells for reuse
-  [] Add loading to main question area
-  [] Make back arrow an X - maybe put on right?
-  [] Add placeholder image for articles
-  [] add loading hud on questions vc
-  [] Change color for each day
+  [x] Add loading icon to other question cells for reuse
+  [x] Add loading to main question area
+  [x] Add placeholder image for articles
+  [x] Change color for each day
   [x] Add global date constant which is dynamic based on date
   [x] Add collection view of past questions
   [x] Change agree/disagree to yes/no
@@ -23,9 +22,8 @@ TODO
 
   - Notifications
     (q) - I think we only only send 1 daily reminder that there is a new question.  I don't think we send a "Results are in" push.  Up for debate though.  
-    [] - Set up notifications
+    [] - Set up local notifications - everyday at 1pm?
     [] - Ask for notification permission after 1st vote
-       (q) - Local
 
   - V2
   - iOS
