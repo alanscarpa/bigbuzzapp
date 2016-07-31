@@ -17,7 +17,7 @@ import Alamofire
 import SwiftyJSON
 
 class QuestionViewController: UIViewController {
-
+    
     var ref = FIRDatabaseReference()
     var question = Question() {
         didSet {
@@ -42,12 +42,24 @@ class QuestionViewController: UIViewController {
     }
     
     func setUpUI() {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         title = "Question Of The Day"
+        showResultsButton.layer.borderColor = UIColor.whiteColor().CGColor
+        showResultsButton.layer.borderWidth = 2
+        showResultsButton.layer.cornerRadius = showResultsButton.frame.size.height / 2
+        animateBackgroundColor()
         dateLabel.text = NSDate().fullMonthDayYear()
         AnimationManager.sharedManager.addFloatingCirclesToView(view)
         if UserDefaultsManager.sharedManager.didVoteToday() {
             showVotedState()
+        }
+    }
+    
+    func animateBackgroundColor() {
+        UIView.animateWithDuration(5.0, delay: 0, options: .AllowUserInteraction, animations: { 
+            self.view.backgroundColor = UIColor.colorForNumber(Int(arc4random_uniform(6)))
+        }) { finished in
+            self.animateBackgroundColor()
         }
     }
     

@@ -91,22 +91,7 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
         if indexPath.row < questions.count {
             cell.configureWithQuestion(questions[indexPath.row])
         }
-        
-        var colorNumber = indexPath.row + 1
-        if colorNumber % 5 > 0 {
-            colorNumber = colorNumber % 5
-        }
-        if colorNumber % 5 == 0 {
-            cell.backgroundColor = UIColor.bbRedPink()
-        } else if colorNumber % 4 == 0 {
-            cell.backgroundColor = UIColor.bbUglyYellow()
-        } else if colorNumber % 3 == 0 {
-            cell.backgroundColor = UIColor.bbOrangeish()
-        } else if colorNumber % 2 == 0 {
-            cell.backgroundColor = UIColor.bbVibrantGreen()
-        } else {
-            cell.backgroundColor = UIColor.bbCyanTwo()
-        }
+        cell.backgroundColor = UIColor.colorForNumber(indexPath.row)
         return cell
     }
     

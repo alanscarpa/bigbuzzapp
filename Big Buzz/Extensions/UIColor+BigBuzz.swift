@@ -30,4 +30,24 @@ extension UIColor {
         return UIColor(red: 247.0 / 255.0, green: 33.0 / 255.0, blue: 101.0 / 255.0, alpha: 1.0)
     }
     
+    class func colorForNumber(row: Int) -> UIColor {
+        var colorNumber = row + 1
+        if colorNumber % 5 > 0 {
+            colorNumber = colorNumber % 5
+        }
+        var color = UIColor()
+        if colorNumber % 5 == 0 {
+            color = UIColor.bbRedPink()
+        } else if colorNumber % 4 == 0 {
+            color = UIColor.bbUglyYellow()
+        } else if colorNumber % 3 == 0 {
+            color = UIColor.bbOrangeish()
+        } else if colorNumber % 2 == 0 {
+            color = UIColor.bbVibrantGreen()
+        } else {
+            color = UIColor.bbCyanTwo()
+        }
+        return color
+    }
+    
 }

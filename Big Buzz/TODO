@@ -5,7 +5,7 @@ TODO
   [] Add firebase + turn off read/write for all
   [] Add the 100 questions to firebase
   [x] update format of dates in UI (only)
-  [] Random color on question view controller - fade to different color
+  [x] Random color on question view controller - fade to different color
   [] Add loading icon to other question cells for reuse
   [] Add loading to main question area
   [] Make back arrow an X - maybe put on right?
@@ -23,9 +23,9 @@ TODO
 
   - Notifications
     (q) - I think we only only send 1 daily reminder that there is a new question.  I don't think we send a "Results are in" push.  Up for debate though.  
-    (q) - At what point in the flow do we ask for notification permission?
     [] - Set up notifications
-       (q) - Local or remote?  I think Local because then everyday at 9am? 2pm? whenever - the user will get a push saying, "Hey check out the latest question in big buzz!". The downside is, if we don't have a questino up, this notification will still happen.  The remote notifications would require us to log in to Firebase everyday, and write out our notification and send manually.  I vote for local, automatic notifications for simplicity;s sake.
+    [] - Ask for notification permission after 1st vote
+       (q) - Local
 
   - V2
   - iOS

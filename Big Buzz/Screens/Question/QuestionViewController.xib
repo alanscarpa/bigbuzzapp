@@ -93,7 +93,6 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQv-PZ-Z9A" userLabel="Show Results Button">
                     <rect key="frame" x="112" y="506" width="375" height="52.5"/>
-                    <color key="backgroundColor" red="0.086274512112140656" green="0.67058825492858887" blue="0.69803923368453979" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="24"/>
                     <state key="normal" title="Show Results">
                         <color key="titleColor" red="0.97254902124404907" green="0.97254902124404907" blue="0.97254902124404907" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
