@@ -14,7 +14,7 @@ class OtherQuestionsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareForReuse()
@@ -24,15 +24,13 @@ class OtherQuestionsCollectionViewCell: UICollectionViewCell {
         dateLabel.text = question.date.shortMonthDay()
         thumbImageView.image = question.yesVotes >= question.noVotes ? UIImage(named: "bTNAgree") : UIImage(named: "bTNDisagree")
         questionLabel.text = question.question
-        SVProgressHUD.dismiss()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         dateLabel.text = ""
-//        thumbImageView.image = question.yesVotes >= question.noVotes ? UIImage(named: "bTNAgree") : UIImage(named: "bTNDisagree")
-        questionLabel.text = ""
-        SVProgressHUD.show()
+        thumbImageView.image = UIImage(named: "bTNAgree")
+        questionLabel.text = "....."
     }
 
 }
