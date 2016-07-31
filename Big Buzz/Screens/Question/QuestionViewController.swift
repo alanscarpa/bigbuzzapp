@@ -15,6 +15,7 @@ import PureLayout
 import Pulsator
 import Alamofire
 import SwiftyJSON
+import SVProgressHUD
 
 class QuestionViewController: UIViewController {
     
@@ -34,6 +35,7 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.show()
         // Called here because storyboard loads this VC before AppDelegate
         ref = FIRDatabase.database().reference()
 //        createQuestion()
@@ -50,9 +52,6 @@ class QuestionViewController: UIViewController {
         animateBackgroundColor()
         dateLabel.text = NSDate().fullMonthDayYear()
         AnimationManager.sharedManager.addFloatingCirclesToView(view)
-        if UserDefaultsManager.sharedManager.didVoteToday() {
-            showVotedState()
-        }
     }
     
     func animateBackgroundColor() {
@@ -65,7 +64,13 @@ class QuestionViewController: UIViewController {
     
     func getQuestionForToday() {
         QuestionManager.sharedManager.getQuestionForDate(NSDate()) { (question, error) in
+            SVProgressHUD.dismiss()
             self.handleQuestion(question, error: error)
+            if UserDefaultsManager.sharedManager.didVoteToday() {
+                self.showVotedState()
+            } else {
+                self.showVoteState()
+            }
         }
     }
     
@@ -160,6 +165,11 @@ class QuestionViewController: UIViewController {
         yesButton.alpha = 0
         noButton.alpha = 0
         showResultsButton.hidden = false
+    }
+    
+    private func showVoteState() {
+        yesButton.alpha = 1
+        noButton.alpha = 1
     }
     
     private func animateShowAnswer() {

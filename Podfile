@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target 'Big Buzz' do
@@ -11,5 +11,6 @@ pod 'Pulsator'
 pod 'SDWebImage'
 pod 'Alamofire', '~> 3.4'
 pod 'SwiftyJSON'
+pod 'SVProgressHUD'
 end
 

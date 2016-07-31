@@ -53,7 +53,7 @@
                     <color key="textColor" red="0.0" green="0.88627451658248901" blue="0.92549020051956177" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgg-dn-Lyn" userLabel="YES Button">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgg-dn-Lyn" userLabel="YES Button">
                     <rect key="frame" x="112" y="495" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="75" id="5Si-6H-J0I"/>
@@ -72,7 +72,7 @@
                         <action selector="yesButtonTapped" destination="-1" eventType="touchUpInside" id="tld-Gp-MIn"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJr-fo-kdA" userLabel="NO Button">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJr-fo-kdA" userLabel="NO Button">
                     <rect key="frame" x="412" y="495" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="75" id="FfW-52-Z8m"/>

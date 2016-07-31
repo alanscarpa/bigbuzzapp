@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import IntrepidSwiftWisdom
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = navigationVC
         self.window?.makeKeyAndVisible()
+        
+        SVProgressHUD.setDefaultStyle(.Custom)
+        SVProgressHUD.setBackgroundColor(UIColor.clearColor())
+        SVProgressHUD.setForegroundColor(UIColor.whiteColor())
         
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
         UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)

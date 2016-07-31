@@ -31,6 +31,7 @@ PODS:
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
+  - SVProgressHUD (2.0.3)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - Pulsator
   - PureLayout
   - SDWebImage
+  - SVProgressHUD
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -58,8 +60,9 @@ SPEC CHECKSUMS:
   Pulsator: 9486579ab8eeb0585aedefdc2c688ab589497d9a
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: a1f03bada6c7f7ec1d20b5a321a61c6e277f29b8
+PODFILE CHECKSUM: cb91a9fdf8c95b2e2e2cfa1cff2f8047e1785370
 
 COCOAPODS: 1.0.1
