@@ -41,6 +41,14 @@ class QuestionViewController: UIViewController {
 //        createQuestion()
         setUpUI()
         getQuestionForToday()
+        
+        FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
+            if error != nil {
+                print(error)
+            } else {
+                print(user)
+            }
+        }
     }
     
     func setUpUI() {
@@ -71,6 +79,8 @@ class QuestionViewController: UIViewController {
             } else {
                 self.showVoteState()
             }
+            // TODO: Move to appropriate spot
+            QuestionManager.sharedManager.writeComment("it's another comment", forQuestion: self.question)
         }
     }
     
@@ -134,6 +144,7 @@ class QuestionViewController: UIViewController {
             print("error submitting vote")
             AnimationManager.sharedManager.stopPulsator(self.pulsator)
         } else {
+            UserDefaultsManager.sharedManager.setDidVoteToday()
             self.stopPulsatorWithCompletion({ [weak self] _ in
                 guard let strongSelf = self else { return }
                 strongSelf.transitionToResultsViewController()

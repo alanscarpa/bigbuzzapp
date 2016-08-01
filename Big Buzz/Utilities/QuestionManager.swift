@@ -36,6 +36,19 @@ class QuestionManager {
     
     // MARK: Public
     
+    func writeComment(comment: String, forQuestion question: Question) {
+        let questionCommentRef = questionForTodayRef.child("comments").childByAutoId()
+        let childUpdates = ["comments/\(questionCommentRef.key)/comment" : comment, "\(question.firebasePath())/comments/\(questionCommentRef.key)/id": questionCommentRef.key]
+        FIRDatabase.database().reference().updateChildValues(childUpdates) { (error, reference) in
+            if let error = error {
+                print("error saving question/article \(error)")
+//                completion(error)
+            } else {
+//                completion(nil)
+            }
+        }
+    }
+    
     func getQuestionForDate(date: NSDate, completion: (Question?, NSError?) -> Void) {
         questionRefForDate(date.dayMonthYear()).observeSingleEventOfType(.Value, withBlock: { snapshot in
             if let questionDictionary = snapshot.value as? [String: AnyObject] {
@@ -181,7 +194,6 @@ class QuestionManager {
                 question.noVotes = noCount
                 
                 currentData.value = questionDictionary
-                return FIRTransactionResult.successWithValue(currentData)
             }
             return FIRTransactionResult.successWithValue(currentData)
         }) { (error, committed, snapshot) in

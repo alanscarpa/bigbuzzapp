@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Question {
     var question = ""
@@ -32,5 +33,9 @@ class Question {
             }
         }
         self.date = date
+    }
+    
+    func firebasePath() -> String {
+        return "questions/\(self.date.dayMonthYear())"
     }
 }

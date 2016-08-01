@@ -2,9 +2,13 @@ TODO
 
 - iOS
   [] Add comments
-  [] Add firebase + turn off read/write for all
+  [x] Add firebase + turn off read/write for all
   [] Add the 100 questions to firebase
   [] Get back arrow
+  [] Randomize balls a little bit?
+  [] Add splash screen
+  [] Fix height on web page
+  [x] Try and add validation rule to comments         
   [x] update format of dates in UI (only)
   [x] Random color on question view controller - fade to different color
   [x] Add loading icon to other question cells for reuse

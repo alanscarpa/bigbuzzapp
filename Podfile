@@ -12,5 +12,6 @@ pod 'SDWebImage'
 pod 'Alamofire', '~> 3.4'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
+pod 'Firebase/Auth'
 end
 
