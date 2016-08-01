@@ -38,10 +38,14 @@ class QuestionViewController: UIViewController {
         SVProgressHUD.show()
         // Called here because storyboard loads this VC before AppDelegate
         ref = FIRDatabase.database().reference()
+        
+        signIntoFirebaseAnonymously()
 //        createQuestion()
         setUpUI()
         getQuestionForToday()
-        
+    }
+    
+    func signIntoFirebaseAnonymously() {
         FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
             if error != nil {
                 print(error)
@@ -79,8 +83,6 @@ class QuestionViewController: UIViewController {
             } else {
                 self.showVoteState()
             }
-            // TODO: Move to appropriate spot
-            QuestionManager.sharedManager.writeComment("it's another comment", forQuestion: self.question)
         }
     }
     

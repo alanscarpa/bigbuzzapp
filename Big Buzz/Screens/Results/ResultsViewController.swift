@@ -12,7 +12,7 @@ import IntrepidSwiftWisdom
 import Firebase
 
 class ResultsViewController: UITableViewController {
-
+    
     @IBOutlet weak var yesPercentageLabel: UILabel!
     @IBOutlet weak var noPercentageLabel: UILabel!
     
@@ -35,6 +35,20 @@ class ResultsViewController: UITableViewController {
         
         tableView.registerNib(UINib(nibName: ResultsHeaderView.ip_nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: ResultsHeaderView.ip_nibName)
         tableView.registerNib(UINib(nibName: ResultsArticleTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: ResultsArticleTableViewCell.ip_nibName)
+        tableView.registerNib(UINib(nibName: CommentInputTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: CommentInputTableViewCell.ip_nibName)
+        tableView.registerNib(UINib(nibName: CommentTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: CommentTableViewCell.ip_nibName)
+        
+        
+        let tapOutsideOfTextView = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapOutsideOfTextView.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapOutsideOfTextView)
+        
+        // TODO: Move to appropriate spot
+        // QuestionManager.sharedManager.writeComment("it's another comment", forQuestion: self.question)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -118,16 +132,25 @@ class ResultsViewController: UITableViewController {
             cell.configureForArticle(question.articles[indexPath.row])
             return cell
         } else {
-            return UITableViewCell()
+            if indexPath.row == 0 {
+                // return commentInputCell
+                let cell = tableView.dequeueReusableCellWithIdentifier(CommentInputTableViewCell.ip_nibName, forIndexPath: indexPath) as! CommentInputTableViewCell
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier(CommentTableViewCell.ip_nibName, forIndexPath: indexPath) as! CommentTableViewCell
+                return cell
+            }
         }
     }
     
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let articleVC = ArticleViewController.ip_fromNib()
-        articleVC.article = question.articles[indexPath.row]
-        self.navigationController?.pushViewController(articleVC, animated: true)
+        if indexPath.section == 0 {
+            let articleVC = ArticleViewController.ip_fromNib()
+            articleVC.article = question.articles[indexPath.row]
+            self.navigationController?.pushViewController(articleVC, animated: true)
+        }
     }
     
     @IBAction func xButtonTapped() {

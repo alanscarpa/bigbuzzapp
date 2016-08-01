@@ -13,5 +13,6 @@ pod 'Alamofire', '~> 3.4'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
 pod 'Firebase/Auth'
+pod 'UITextView+Placeholder', '~> 1.2'
 end
 

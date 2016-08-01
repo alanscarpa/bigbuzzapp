@@ -46,6 +46,7 @@ PODS:
   - SDWebImage/Core (3.8.1)
   - SVProgressHUD (2.0.3)
   - SwiftyJSON (2.3.2)
+  - UITextView+Placeholder (1.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - SDWebImage
   - SVProgressHUD
   - SwiftyJSON
+  - UITextView+Placeholder (~> 1.2)
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
@@ -79,7 +81,8 @@ SPEC CHECKSUMS:
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: e04f0291cdd5803515f9f57aa15bfeeaebf0e0b0
+PODFILE CHECKSUM: 518143dc1bff5f2aefd8b65033e846fd2fee8954
 
 COCOAPODS: 1.0.1
