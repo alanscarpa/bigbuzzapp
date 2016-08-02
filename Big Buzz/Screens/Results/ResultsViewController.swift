@@ -174,4 +174,8 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
         }
     }
     
+    func tooManyCharactersError() {
+        presentViewController(UIAlertController.alertWithTitle("Too Many Characters", message: "We really want you to share your thoughts, but the max character count is 2000."), animated: true, completion: nil)
+    }
+    
 }

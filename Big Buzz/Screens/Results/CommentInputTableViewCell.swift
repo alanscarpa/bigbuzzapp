@@ -12,6 +12,7 @@ import PureLayout
 
 protocol CommentInputDelegate: class {
     func commentSubmitButtonTappedWithComment(comment: String)
+    func tooManyCharactersError()
 }
 
 class CommentInputTableViewCell: UITableViewCell, UITextViewDelegate {
@@ -19,7 +20,8 @@ class CommentInputTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     weak var delegate: CommentInputDelegate?
     let submitButton = UIButton()
-
+    let kMaxTextAllowed = 2000
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         textView.delegate = self
@@ -49,6 +51,15 @@ class CommentInputTableViewCell: UITableViewCell, UITextViewDelegate {
     
     func textViewDidChange(textView: UITextView) {
         submitButton.enabled = !textView.text.isEmptyOrWhitespace()
+        textView.text = longString()
+        if textView.text.characters.count > kMaxTextAllowed {
+            textView.text = textView.text.substringToIndex(textView.text.startIndex.advancedBy(2000))
+            delegate?.tooManyCharactersError()
+        }
+    }
+    
+    func longString() -> String {
+        return "askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh  askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh  askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh kasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd  afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdk jdkskdfdsasdfffdsasdfdsaskdfjkend1"
     }
     
     func submitButtonTapped() {

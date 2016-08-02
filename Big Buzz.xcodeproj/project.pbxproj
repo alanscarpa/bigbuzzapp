@@ -37,6 +37,7 @@
 		45A4D2431D5004C000BE31A0 /* CommentInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45A4D2411D5004C000BE31A0 /* CommentInputTableViewCell.xib */; };
 		45A4D2461D50052000BE31A0 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4D2441D50052000BE31A0 /* CommentTableViewCell.swift */; };
 		45A4D2471D50052000BE31A0 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45A4D2451D50052000BE31A0 /* CommentTableViewCell.xib */; };
+		45A4D2491D5026D800BE31A0 /* UIAlertController+BigBuzz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4D2481D5026D800BE31A0 /* UIAlertController+BigBuzz.swift */; };
 		45AA6DE41D2C6B57007F6A29 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AA6DE31D2C6B57007F6A29 /* QuestionViewController.xib */; };
 		45AA6DE61D2C6F85007F6A29 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA6DE51D2C6F85007F6A29 /* Question.swift */; };
 		45AA6DE81D2C7F71007F6A29 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA6DE71D2C7F71007F6A29 /* ResultsViewController.swift */; };
@@ -86,6 +87,7 @@
 		45A4D2411D5004C000BE31A0 /* CommentInputTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentInputTableViewCell.xib; sourceTree = "<group>"; };
 		45A4D2441D50052000BE31A0 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		45A4D2451D50052000BE31A0 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		45A4D2481D5026D800BE31A0 /* UIAlertController+BigBuzz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+BigBuzz.swift"; sourceTree = "<group>"; };
 		45AA6DE31D2C6B57007F6A29 /* QuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
 		45AA6DE51D2C6F85007F6A29 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		45AA6DE71D2C7F71007F6A29 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				450CB2F31D3148E1001F6850 /* NSDate+BigBuzz.swift */,
 				45243DEC1D49988600E22E99 /* UIColor+BigBuzz.swift */,
 				45243DF41D4CE0F800E22E99 /* NSDateFormatter+BigBuzz.swift */,
+				45A4D2481D5026D800BE31A0 /* UIAlertController+BigBuzz.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				45A4D2461D50052000BE31A0 /* CommentTableViewCell.swift in Sources */,
 				450CB3001D318981001F6850 /* Article.swift in Sources */,
 				450CB2F41D3148E1001F6850 /* NSDate+BigBuzz.swift in Sources */,
+				45A4D2491D5026D800BE31A0 /* UIAlertController+BigBuzz.swift in Sources */,
 				450CB2F81D317F36001F6850 /* ResultsHeaderView.swift in Sources */,
 				45243DED1D49988600E22E99 /* UIColor+BigBuzz.swift in Sources */,
 				45D993CA1D2DDCF100775E30 /* UINavigationController+BigBuzz.swift in Sources */,
