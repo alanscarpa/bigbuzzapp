@@ -26,7 +26,7 @@ class CommentInputTableViewCell: UITableViewCell, UITextViewDelegate {
         super.awakeFromNib()
         textView.delegate = self
         
-        textView.placeholder = "SAY SOMETHING..."
+        resetTextView()
         
         let customAccessoryView = UIView(frame: CGRectMake(0, 0, 10, 40))
         customAccessoryView.backgroundColor = UIColor.greenColor()
@@ -47,24 +47,25 @@ class CommentInputTableViewCell: UITableViewCell, UITextViewDelegate {
         textView.inputAccessoryView = customAccessoryView
     }
     
+    private func resetTextView() {
+        textView.text = ""
+        textView.placeholder = "SAY SOMETHING..."
+    }
+    
     // MARK: UITextViewDelegate
     
     func textViewDidChange(textView: UITextView) {
         submitButton.enabled = !textView.text.isEmptyOrWhitespace()
-        textView.text = longString()
         if textView.text.characters.count > kMaxTextAllowed {
             textView.text = textView.text.substringToIndex(textView.text.startIndex.advancedBy(2000))
             delegate?.tooManyCharactersError()
         }
     }
     
-    func longString() -> String {
-        return "askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh  askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh  askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh kasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd  afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdklh fadklh askfhkjdhfskjahs lksabh sadlkhabd lkbhad lksajhb lkasjbh lakfdhj afdk jdkskdfdsasdfffdsasdfdsaskdfjkend1"
-    }
-    
     func submitButtonTapped() {
         textView.resignFirstResponder()
         delegate?.commentSubmitButtonTappedWithComment(textView.text)
+        resetTextView()
     }
 
 }

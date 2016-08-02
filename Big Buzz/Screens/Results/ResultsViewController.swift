@@ -27,6 +27,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
     var question = Question()
     var otherQuestions = 0
     var questions = [Question]()
+    var comments = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,14 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
         let tapOutsideOfTextView = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapOutsideOfTextView.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutsideOfTextView)
+        
+//        comments = question.comments
+        // TODO: Give question model comments 
+        
+        // TODO: DELETE THIS
+        comments.append("dummy comment 1")
+        comments.append("dummy comment 2")
+        // TODO: DELETE THIS
     }
     
     func dismissKeyboard() {
@@ -105,8 +114,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
         if section == 0 {
             return question.articles.count
         } else {
-            // TODO: Update with number of comments
-            return 3
+            return comments.count + 1
         }
     }
     
@@ -137,6 +145,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(CommentTableViewCell.ip_nibName, forIndexPath: indexPath) as! CommentTableViewCell
+                cell.textLabel?.text = comments[indexPath.row - 1]
                 return cell
             }
         }
@@ -153,7 +162,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
     }
     
     @IBAction func xButtonTapped() {
-        self.navigationController?.pop(transitionType: kCATransitionFade, duration: 0.5)
+        navigationController?.pop(transitionType: kCATransitionFade, duration: 0.5)
     }
     
     // MARK: CommentInputDelegate
@@ -169,6 +178,8 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
             if error != nil {
                 print(error)
             } else {
+                self.comments.insert(comment, atIndex: 0)
+                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 1)], withRowAnimation: .Automatic)
                 print("comment submitted!")
             }
         }
