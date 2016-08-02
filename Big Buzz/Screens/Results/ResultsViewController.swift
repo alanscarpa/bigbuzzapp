@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import IntrepidSwiftWisdom
 import Firebase
+import SVProgressHUD
 
-class ResultsViewController: UITableViewController {
+class ResultsViewController: UITableViewController, CommentInputDelegate {
     
     @IBOutlet weak var yesPercentageLabel: UILabel!
     @IBOutlet weak var noPercentageLabel: UILabel!
@@ -42,9 +43,6 @@ class ResultsViewController: UITableViewController {
         let tapOutsideOfTextView = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapOutsideOfTextView.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutsideOfTextView)
-        
-        // TODO: Move to appropriate spot
-        // QuestionManager.sharedManager.writeComment("it's another comment", forQuestion: self.question)
     }
     
     func dismissKeyboard() {
@@ -135,6 +133,7 @@ class ResultsViewController: UITableViewController {
             if indexPath.row == 0 {
                 // return commentInputCell
                 let cell = tableView.dequeueReusableCellWithIdentifier(CommentInputTableViewCell.ip_nibName, forIndexPath: indexPath) as! CommentInputTableViewCell
+                cell.delegate = self
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(CommentTableViewCell.ip_nibName, forIndexPath: indexPath) as! CommentTableViewCell
@@ -143,7 +142,7 @@ class ResultsViewController: UITableViewController {
         }
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
@@ -155,6 +154,24 @@ class ResultsViewController: UITableViewController {
     
     @IBAction func xButtonTapped() {
         self.navigationController?.pop(transitionType: kCATransitionFade, duration: 0.5)
+    }
+    
+    // MARK: CommentInputDelegate
+    
+    func commentSubmitButtonTappedWithComment(comment: String) {
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            SVProgressHUD.show()
+        }
+        QuestionManager.sharedManager.writeComment(comment, forQuestion: self.question) { error in
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                SVProgressHUD.dismiss()
+            }
+            if error != nil {
+                print(error)
+            } else {
+                print("comment submitted!")
+            }
+        }
     }
     
 }

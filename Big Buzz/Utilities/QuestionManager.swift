@@ -36,15 +36,15 @@ class QuestionManager {
     
     // MARK: Public
     
-    func writeComment(comment: String, forQuestion question: Question) {
+    func writeComment(comment: String, forQuestion question: Question, completion: (NSError?) -> ()) {
         let questionCommentRef = questionForTodayRef.child("comments").childByAutoId()
         let childUpdates = ["comments/\(questionCommentRef.key)/comment" : comment, "\(question.firebasePath())/comments/\(questionCommentRef.key)/id": questionCommentRef.key]
         FIRDatabase.database().reference().updateChildValues(childUpdates) { (error, reference) in
             if let error = error {
                 print("error saving question/article \(error)")
-//                completion(error)
+                completion(error)
             } else {
-//                completion(nil)
+                completion(nil)
             }
         }
     }

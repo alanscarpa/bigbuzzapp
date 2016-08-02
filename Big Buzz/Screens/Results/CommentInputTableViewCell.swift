@@ -8,20 +8,81 @@
 
 import UIKit
 import UITextView_Placeholder
+import PureLayout
 
-class CommentInputTableViewCell: UITableViewCell {
+protocol CommentInputDelegate: class {
+    func commentSubmitButtonTappedWithComment(comment: String)
+}
+
+class CommentInputTableViewCell: UITableViewCell, UITextViewDelegate {
 
     @IBOutlet weak var textView: UITextView!
-    
+    weak var delegate: CommentInputDelegate?
+    let submitButton = UIButton()
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        textView.delegate = self
+        
         textView.placeholder = "SAY SOMETHING..."
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+        let customAccessoryView = UIView(frame: CGRectMake(0, 0, 10, 40))
+        customAccessoryView.backgroundColor = UIColor.greenColor()
+        
+        submitButton.setTitle("SUBMIT", forState: .Normal)
+        
+        submitButton.setBackgroundColor(UIColor.blueColor(), forUIControlState: .Normal)
+        submitButton.setBackgroundColor(UIColor.greenColor(), forUIControlState: .Disabled)
+        submitButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        submitButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.8), forState: .Disabled)
+        
+        submitButton.addTarget(self, action: #selector(submitButtonTapped), forControlEvents: .TouchUpInside)
+        submitButton.enabled = false
+        
+        customAccessoryView.addSubview(submitButton)
+        submitButton.autoPinEdgesToSuperviewEdges()
+        
+        textView.inputAccessoryView = customAccessoryView
     }
     
+    // MARK: UITextViewDelegate
+    
+    func textViewDidChange(textView: UITextView) {
+        submitButton.enabled = !textView.text.isEmptyOrWhitespace()
+    }
+    
+    func submitButtonTapped() {
+        textView.resignFirstResponder()
+        delegate?.commentSubmitButtonTappedWithComment(textView.text)
+    }
+
+}
+
+extension String {
+    func isEmptyOrWhitespace() -> Bool {
+        if self.isEmpty {
+            return true
+        }
+        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == ""
+    }
+}
+
+extension UIButton {
+    private func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
+    func setBackgroundColor(color: UIColor, forUIControlState state: UIControlState) {
+        self.setBackgroundImage(imageWithColor(color), forState: state)
+    }
 }
