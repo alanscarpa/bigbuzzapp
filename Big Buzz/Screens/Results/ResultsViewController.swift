@@ -53,6 +53,8 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
         tableView.registerNib(UINib(nibName: CommentInputTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: CommentInputTableViewCell.ip_nibName)
         tableView.registerNib(UINib(nibName: CommentTableViewCell.ip_nibName, bundle: nil), forCellReuseIdentifier: CommentTableViewCell.ip_nibName)
         
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         let tapOutsideOfTextView = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapOutsideOfTextView.cancelsTouchesInView = false
@@ -159,7 +161,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(CommentTableViewCell.ip_nibName, forIndexPath: indexPath) as! CommentTableViewCell
-                cell.textLabel?.text = sortedComments[indexPath.row - 1].comment
+                cell.configureWithComment(sortedComments[indexPath.row - 1])
                 return cell
             }
         }

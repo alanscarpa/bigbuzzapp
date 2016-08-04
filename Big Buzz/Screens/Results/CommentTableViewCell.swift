@@ -10,9 +10,25 @@ import UIKit
 
 class CommentTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var upVotesLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        textLabel?.text = "test"
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        dateLabel.text = ""
+        commentLabel.text = ""
+        upVotesLabel.text = ""
+    }
+    
+    func configureWithComment(comment: Comment) {
+        dateLabel.text = NSDate(timeIntervalSince1970: NSTimeInterval(comment.date)).fullMonthDayYear()
+        commentLabel.text = comment.comment
+        upVotesLabel.text = String(comment.upVotes)
     }
     
 }

@@ -12,7 +12,7 @@ class Comment {
     var comment = ""
     var upVotes = 0
     var id = ""
-    var date = 0
+    var date = Int(NSDate().timeIntervalSince1970)
     
     init(id: String) {
         self.id = id
