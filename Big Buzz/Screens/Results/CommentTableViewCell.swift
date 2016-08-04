@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol CommentUpVoteDelegate: class {
+    func upVoteButtonTapped()
+}
+
 class CommentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var upVotesLabel: UILabel!
+    weak var delegate: CommentUpVoteDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,4 +36,7 @@ class CommentTableViewCell: UITableViewCell {
         upVotesLabel.text = String(comment.upVotes)
     }
     
+    @IBAction func upVoteButtonTapped() {
+        delegate?.upVoteButtonTapped()
+    }
 }

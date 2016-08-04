@@ -32,29 +32,40 @@
                         <color key="textColor" red="0.49019607901573181" green="0.49019607901573181" blue="0.49019607901573181" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shape" translatesAutoresizingMaskIntoConstraints="NO" id="WEB-c3-539" userLabel="Thumb Up Image View">
-                        <rect key="frame" x="12" y="72" width="20" height="20"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkF-VJ-SMv" userLabel="Up Votes Label">
-                        <rect key="frame" x="38" y="73" width="8" height="18"/>
+                        <rect key="frame" x="61" y="74" width="8" height="18"/>
                         <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="14"/>
                         <color key="textColor" red="0.49019607900000001" green="0.49019607900000001" blue="0.49019607900000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lb-5D-bJg" userLabel="Up Vote Button">
+                        <rect key="frame" x="12" y="62" width="40" height="42"/>
+                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                        <state key="normal" image="shape"/>
+                        <connections>
+                            <action selector="upVoteButtonTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lLE-5a-SbA"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="vkF-VJ-SMv" firstAttribute="centerY" secondItem="WEB-c3-539" secondAttribute="centerY" id="1U5-r8-J9G"/>
-                    <constraint firstAttribute="bottom" secondItem="WEB-c3-539" secondAttribute="bottom" constant="16.5" id="7mr-LN-Ykb"/>
-                    <constraint firstItem="WEB-c3-539" firstAttribute="top" secondItem="KYN-GF-Utt" secondAttribute="bottom" constant="12" id="8kH-YX-7L5"/>
+                    <constraint firstItem="2lb-5D-bJg" firstAttribute="leading" secondItem="KYN-GF-Utt" secondAttribute="leading" id="Ggm-nb-wV1"/>
                     <constraint firstItem="KYN-GF-Utt" firstAttribute="trailing" secondItem="SEh-L2-pJe" secondAttribute="trailing" id="IeS-kM-N0q"/>
-                    <constraint firstItem="WEB-c3-539" firstAttribute="leading" secondItem="KYN-GF-Utt" secondAttribute="leading" id="Lhv-8c-ZuJ"/>
                     <constraint firstItem="KYN-GF-Utt" firstAttribute="top" secondItem="SEh-L2-pJe" secondAttribute="bottom" constant="12" id="PhX-bY-bYf"/>
+                    <constraint firstItem="vkF-VJ-SMv" firstAttribute="leading" secondItem="2lb-5D-bJg" secondAttribute="trailing" constant="9" id="WMA-o3-UJM"/>
+                    <constraint firstItem="vkF-VJ-SMv" firstAttribute="centerY" secondItem="2lb-5D-bJg" secondAttribute="centerY" id="aDu-qQ-IsS"/>
+                    <constraint firstItem="vkF-VJ-SMv" firstAttribute="centerX" secondItem="2lb-5D-bJg" secondAttribute="centerX" id="cIh-cN-5eI"/>
                     <constraint firstItem="KYN-GF-Utt" firstAttribute="leading" secondItem="SEh-L2-pJe" secondAttribute="leading" id="dOD-RC-VGe"/>
-                    <constraint firstItem="vkF-VJ-SMv" firstAttribute="leading" secondItem="WEB-c3-539" secondAttribute="trailing" constant="6" id="dff-mm-H3u"/>
                     <constraint firstAttribute="trailing" secondItem="SEh-L2-pJe" secondAttribute="trailing" constant="12" id="eHC-sJ-AV2"/>
+                    <constraint firstItem="2lb-5D-bJg" firstAttribute="top" secondItem="KYN-GF-Utt" secondAttribute="bottom" constant="2" id="hCR-A9-yh6"/>
                     <constraint firstItem="SEh-L2-pJe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="jPn-IL-6Oe"/>
+                    <constraint firstAttribute="bottom" secondItem="2lb-5D-bJg" secondAttribute="bottom" constant="4.5" id="ka7-jc-xIa"/>
                     <constraint firstItem="SEh-L2-pJe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="vGE-ar-fMN"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="cIh-cN-5eI"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="commentLabel" destination="KYN-GF-Utt" id="IaO-Td-Dqx"/>

@@ -27,7 +27,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="115" sectionHeaderHeight="18" sectionFooterHeight="18" id="vaF-Sq-Kr4">
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="115" sectionHeaderHeight="18" sectionFooterHeight="18" id="vaF-Sq-Kr4">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,17 +122,23 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0n-Gg-Ydp" userLabel="Yes Label">
-                        <rect key="frame" x="213.5" y="365" width="33.5" height="26"/>
+                        <rect key="frame" x="213" y="365" width="33.5" height="25.5"/>
                         <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.52549022436141968" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2b-pM-sAt" userLabel="No Label">
-                        <rect key="frame" x="358" y="365" width="25" height="26"/>
+                        <rect key="frame" x="358" y="365" width="24.5" height="25.5"/>
                         <fontDescription key="fontDescription" name="Dosis-ExtraBold" family="Dosis" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.52549022440000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bTNAgreeBG" translatesAutoresizingMaskIntoConstraints="NO" id="n91-CL-Zzr" userLabel="Thumbs Up">
+                        <rect key="frame" x="209" y="141" width="42" height="42"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bTNDisagreeBG" translatesAutoresizingMaskIntoConstraints="NO" id="go1-NI-1Gz" userLabel="Thumbs Down">
+                        <rect key="frame" x="348" y="141" width="43" height="42"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -141,15 +147,19 @@
                     <constraint firstItem="N0f-0A-djZ" firstAttribute="leading" secondItem="Rbr-o9-5AV" secondAttribute="leading" constant="20" id="65S-C1-dsT"/>
                     <constraint firstItem="d0n-Gg-Ydp" firstAttribute="top" secondItem="WGu-oD-EkJ" secondAttribute="bottom" constant="9" id="6kS-Tv-tsX"/>
                     <constraint firstItem="K2b-pM-sAt" firstAttribute="top" secondItem="5dB-0H-vfK" secondAttribute="bottom" constant="9" id="9Sm-si-wX6"/>
+                    <constraint firstItem="go1-NI-1Gz" firstAttribute="centerX" secondItem="5dB-0H-vfK" secondAttribute="centerX" id="ZrQ-Hs-s0o"/>
                     <constraint firstAttribute="trailing" secondItem="jpa-OF-0aS" secondAttribute="trailing" constant="25" id="bWS-Xb-lYy"/>
                     <constraint firstItem="N0f-0A-djZ" firstAttribute="top" secondItem="Rbr-o9-5AV" secondAttribute="top" constant="20" id="dZn-SL-M7Q"/>
                     <constraint firstItem="jpa-OF-0aS" firstAttribute="top" secondItem="N0f-0A-djZ" secondAttribute="bottom" constant="20" id="iQq-B5-XoI"/>
                     <constraint firstItem="WGu-oD-EkJ" firstAttribute="centerX" secondItem="Rbr-o9-5AV" secondAttribute="centerX" constant="-70" id="ikw-xD-BhK"/>
                     <constraint firstItem="K2b-pM-sAt" firstAttribute="centerX" secondItem="5dB-0H-vfK" secondAttribute="centerX" id="lDB-cr-6Ra"/>
                     <constraint firstItem="5dB-0H-vfK" firstAttribute="centerX" secondItem="Rbr-o9-5AV" secondAttribute="centerX" constant="70" id="lSv-ak-Atg"/>
+                    <constraint firstItem="go1-NI-1Gz" firstAttribute="bottom" secondItem="5dB-0H-vfK" secondAttribute="top" constant="20" id="oUH-xI-0CK"/>
                     <constraint firstItem="WGu-oD-EkJ" firstAttribute="top" secondItem="jpa-OF-0aS" secondAttribute="bottom" constant="41" id="rpo-sM-2Bb"/>
+                    <constraint firstItem="n91-CL-Zzr" firstAttribute="bottom" secondItem="WGu-oD-EkJ" secondAttribute="top" constant="20" id="s2O-5V-aEm"/>
                     <constraint firstItem="jpa-OF-0aS" firstAttribute="leading" secondItem="Rbr-o9-5AV" secondAttribute="leading" constant="25" id="uAo-Vp-qrU"/>
                     <constraint firstItem="jpa-OF-0aS" firstAttribute="centerX" secondItem="Rbr-o9-5AV" secondAttribute="centerX" id="uO2-fm-uYD"/>
+                    <constraint firstItem="n91-CL-Zzr" firstAttribute="centerX" secondItem="WGu-oD-EkJ" secondAttribute="centerX" id="ydE-Pb-jap"/>
                 </constraints>
             </view>
             <connections>
@@ -159,4 +169,8 @@
             <point key="canvasLocation" x="614" y="269"/>
         </tableView>
     </objects>
+    <resources>
+        <image name="bTNAgreeBG" width="42" height="42"/>
+        <image name="bTNDisagreeBG" width="43" height="42"/>
+    </resources>
 </document>

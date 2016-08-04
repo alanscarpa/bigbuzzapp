@@ -12,7 +12,7 @@ import IntrepidSwiftWisdom
 import Firebase
 import SVProgressHUD
 
-class ResultsViewController: UITableViewController, CommentInputDelegate {
+class ResultsViewController: UITableViewController, CommentInputDelegate, CommentUpVoteDelegate {
     
     @IBOutlet weak var yesPercentageLabel: UILabel!
     @IBOutlet weak var noPercentageLabel: UILabel!
@@ -162,6 +162,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(CommentTableViewCell.ip_nibName, forIndexPath: indexPath) as! CommentTableViewCell
                 cell.configureWithComment(sortedComments[indexPath.row - 1])
+                cell.delegate = self
                 return cell
             }
         }
@@ -204,6 +205,12 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
     
     func tooManyCharactersError() {
         presentViewController(UIAlertController.alertWithTitle("Too Many Characters", message: "We really want you to share your thoughts, but the max character count is 2000."), animated: true, completion: nil)
+    }
+    
+    // MARK: CommentUpVoteDelegate
+    
+    func upVoteButtonTapped() {
+        print("tapped")
     }
     
 }
