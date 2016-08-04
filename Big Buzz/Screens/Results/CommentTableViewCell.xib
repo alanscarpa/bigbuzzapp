@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkF-VJ-SMv" userLabel="Up Votes Label">
-                        <rect key="frame" x="61" y="74" width="8" height="18"/>
+                        <rect key="frame" x="52" y="74" width="8" height="18"/>
                         <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="14"/>
                         <color key="textColor" red="0.49019607900000001" green="0.49019607900000001" blue="0.49019607900000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                     <constraint firstItem="2lb-5D-bJg" firstAttribute="leading" secondItem="KYN-GF-Utt" secondAttribute="leading" id="Ggm-nb-wV1"/>
                     <constraint firstItem="KYN-GF-Utt" firstAttribute="trailing" secondItem="SEh-L2-pJe" secondAttribute="trailing" id="IeS-kM-N0q"/>
                     <constraint firstItem="KYN-GF-Utt" firstAttribute="top" secondItem="SEh-L2-pJe" secondAttribute="bottom" constant="12" id="PhX-bY-bYf"/>
-                    <constraint firstItem="vkF-VJ-SMv" firstAttribute="leading" secondItem="2lb-5D-bJg" secondAttribute="trailing" constant="9" id="WMA-o3-UJM"/>
+                    <constraint firstItem="vkF-VJ-SMv" firstAttribute="leading" secondItem="2lb-5D-bJg" secondAttribute="trailing" id="WMA-o3-UJM"/>
                     <constraint firstItem="vkF-VJ-SMv" firstAttribute="centerY" secondItem="2lb-5D-bJg" secondAttribute="centerY" id="aDu-qQ-IsS"/>
                     <constraint firstItem="vkF-VJ-SMv" firstAttribute="centerX" secondItem="2lb-5D-bJg" secondAttribute="centerX" id="cIh-cN-5eI"/>
                     <constraint firstItem="KYN-GF-Utt" firstAttribute="leading" secondItem="SEh-L2-pJe" secondAttribute="leading" id="dOD-RC-VGe"/>

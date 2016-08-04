@@ -86,16 +86,16 @@ class QuestionViewController: UIViewController {
         }
     }
     
-    // TODO: Create questions for next 100 days
+    // TODO: Create questions for next 99 days
     func createQuestion() {
         // TODO: change question
-        let post = ["question": "the presidential race",
+        let post = ["question": "Do you watch Netflix?",
                     "no": 0,
                     "yes": 0
                     ]
         
         // TODO: change date
-        let childUpdates = ["/questions/08-03-2016": post]
+        let childUpdates = ["/questions/08-04-2016": post]
         
         ref.updateChildValues(childUpdates) { (error, reference) in
             if let error = error {

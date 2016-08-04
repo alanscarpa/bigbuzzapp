@@ -16,6 +16,9 @@ class Question {
     var date = NSDate()
     var articles = [Article]()
     var comments = [Comment]()
+    var sortedComments: [Comment] {
+        return comments.sort({ $0.upVotes == $1.upVotes ? $0.date > $1.date : $0.upVotes > $1.upVotes })
+    }
 
     convenience init(questionDictionary: [String: AnyObject], withDate date: NSDate) {
         self.init()

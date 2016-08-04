@@ -32,11 +32,10 @@ class CommentInputTableViewCell: UITableViewCell, UITextViewDelegate {
         customAccessoryView.backgroundColor = UIColor.greenColor()
         
         submitButton.setTitle("SUBMIT", forState: .Normal)
-        
-        submitButton.setBackgroundColor(UIColor.blueColor(), forUIControlState: .Normal)
-        submitButton.setBackgroundColor(UIColor.greenColor(), forUIControlState: .Disabled)
+        submitButton.setBackgroundColor(UIColor.bbCyanTwo(), forUIControlState: .Normal)
+        submitButton.setBackgroundColor(UIColor.bbGrayWhite(), forUIControlState: .Disabled)
         submitButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        submitButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.8), forState: .Disabled)
+        submitButton.setTitleColor(UIColor.blackColor().colorWithAlphaComponent(0.3), forState: .Disabled)
         
         submitButton.addTarget(self, action: #selector(submitButtonTapped), forControlEvents: .TouchUpInside)
         submitButton.enabled = false

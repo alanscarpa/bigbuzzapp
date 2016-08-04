@@ -14,6 +14,10 @@ extension UIColor {
         return UIColor(red: 0.0 / 255.0, green: 235.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0)
     }
 
+    class func bbTealBlue() -> UIColor {
+        return UIColor(red: 0.0 / 255.0, green: 164.0 / 255.0, blue: 172.0 / 255.0, alpha: 1.0)
+    }
+    
     class func bbVibrantGreen() -> UIColor {
         return UIColor(red: 3.0 / 255.0, green: 222.0 / 255.0, blue: 33.0 / 255.0, alpha: 1.0)
     }
@@ -28,6 +32,10 @@ extension UIColor {
     
     class func bbRedPink() -> UIColor {
         return UIColor(red: 247.0 / 255.0, green: 33.0 / 255.0, blue: 101.0 / 255.0, alpha: 1.0)
+    }
+    
+    class func bbGrayWhite() -> UIColor {
+        return UIColor(red: 248.0 / 255.0, green: 248.0 / 255.0, blue: 248.0 / 255.0, alpha: 1.0)
     }
     
     class func colorForNumber(row: Int) -> UIColor {

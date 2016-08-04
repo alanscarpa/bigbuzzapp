@@ -195,8 +195,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
             if error != nil {
                 print(error)
             } else {
-                self.sortComments = false
-                self.comments = self.question.comments
+                self.moveCommentToTop()
                 self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 1)], withRowAnimation: .Automatic)
                 print("comment submitted!")
             }
@@ -221,6 +220,16 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
                 }
             })
         }
+    }
+    
+    // MARK: Helpers
+    
+    private func moveCommentToTop() {
+        self.sortComments = false
+        let topComment = self.question.comments[0]
+        self.question.comments.removeAtIndex(0)
+        self.comments = self.question.sortedComments
+        self.comments.insert(topComment, atIndex: 0)
     }
     
 }
