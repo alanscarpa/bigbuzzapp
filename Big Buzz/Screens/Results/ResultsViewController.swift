@@ -27,8 +27,9 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
     var question = Question()
     var otherQuestions = 0
     var questions = [Question]()
-    var comments = [Comment]()
     
+    var sortComments = true
+    var comments = [Comment]()
     var sortedComments: [Comment] {
         if sortComments {
             comments = comments.sort({ $0.upVotes == $1.upVotes ? $0.date > $1.date : $0.upVotes > $1.upVotes })
@@ -40,7 +41,6 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
     
     // comments.sort({ $0.upVotes > $1.upVotes })
     
-    var sortComments = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,8 +209,18 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
     
     // MARK: CommentUpVoteDelegate
     
-    func upVoteButtonTapped() {
-        print("tapped")
+    func upVoteButtonTapped(sender: CommentTableViewCell) {
+        if let indexPath = tableView.indexPathForCell(sender) {
+            let adjustedRow = indexPath.row - 1
+            let comment = sortedComments[adjustedRow]
+            comment.upVotes += 1
+            QuestionManager.sharedManager.upVoteComment(comment, completion: { error in
+                if error != nil {
+                    let upVotes = Int(sender.upVotesLabel.text ?? "0") ?? 0
+                    sender.upVotesLabel.text = String(upVotes - 1)
+                }
+            })
+        }
     }
     
 }

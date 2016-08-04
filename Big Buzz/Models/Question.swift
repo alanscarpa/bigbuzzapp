@@ -38,7 +38,7 @@ class Question {
             let keysArray = Array(commentIDsDictionary.keys)
             for key in keysArray {
                 if let id = commentIDsDictionary[key]?["id"] as? String {
-                    comments.append(Comment(id: id))
+                    comments.append(Comment(id))
                 }
             }
         }
@@ -51,7 +51,7 @@ class Question {
             for key in keysArray {
                 if let id = commentIDsDictionary[key]?["id"] as? String {
                     if comments.filter({ $0.id == id }).count == 0 {
-                        comments.append(Comment(id: id))
+                        comments.append(Comment(id))
                     }
                 }
             }

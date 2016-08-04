@@ -13,13 +13,11 @@ class Comment {
     var upVotes = 0
     var id = ""
     var date = Int(NSDate().timeIntervalSince1970)
+    var canBeVotedOn = true
     
-    init(id: String) {
+    convenience init(_ id: String, comment: String = "") {
+        self.init()
         self.id = id
-    }
-    
-    convenience init(_ id: String, comment: String) {
-        self.init(id: id)
         self.comment = comment
     }
     

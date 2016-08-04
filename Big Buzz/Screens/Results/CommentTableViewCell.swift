@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CommentUpVoteDelegate: class {
-    func upVoteButtonTapped()
+    func upVoteButtonTapped(sender: CommentTableViewCell)
 }
 
 class CommentTableViewCell: UITableViewCell {
@@ -18,6 +18,8 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var upVotesLabel: UILabel!
     weak var delegate: CommentUpVoteDelegate?
+    var canVote = true
+    var comment = Comment()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,9 +36,14 @@ class CommentTableViewCell: UITableViewCell {
         dateLabel.text = NSDate(timeIntervalSince1970: NSTimeInterval(comment.date)).fullMonthDayYear()
         commentLabel.text = comment.comment
         upVotesLabel.text = String(comment.upVotes)
+        self.comment = comment
     }
     
     @IBAction func upVoteButtonTapped() {
-        delegate?.upVoteButtonTapped()
+        guard comment.canBeVotedOn else { return }
+        comment.canBeVotedOn = false
+        let currentUpVotes = Int(upVotesLabel.text ?? "0") ?? 0
+        upVotesLabel.text = String(currentUpVotes + 1)
+        delegate?.upVoteButtonTapped(self)
     }
 }

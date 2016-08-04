@@ -120,6 +120,24 @@ class QuestionManager {
         }
     }
     
+    func upVoteComment(comment: Comment, completion: (NSError?) -> Void) {
+        commentRef(comment.id).runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            if var commentDictionary = currentData.value as? [String : AnyObject] {
+                var upVotes = commentDictionary["upVotes"] as? Int ?? 0
+                upVotes += 1
+                commentDictionary["upVotes"] = upVotes                
+                currentData.value = commentDictionary
+            }
+            return FIRTransactionResult.successWithValue(currentData)
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
     // MARK: Private
     
     private func getArticlesFromBingForQuestion(question: Question, completion: (Question?, NSError?) -> Void) {
