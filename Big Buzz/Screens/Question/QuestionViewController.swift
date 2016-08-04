@@ -45,6 +45,17 @@ class QuestionViewController: UIViewController {
         getQuestionForToday()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if question.date.dayMonthYear() != NSDate().dayMonthYear() {
+            getQuestionForToday()
+        }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     func signIntoFirebaseAnonymously() {
         FIRAuth.auth()?.signInAnonymouslyWithCompletion() { (user, error) in
             if error != nil {

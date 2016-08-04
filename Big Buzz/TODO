@@ -3,6 +3,8 @@ TODO
 - iOS
   [x] Add comments
   [x] Add firebase + turn off read/write for all
+  [] fix choppy uitableview scroll - maybe data binding is causing it? 
+  [] Add app logo
   [] Add report feature
   [] Add the 100 questions to firebase
   [] Get back arrow
@@ -10,6 +12,8 @@ TODO
   [] Randomize balls a little bit?
   [] Add splash screen
   [] Fix height on web page
+  [] Remove space at bottome of tableview sections
+  [] Refresh question on viewwillappear
   [x] Add thumbs up and down on poll bars
   [x] Try and add validation rule to comments         
   [x] update format of dates in UI (only)

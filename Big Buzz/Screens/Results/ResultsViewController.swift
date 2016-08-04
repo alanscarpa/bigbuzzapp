@@ -38,10 +38,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
             return comments
         }
     }
-    
-    // comments.sort({ $0.upVotes > $1.upVotes })
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Results"
