@@ -27,7 +27,20 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
     var question = Question()
     var otherQuestions = 0
     var questions = [Question]()
-    var comments = [String]()
+    var comments = [Comment]()
+    
+    var sortedComments: [Comment] {
+        if sortComments {
+            comments = comments.sort({ $0.upVotes == $1.upVotes ? $0.date > $1.date : $0.upVotes > $1.upVotes })
+            return comments
+        } else {
+            return comments
+        }
+    }
+    
+    // comments.sort({ $0.upVotes > $1.upVotes })
+    
+    var sortComments = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +58,14 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
         tapOutsideOfTextView.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutsideOfTextView)
         
-//        comments = question.comments
-        // TODO: Give question model comments 
-        
-        // TODO: DELETE THIS
-        comments.append("dummy comment 1")
-        comments.append("dummy comment 2")
-        // TODO: DELETE THIS
+        QuestionManager.sharedManager.getCommentsForQuestion(question) { error in
+            if error != nil {
+                print("error getting latest comments!")
+            } else {
+                self.comments = self.question.comments
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func dismissKeyboard() {
@@ -114,7 +128,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
         if section == 0 {
             return question.articles.count
         } else {
-            return comments.count + 1
+            return sortedComments.count + 1
         }
     }
     
@@ -145,7 +159,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(CommentTableViewCell.ip_nibName, forIndexPath: indexPath) as! CommentTableViewCell
-                cell.textLabel?.text = comments[indexPath.row - 1]
+                cell.textLabel?.text = sortedComments[indexPath.row - 1].comment
                 return cell
             }
         }
@@ -178,7 +192,8 @@ class ResultsViewController: UITableViewController, CommentInputDelegate {
             if error != nil {
                 print(error)
             } else {
-                self.comments.insert(comment, atIndex: 0)
+                self.sortComments = false
+                self.comments = self.question.comments
                 self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 1)], withRowAnimation: .Automatic)
                 print("comment submitted!")
             }

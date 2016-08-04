@@ -8,6 +8,7 @@ TODO
   [] Randomize balls a little bit?
   [] Add splash screen
   [] Fix height on web page
+  [] Add thumbs up and down on poll bars
   [x] Try and add validation rule to comments         
   [x] update format of dates in UI (only)
   [x] Random color on question view controller - fade to different color

@@ -30,24 +30,15 @@ class QuestionManager {
         return FIRDatabase.database().reference().child("articles/\(articleId)")
     }
     
+    private func commentRef(commentId: String) -> FIRDatabaseReference {
+        return FIRDatabase.database().reference().child("comments/\(commentId)")
+    }
+    
     private func questionRefForDate(date: String) -> FIRDatabaseReference {
         return FIRDatabase.database().reference().child("questions/\(date)")
     }
     
     // MARK: Public
-    
-    func writeComment(comment: String, forQuestion question: Question, completion: (NSError?) -> ()) {
-        let questionCommentRef = questionForTodayRef.child("comments").childByAutoId()
-        let childUpdates = ["comments/\(questionCommentRef.key)/comment" : comment, "\(question.firebasePath())/comments/\(questionCommentRef.key)/id": questionCommentRef.key]
-        FIRDatabase.database().reference().updateChildValues(childUpdates) { (error, reference) in
-            if let error = error {
-                print("error saving question/article \(error)")
-                completion(error)
-            } else {
-                completion(nil)
-            }
-        }
-    }
     
     func getQuestionForDate(date: NSDate, completion: (Question?, NSError?) -> Void) {
         questionRefForDate(date.dayMonthYear()).observeSingleEventOfType(.Value, withBlock: { snapshot in
@@ -81,6 +72,50 @@ class QuestionManager {
                 completion(error)
             } else {
                 completion(nil)
+            }
+        }
+    }
+    
+    func writeComment(comment: String, forQuestion question: Question, completion: (NSError?) -> ()) {
+        let questionCommentRef = questionForTodayRef.child("comments").childByAutoId()
+        let commentData = ["comment": comment, "upVotes": 0, "date": NSDate().timeIntervalSince1970]
+        let childUpdates = ["comments/\(questionCommentRef.key)" : commentData, "\(question.firebasePath())/comments/\(questionCommentRef.key)/id": questionCommentRef.key]
+        
+        question.comments.insert(Comment(questionCommentRef.key, comment: comment), atIndex: 0)
+        
+        FIRDatabase.database().reference().updateChildValues(childUpdates) { (error, reference) in
+            if let error = error {
+                print("error saving question/article \(error)")
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func getCommentsForQuestion(question: Question,  completion: (NSError?) -> Void) {
+        getLatestCommentsForQuestion(question) { question, error in
+            if error != nil {
+                completion(error)
+            } else if let question = question {
+                let numberOfComments = question.comments.count
+                var commentsFetched = 0
+                for comment in question.comments {
+                    let commentRef = self.commentRef(comment.id)
+                    commentRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                        commentsFetched += 1
+                        if let comment = question.comments.filter({ $0.id == snapshot.key }).first {
+                            if let commentDictionary = snapshot.value as? [String: AnyObject] {
+                                comment.setUpWithValues(commentDictionary)
+                            }
+                        }
+                        if commentsFetched == numberOfComments {
+                            completion(nil)
+                        }
+                    })
+                }
+            } else {
+                completion(NSError(domain: "com.bigbuzz", code: 002, userInfo: nil))
             }
         }
     }
@@ -202,6 +237,19 @@ class QuestionManager {
             } else {
                 completion(nil)
             }
+        }
+    }
+    
+    private func getLatestCommentsForQuestion(question: Question, completion: (Question?, NSError?) -> Void) {
+        questionRefForDate(question.date.dayMonthYear()).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let questionDictionary = snapshot.value as? [String: AnyObject] {
+                question.updateCommentIds(questionDictionary)
+                completion(question, nil)
+            } else {
+                completion(nil, NSError(domain: "com.bigbuzz", code: 001, userInfo: nil))
+            }
+        }) { error in
+            completion(nil, error)
         }
     }
     

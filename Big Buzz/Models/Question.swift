@@ -15,7 +15,8 @@ class Question {
     var noVotes = 0
     var date = NSDate()
     var articles = [Article]()
-    
+    var comments = [Comment]()
+
     convenience init(questionDictionary: [String: AnyObject], withDate date: NSDate) {
         self.init()
         if let question = questionDictionary["question"] as? String {
@@ -32,7 +33,29 @@ class Question {
                 self.articles.append(Article(id: id))
             }
         }
+        
+        if let commentIDsDictionary = questionDictionary["comments"] as? [String: AnyObject] {
+            let keysArray = Array(commentIDsDictionary.keys)
+            for key in keysArray {
+                if let id = commentIDsDictionary[key]?["id"] as? String {
+                    comments.append(Comment(id: id))
+                }
+            }
+        }
         self.date = date
+    }
+    
+    func updateCommentIds(questionDictionary: [String: AnyObject]) {
+        if let commentIDsDictionary = questionDictionary["comments"] as? [String: AnyObject] {
+            let keysArray = Array(commentIDsDictionary.keys)
+            for key in keysArray {
+                if let id = commentIDsDictionary[key]?["id"] as? String {
+                    if comments.filter({ $0.id == id }).count == 0 {
+                        comments.append(Comment(id: id))
+                    }
+                }
+            }
+        }
     }
     
     func firebasePath() -> String {
