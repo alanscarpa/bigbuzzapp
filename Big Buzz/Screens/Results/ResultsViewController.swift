@@ -165,6 +165,14 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
         }
     }
     
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
