@@ -234,6 +234,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
         let topComment = self.question.comments[0]
         self.question.comments.removeAtIndex(0)
         self.comments = self.question.sortedComments
+        self.question.comments.append(topComment)
         self.comments.insert(topComment, atIndex: 0)
     }
     

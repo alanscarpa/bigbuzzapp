@@ -19,7 +19,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var upVotesLabel: UILabel!
     weak var delegate: CommentUpVoteDelegate?
     var canVote = true
-    var comment = Comment()
+    var comment: Comment?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +30,7 @@ class CommentTableViewCell: UITableViewCell {
         dateLabel.text = ""
         commentLabel.text = ""
         upVotesLabel.text = ""
+        comment = nil
     }
     
     func configureWithComment(comment: Comment) {
@@ -40,7 +41,7 @@ class CommentTableViewCell: UITableViewCell {
     }
     
     @IBAction func upVoteButtonTapped() {
-        guard comment.canBeVotedOn else { return }
+        guard let comment = comment where comment.canBeVotedOn else { return }
         comment.canBeVotedOn = false
         let currentUpVotes = Int(upVotesLabel.text ?? "0") ?? 0
         upVotesLabel.text = String(currentUpVotes + 1)
