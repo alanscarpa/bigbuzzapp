@@ -42,12 +42,11 @@ class QuestionViewController: UIViewController {
         signIntoFirebaseAnonymously()
 //        createQuestion()
         setUpUI()
-        getQuestionForToday()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if question.date.dayMonthYear() != NSDate().dayMonthYear() {
+        if question.question.isEmpty {
             getQuestionForToday()
         }
     }
