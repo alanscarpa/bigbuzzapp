@@ -32,7 +32,7 @@
 		45243DEF1D49A13C00E22E99 /* OtherQuestionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45243DEE1D49A13C00E22E99 /* OtherQuestionsHeaderView.swift */; };
 		45243DF11D49A14C00E22E99 /* OtherQuestionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45243DF01D49A14C00E22E99 /* OtherQuestionsHeaderView.xib */; };
 		45243DF31D4CDED800E22E99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45243DF21D4CDED800E22E99 /* Constants.swift */; };
-		45243DF51D4CE0F800E22E99 /* NSDateFormatter+BigBuzz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45243DF41D4CE0F800E22E99 /* NSDateFormatter+BigBuzz.swift */; };
+		45243DF51D4CE0F800E22E99 /* BBDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45243DF41D4CE0F800E22E99 /* BBDateFormatter.swift */; };
 		45A4D2421D5004C000BE31A0 /* CommentInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4D2401D5004C000BE31A0 /* CommentInputTableViewCell.swift */; };
 		45A4D2431D5004C000BE31A0 /* CommentInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45A4D2411D5004C000BE31A0 /* CommentInputTableViewCell.xib */; };
 		45A4D2461D50052000BE31A0 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4D2441D50052000BE31A0 /* CommentTableViewCell.swift */; };
@@ -84,7 +84,7 @@
 		45243DEE1D49A13C00E22E99 /* OtherQuestionsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherQuestionsHeaderView.swift; sourceTree = "<group>"; };
 		45243DF01D49A14C00E22E99 /* OtherQuestionsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtherQuestionsHeaderView.xib; sourceTree = "<group>"; };
 		45243DF21D4CDED800E22E99 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		45243DF41D4CE0F800E22E99 /* NSDateFormatter+BigBuzz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+BigBuzz.swift"; sourceTree = "<group>"; };
+		45243DF41D4CE0F800E22E99 /* BBDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBDateFormatter.swift; sourceTree = "<group>"; };
 		45A4D2401D5004C000BE31A0 /* CommentInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentInputTableViewCell.swift; sourceTree = "<group>"; };
 		45A4D2411D5004C000BE31A0 /* CommentInputTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentInputTableViewCell.xib; sourceTree = "<group>"; };
 		45A4D2441D50052000BE31A0 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -192,6 +192,7 @@
 				4502C8791D479DEC00AC3015 /* QuestionManager.swift */,
 				45243DF21D4CDED800E22E99 /* Constants.swift */,
 				45A4D24C1D566B1700BE31A0 /* QuestionGenerator.swift */,
+				45243DF41D4CE0F800E22E99 /* BBDateFormatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -273,7 +274,6 @@
 				45D993C91D2DDCF100775E30 /* UINavigationController+BigBuzz.swift */,
 				450CB2F31D3148E1001F6850 /* NSDate+BigBuzz.swift */,
 				45243DEC1D49988600E22E99 /* UIColor+BigBuzz.swift */,
-				45243DF41D4CE0F800E22E99 /* NSDateFormatter+BigBuzz.swift */,
 				45A4D2481D5026D800BE31A0 /* UIAlertController+BigBuzz.swift */,
 			);
 			path = Extensions;
@@ -450,7 +450,7 @@
 				45A4D24D1D566B1700BE31A0 /* QuestionGenerator.swift in Sources */,
 				45B3427F1D453B7200CDA9BB /* APIKeys.swift in Sources */,
 				45243DEA1D498DFD00E22E99 /* OtherQuestionsCollectionViewCell.swift in Sources */,
-				45243DF51D4CE0F800E22E99 /* NSDateFormatter+BigBuzz.swift in Sources */,
+				45243DF51D4CE0F800E22E99 /* BBDateFormatter.swift in Sources */,
 				45243DEF1D49A13C00E22E99 /* OtherQuestionsHeaderView.swift in Sources */,
 				450DE8F31D3C2B5400C887B5 /* UserDefaultsManager.swift in Sources */,
 				45A4D2461D50052000BE31A0 /* CommentTableViewCell.swift in Sources */,

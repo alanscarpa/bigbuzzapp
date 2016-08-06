@@ -9,7 +9,7 @@
 import Foundation
 
 var kStartDate: String {
-    let startDate = NSDateFormatter.bbFormatter().dateFromString("08-15-2016")
+    let startDate =  BBDateFormatter.sharedInstance.bbFormatter().dateFromString("08-15-2016")
     if NSDate() < startDate {
         return "07-15-2016"
     } else {

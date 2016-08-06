@@ -9,25 +9,25 @@
 import Foundation
 
 extension NSDate {
+    
     func dayMonthYear() -> String {
-        return NSDateFormatter.bbFormatter().stringFromDate(self)
+        return BBDateFormatter.sharedInstance.bbFormatter().stringFromDate(self)
     }
     
     func fullMonthDayYear() -> String {
-        return NSDateFormatter.fullMonthFormatter().stringFromDate(self)
+        return  BBDateFormatter.sharedInstance.fullMonthFormatter().stringFromDate(self)
     }
     
     func shortMonthDay() -> String {
-        return NSDateFormatter.shortFormatter().stringFromDate(self)
+        return  BBDateFormatter.sharedInstance.shortFormatter().stringFromDate(self)
     }
     
     class func dateFromString(string: String) -> NSDate? {
-        return NSDateFormatter.bbFormatter().dateFromString(string)
+        return  BBDateFormatter.sharedInstance.bbFormatter().dateFromString(string)
     }
     
     class func daysBetweenDates(startDate: NSDate, endDate: NSDate) -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day], fromDate: startDate, toDate: endDate, options: [])
+        let components = BBDateFormatter.sharedInstance.calendar.components([.Day], fromDate: startDate, toDate: endDate, options: [])
         return components.day
     }
     
