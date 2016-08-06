@@ -14,7 +14,16 @@ class UserDefaultsManager {
     func setDidVoteToday() {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: NSDate().dayMonthYear())
     }
+    
     func didVoteToday() -> Bool {
         return NSUserDefaults.standardUserDefaults().boolForKey(NSDate().dayMonthYear())
+    }
+    
+    func setDidDeclineLocalNotifications() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "localNotificationsDeclined")
+    }
+    
+    var didDeclineLocalNotifications: Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey("localNotificationsDeclined")
     }
 }

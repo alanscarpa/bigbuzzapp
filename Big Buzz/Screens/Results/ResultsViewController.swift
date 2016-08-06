@@ -111,9 +111,21 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
             self.view.layoutIfNeeded()
             }) { complete in
                 guard let settings = UIApplication.sharedApplication().currentUserNotificationSettings() else { return }
-                guard settings.types == .None else { return }
-                let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-                UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+                guard settings.types == .None && !UserDefaultsManager.sharedManager.didDeclineLocalNotifications else { return }
+                
+                let alertController = UIAlertController(title: "Want Us To Let You Know When We Have New Questions?", message: "Allow us to send you notifications and be the first to know when we post a new question for you to vote and comment on.", preferredStyle: .Alert)
+                let noAction = UIAlertAction(title: "No", style: .Default, handler: { tapped in
+                    UserDefaultsManager.sharedManager.setDidDeclineLocalNotifications()
+                })
+                let yesAction = UIAlertAction(title: "Yes, let's do it!", style: .Cancel, handler: { tapped in
+                    let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+                })
+
+                alertController.addAction(noAction)
+                alertController.addAction(yesAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
