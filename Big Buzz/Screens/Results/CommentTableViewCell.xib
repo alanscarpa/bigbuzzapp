@@ -9,6 +9,9 @@
             <string>Dosis-Bold</string>
             <string>Dosis-Bold</string>
         </mutableArray>
+        <mutableArray key="Dosis-Book.ttf">
+            <string>Dosis-Book</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -26,7 +29,7 @@
                         <color key="textColor" red="0.34148237950505045" green="0.34148237950505045" blue="0.34148237950505045" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYN-GF-Utt" userLabel="Comment Label">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYN-GF-Utt" userLabel="Comment Label">
                         <rect key="frame" x="12" y="42" width="482" height="18"/>
                         <fontDescription key="fontDescription" name="Dosis-Bold" family="Dosis" pointSize="14"/>
                         <color key="textColor" red="0.49019607901573181" green="0.49019607901573181" blue="0.49019607901573181" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -46,10 +49,22 @@
                             <action selector="upVoteButtonTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lLE-5a-SbA"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHu-2i-mm0">
+                        <rect key="frame" x="94" y="69" width="79" height="28"/>
+                        <fontDescription key="fontDescription" name="Dosis-Book" family="Dosis" pointSize="12"/>
+                        <state key="normal" title="Report Comment">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="reportCommentButtonTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="28v-gA-9VC"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="hHu-2i-mm0" firstAttribute="centerY" secondItem="vkF-VJ-SMv" secondAttribute="centerY" id="5Dl-gl-gtW"/>
                     <constraint firstItem="2lb-5D-bJg" firstAttribute="leading" secondItem="KYN-GF-Utt" secondAttribute="leading" id="Ggm-nb-wV1"/>
                     <constraint firstItem="KYN-GF-Utt" firstAttribute="trailing" secondItem="SEh-L2-pJe" secondAttribute="trailing" id="IeS-kM-N0q"/>
+                    <constraint firstItem="hHu-2i-mm0" firstAttribute="leading" secondItem="vkF-VJ-SMv" secondAttribute="trailing" constant="34" id="KGI-wl-Pow"/>
                     <constraint firstItem="KYN-GF-Utt" firstAttribute="top" secondItem="SEh-L2-pJe" secondAttribute="bottom" constant="12" id="PhX-bY-bYf"/>
                     <constraint firstItem="vkF-VJ-SMv" firstAttribute="leading" secondItem="2lb-5D-bJg" secondAttribute="trailing" id="WMA-o3-UJM"/>
                     <constraint firstItem="vkF-VJ-SMv" firstAttribute="centerY" secondItem="2lb-5D-bJg" secondAttribute="centerY" id="aDu-qQ-IsS"/>

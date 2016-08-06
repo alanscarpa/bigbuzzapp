@@ -10,6 +10,7 @@ import UIKit
 
 protocol CommentUpVoteDelegate: class {
     func upVoteButtonTapped(sender: CommentTableViewCell)
+    func reportButtonTapped(sender: CommentTableViewCell)
 }
 
 class CommentTableViewCell: UITableViewCell {
@@ -46,5 +47,10 @@ class CommentTableViewCell: UITableViewCell {
         let currentUpVotes = Int(upVotesLabel.text ?? "0") ?? 0
         upVotesLabel.text = String(currentUpVotes + 1)
         delegate?.upVoteButtonTapped(self)
+    }
+    
+    @IBAction func reportCommentButtonTapped() {
+        guard let comment = comment where comment.canBeReported else { return }
+        delegate?.reportButtonTapped(self)
     }
 }

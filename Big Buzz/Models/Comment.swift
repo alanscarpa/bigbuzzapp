@@ -14,6 +14,7 @@ class Comment {
     var id = ""
     var date = Int(NSDate().timeIntervalSince1970)
     var canBeVotedOn = true
+    var canBeReported = true
     
     convenience init(_ id: String, comment: String = "") {
         self.init()

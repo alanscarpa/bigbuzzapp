@@ -11,8 +11,9 @@ import UIKit
 import IntrepidSwiftWisdom
 import Firebase
 import SVProgressHUD
+import MessageUI
 
-class ResultsViewController: UITableViewController, CommentInputDelegate, CommentUpVoteDelegate {
+class ResultsViewController: UITableViewController, CommentInputDelegate, CommentUpVoteDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var yesPercentageLabel: UILabel!
     @IBOutlet weak var noPercentageLabel: UILabel!
@@ -38,6 +39,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
             return comments
         }
     }
+    var commentToReport = Comment()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -232,6 +234,37 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
                 }
             })
         }
+    }
+    
+    func reportButtonTapped(sender: CommentTableViewCell) {
+        let mailComposeViewController = configuredMailComposeViewControllerForComment(sender.comment!)
+        if MFMailComposeViewController.canSendMail() {
+            commentToReport = sender.comment!
+            presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewControllerForComment(comment: Comment) -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.setToRecipients(["alan@letsfuzz.com"])
+        mailComposerVC.setSubject("Reporting comment")
+        mailComposerVC.setMessageBody("Question:  \(question.question)\n\(comment.comment)", isHTML: false)
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        presentViewController(UIAlertController.alertWithTitle("Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again."), animated: true, completion: nil)
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        commentToReport.canBeReported = false
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: Helpers
