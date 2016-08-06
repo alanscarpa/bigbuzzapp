@@ -14,11 +14,6 @@ class OtherQuestionsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        prepareForReuse()
-    }
     
     func configureWithQuestion(question: Question) {
         dateLabel.text = question.date.shortMonthDay()
