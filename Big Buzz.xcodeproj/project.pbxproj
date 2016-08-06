@@ -217,9 +217,9 @@
 		4519DADA1D2804D8008AF99B /* Big Buzz */ = {
 			isa = PBXGroup;
 			children = (
+				4519DADB1D2804D8008AF99B /* AppDelegate.swift */,
 				450DE8F11D3C2B3C00C887B5 /* Utilities */,
 				450CB3061D3A87F2001F6850 /* Animations */,
-				4519DADB1D2804D8008AF99B /* AppDelegate.swift */,
 				45D993C81D2DDCC900775E30 /* Extensions */,
 				451D32981D2DC127006F64F3 /* Images */,
 				45AA6E171D2C986C007F6A29 /* Fonts */,

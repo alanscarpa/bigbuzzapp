@@ -103,12 +103,17 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
         noPercentageLabel.text = numberFormatter.stringFromNumber(NSNumber(float: Float(noPercentage)))
         
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(2.0) {
+        UIView.animateWithDuration(2.0, animations: { 
             self.yesPercentageHeightConstraint.constant = yesHeightConstraint
             self.noPercentageHeighConstraint.constant = noHeightConstraint
             self.yesPercentageLabel.alpha = 1
             self.noPercentageLabel.alpha = 1
             self.view.layoutIfNeeded()
+            }) { complete in
+                guard let settings = UIApplication.sharedApplication().currentUserNotificationSettings() else { return }
+                guard settings.types == .None else { return }
+                let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
         }
     }
     

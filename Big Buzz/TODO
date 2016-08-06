@@ -1,12 +1,12 @@
 TODO
 
 - iOS
-  [x] Add comments
-  [x] Add firebase + turn off read/write for all
   [] fix choppy uitableview scroll - maybe data binding is causing it? 
   [] Add app logo
+  [x] Add the 100 questions to firebase
+  [x] Add comments
+  [x] Add firebase + turn off read/write for all
   [x] Add report feature
-  [] Add the 100 questions to firebase
   [x] Get x button
   [x] Set comment submit button font
   [x] Add splash screen

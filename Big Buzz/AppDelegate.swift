@@ -32,12 +32,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setBackgroundColor(UIColor.clearColor())
         SVProgressHUD.setForegroundColor(UIColor.whiteColor())
         
-        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
-        let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-        application.registerUserNotificationSettings(pushNotificationSettings)
-        application.registerForRemoteNotifications()
-        
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        if notificationSettings.types == .None {
+            print("failed")
+        } else {
+            print("success. time to schedule.")
+            let notification = UILocalNotification()
+            notification.fireDate = NSDate(timeIntervalSinceNow: 5)
+            notification.alertBody = "We've got a new question for you."
+            notification.alertAction = "Come vote now."
+            notification.applicationIconBadgeNumber = 1
+            notification.soundName = UILocalNotificationDefaultSoundName
+            notification.userInfo = ["CustomField1": "w00t"]
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -55,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(application: UIApplication) {
