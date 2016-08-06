@@ -40,7 +40,6 @@ class QuestionViewController: UIViewController {
         ref = FIRDatabase.database().reference()
         
         signIntoFirebaseAnonymously()
-//        createQuestion()
         setUpUI()
     }
     
@@ -92,24 +91,6 @@ class QuestionViewController: UIViewController {
                 self.showVotedState()
             } else {
                 self.showVoteState()
-            }
-        }
-    }
-    
-    // TODO: Create questions for next 99 days
-    func createQuestion() {
-        // TODO: change question
-        let post = ["question": "This is the day?",
-                    "no": 0,
-                    "yes": 0
-                    ]
-        
-        // TODO: change date
-        let childUpdates = ["/questions/08-06-2016": post]
-        
-        ref.updateChildValues(childUpdates) { (error, reference) in
-            if let error = error {
-                print("error saving question/article \(error)")
             }
         }
     }
