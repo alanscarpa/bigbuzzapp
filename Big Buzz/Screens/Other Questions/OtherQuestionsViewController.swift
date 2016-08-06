@@ -24,6 +24,14 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     var numberOfQuestionsToDisplay: Int {
         return NSDate.daysBetweenDates(NSDate.dateFromString(kStartDate)!, endDate: NSDate()) + 1
     }
+    lazy var statusBarBackgroundView: UIView = {
+        let backgroundView = UIView(frame:
+            CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width,
+                height: 20.0)
+        )
+        backgroundView.backgroundColor = UIColor.whiteColor()
+        return backgroundView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +45,20 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
             layout.sectionHeadersPinToVisibleBounds = true
         }
         getBatchOfQuestions()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.sharedApplication().keyWindow?.addSubview(statusBarBackgroundView)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        statusBarBackgroundView.removeFromSuperview()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
     }
     
     func getBatchOfQuestions() {
