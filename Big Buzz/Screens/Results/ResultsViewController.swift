@@ -38,16 +38,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
             return comments
         }
     }
-    lazy var statusBarBackgroundView: UIView = {
-        let backgroundView = UIView(frame:
-            CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width,
-                height: 20.0)
-        )
-        backgroundView.backgroundColor = UIColor.whiteColor()
-        backgroundView.alpha = 0
-        return backgroundView
-    }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Results"
@@ -88,15 +79,6 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         setPollResults()
-        UIApplication.sharedApplication().keyWindow?.addSubview(statusBarBackgroundView)
-        UIView.animateWithDuration(1.0) {
-            self.statusBarBackgroundView.alpha = 1
-        }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        statusBarBackgroundView.removeFromSuperview()
     }
     
     func setPollResults() {
@@ -224,8 +206,10 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
                 print(error)
             } else {
                 self.moveCommentToTop()
-                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 1)], withRowAnimation: .Automatic)
-                print("comment submitted!")
+                self.tableView.beginUpdates()
+                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 1)], withRowAnimation: .None)
+                self.tableView.endUpdates()
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), atScrollPosition: .Top, animated: false)
             }
         }
     }

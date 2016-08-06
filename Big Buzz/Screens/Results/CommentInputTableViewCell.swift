@@ -32,6 +32,7 @@ class CommentInputTableViewCell: UITableViewCell, UITextViewDelegate {
         customAccessoryView.backgroundColor = UIColor.greenColor()
         
         submitButton.setTitle("SUBMIT", forState: .Normal)
+        submitButton.titleLabel?.font = UIFont(name: "Dosis-Bold", size: 18)
         submitButton.setBackgroundColor(UIColor.bbCyanTwo(), forUIControlState: .Normal)
         submitButton.setBackgroundColor(UIColor.bbGrayWhite(), forUIControlState: .Disabled)
         submitButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)

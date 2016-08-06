@@ -7,12 +7,11 @@ TODO
   [] Add app logo
   [] Add report feature
   [] Add the 100 questions to firebase
-  [] Get back arrow
-  [] Set comment submit button font
-  [] Randomize balls a little bit?
-  [] Add splash screen
-  [] Fix height on web page
-  [] Remove space at bottome of tableview sections
+  [x] Get x button
+  [x] Set comment submit button font
+  [x] Add splash screen
+  [x] Fix height on web page
+  [x] Remove space at bottome of tableview sections
   [x] Refresh question on viewwillappear
   [x] Add thumbs up and down on poll bars
   [x] Try and add validation rule to comments         
