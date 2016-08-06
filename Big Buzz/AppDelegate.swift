@@ -39,15 +39,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if notificationSettings.types == .None {
             print("failed")
         } else {
-            print("success. time to schedule.")
-            let notification = UILocalNotification()
-            notification.fireDate = NSDate(timeIntervalSinceNow: 5)
-            notification.alertBody = "We've got a new question for you."
-            notification.alertAction = "Come vote now."
-            notification.applicationIconBadgeNumber = 1
-            notification.soundName = UILocalNotificationDefaultSoundName
-            notification.userInfo = ["CustomField1": "w00t"]
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            let now = NSDate()
+            let tomorrowComponents = NSDateComponents()
+            tomorrowComponents.day = 1
+            
+            let calendar = NSCalendar.currentCalendar()
+            if let tomorrow = calendar.dateByAddingComponents(tomorrowComponents, toDate: now, options: NSCalendarOptions.MatchFirst) {
+                
+                let flags: NSCalendarUnit = [.Era, .Year, .Month, .Day]
+                let tomorrowValidTime: NSDateComponents = calendar.components(flags, fromDate: tomorrow)
+                tomorrowValidTime.hour = 13
+                
+                let notification = UILocalNotification()
+                notification.fireDate = calendar.dateFromComponents(tomorrowValidTime)
+                notification.repeatInterval = NSCalendarUnit.Day
+                notification.alertBody = "We've got a new question for you to vote on!"
+                notification.alertAction = "Come vote now."
+                notification.applicationIconBadgeNumber = 1
+                notification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            }
         }
     }
 
