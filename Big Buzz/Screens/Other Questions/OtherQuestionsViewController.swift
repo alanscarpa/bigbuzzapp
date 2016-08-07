@@ -63,15 +63,10 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     func getBatchOfQuestions() {
         var questionsDownloaded = 0
         var numberOfQuestionsToDownloadAtATime = 10
+        if self.questions.count > 0 && (numberOfQuestionsToDisplay - self.questions.count) - numberOfQuestionsToDownloadAtATime < 0 {
+            numberOfQuestionsToDownloadAtATime = numberOfQuestionsToDisplay - self.questions.count
+        }
         for _ in (0..<numberOfQuestionsToDownloadAtATime) {
-            guard adjustedDate > NSDate.dateFromString(kStartDate) else {
-                if adjustedDays < numberOfQuestionsToDownloadAtATime {
-                    numberOfQuestionsToDownloadAtATime = adjustedDays
-                } else {
-                    numberOfQuestionsToDownloadAtATime = adjustedDays - numberOfQuestionsToDownloadAtATime
-                }
-                break
-            }
             QuestionManager.sharedManager.getQuestionForDate(adjustedDate) { [weak self] (question, error) in
                 if error != nil {
                     print("error! \(error)")
