@@ -1,8 +1,9 @@
 TODO
 
 - iOS
-  [] fix choppy uitableview scroll - maybe data binding is causing it? 
-  [] Add app logo
+  [] But on past questions
+  [x] fix choppy uitableview scroll - maybe data binding is causing it? 
+  [x] Add app logo
   [x] - Set up local notifications - everyday at 1pm?
   [x] - Ask for notification permission after 1st vote
   [x] Add the 100 questions to firebase

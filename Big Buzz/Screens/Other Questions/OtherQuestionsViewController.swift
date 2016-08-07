@@ -35,7 +35,6 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let cellNib = UINib(nibName: cellName, bundle: nil)
         let headerNib = UINib(nibName: headerViewName, bundle: nil)
         collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: cellName)
@@ -102,18 +101,24 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
     }
     
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row >= questions.count && eligibleToDownloadMoreQuestions {
-            eligibleToDownloadMoreQuestions = false
-            getBatchOfQuestions()
+        if let cell = cell as? OtherQuestionsCollectionViewCell {
+            if indexPath.row < questions.count {
+                cell.configureWithQuestion(questions[indexPath.row])
+            }
+            cell.backgroundColor = UIColor.colorForNumber(indexPath.row)
         }
+//        if indexPath.row >= questions.count && eligibleToDownloadMoreQuestions {
+//            eligibleToDownloadMoreQuestions = false
+//            getBatchOfQuestions()
+//        }
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellName, forIndexPath: indexPath) as! OtherQuestionsCollectionViewCell
-        if indexPath.row < questions.count {
-            cell.configureWithQuestion(questions[indexPath.row])
+        if indexPath.row >= questions.count - 1 && eligibleToDownloadMoreQuestions {
+            eligibleToDownloadMoreQuestions = false
+            getBatchOfQuestions()
         }
-        cell.backgroundColor = UIColor.colorForNumber(indexPath.row)
         return cell
     }
     
