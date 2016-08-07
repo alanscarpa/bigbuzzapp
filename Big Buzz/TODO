@@ -3,6 +3,8 @@ TODO
 - iOS
   [] fix choppy uitableview scroll - maybe data binding is causing it? 
   [] Add app logo
+  [x] - Set up local notifications - everyday at 1pm?
+  [x] - Ask for notification permission after 1st vote
   [x] Add the 100 questions to firebase
   [x] Add comments
   [x] Add firebase + turn off read/write for all
@@ -29,11 +31,6 @@ TODO
   [x] Add back + forward date functionality
   [x] Delete back/forward design
   [x] If no question for current date, go back until next question (goes back as far as Jul 17) 
-
-  - Notifications
-    (q) - I think we only only send 1 daily reminder that there is a new question.  I don't think we send a "Results are in" push.  Up for debate though.  
-    [] - Set up local notifications - everyday at 1pm?
-    [] - Ask for notification permission after 1st vote
 
   - V2
   - iOS
