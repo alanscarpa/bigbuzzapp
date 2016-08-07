@@ -83,20 +83,20 @@ class QuestionViewController: UIViewController {
     
     func animateBackgroundColor() {
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(5.0, delay:0, options: [.Repeat, .Autoreverse, .AllowUserInteraction], animations: {
-            self.view.backgroundColor = UIColor.colorForNumber(Int(arc4random_uniform(6)))
-            self.view.layoutIfNeeded()
+        UIView.animateWithDuration(5.0, delay:0, options: [.Repeat, .Autoreverse, .AllowUserInteraction], animations: { [weak self] in
+            self?.view.backgroundColor = UIColor.colorForNumber(Int(arc4random_uniform(6)))
+            self?.view.layoutIfNeeded()
             }, completion: nil)
     }
     
     func getQuestionForToday() {
-        QuestionManager.sharedManager.getQuestionForDate(NSDate()) { (question, error) in
+        QuestionManager.sharedManager.getQuestionForDate(NSDate()) { [weak self] (question, error) in
             SVProgressHUD.dismiss()
-            self.handleQuestion(question, error: error)
+            self?.handleQuestion(question, error: error)
             if UserDefaultsManager.sharedManager.didVoteToday() {
-                self.showVotedState()
+                self?.showVotedState()
             } else {
-                self.showVoteState()
+                self?.showVoteState()
             }
         }
     }
@@ -110,16 +110,16 @@ class QuestionViewController: UIViewController {
     @IBAction func yesButtonTapped() {
         answerLabel.text = "YES"
         AnimationManager.sharedManager.startPulsator(pulsator, onView: questionLabel)
-        QuestionManager.sharedManager.submitVoteForQuestion(question, yesVote: true) { error in
-            self.handleVote(error)
+        QuestionManager.sharedManager.submitVoteForQuestion(question, yesVote: true) { [weak self] error in
+            self?.handleVote(error)
         }
     }
     
     @IBAction func noButtonTapped() {
         answerLabel.text = "NO"
         AnimationManager.sharedManager.startPulsator(pulsator, onView: questionLabel)
-        QuestionManager.sharedManager.submitVoteForQuestion(question, yesVote: false) { error in
-            self.handleVote(error)
+        QuestionManager.sharedManager.submitVoteForQuestion(question, yesVote: false) { [weak self] error in
+            self?.handleVote(error)
         }
     }
     
@@ -155,8 +155,8 @@ class QuestionViewController: UIViewController {
     }
     
     func stopPulsatorWithCompletion(completion: () -> Void) {
-        UIView.animateWithDuration(1.0, animations: {
-            self.animateShowAnswer()
+        UIView.animateWithDuration(1.0, animations: { [weak self] in
+            self?.animateShowAnswer()
         }) { [weak self] finished in
             guard let strongSelf = self else { return }
             AnimationManager.sharedManager.stopPulsator(strongSelf.pulsator)

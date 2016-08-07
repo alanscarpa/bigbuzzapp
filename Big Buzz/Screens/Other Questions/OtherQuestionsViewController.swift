@@ -73,16 +73,16 @@ class OtherQuestionsViewController: UICollectionViewController, OtherQuestionsHe
                 }
                 break
             }
-            QuestionManager.sharedManager.getQuestionForDate(adjustedDate) { (question, error) in
+            QuestionManager.sharedManager.getQuestionForDate(adjustedDate) { [weak self] (question, error) in
                 if error != nil {
                     print("error! \(error)")
                 } else {
-                    self.questions.append(question ?? Question())
+                    self?.questions.append(question ?? Question())
                     questionsDownloaded += 1
                     if questionsDownloaded == numberOfQuestionsToDownloadAtATime {
-                        self.eligibleToDownloadMoreQuestions = true
-                        self.questions.sortInPlace({ $0.date > $1.date })
-                        self.collectionView?.reloadData()
+                        self?.eligibleToDownloadMoreQuestions = true
+                        self?.questions.sortInPlace({ $0.date > $1.date })
+                        self?.collectionView?.reloadData()
                     }
                 }
             }

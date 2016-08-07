@@ -59,12 +59,13 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
         tapOutsideOfTextView.cancelsTouchesInView = false
         view.addGestureRecognizer(tapOutsideOfTextView)
         
-        QuestionManager.sharedManager.getCommentsForQuestion(question) { error in
+        QuestionManager.sharedManager.getCommentsForQuestion(question) { [weak self] error in
             if error != nil {
                 print("error getting latest comments!")
             } else {
-                self.comments = self.question.comments
-                self.tableView.reloadData()
+                guard let strongSelf = self else { return }
+                strongSelf.comments = strongSelf.question.comments
+                strongSelf.tableView.reloadData()
             }
         }
     }
@@ -103,13 +104,13 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
         noPercentageLabel.text = numberFormatter.stringFromNumber(NSNumber(float: Float(noPercentage)))
         
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(2.0, delay:0, options: [.AllowUserInteraction], animations: {
-            self.yesPercentageHeightConstraint.constant = yesHeightConstraint
-            self.noPercentageHeighConstraint.constant = noHeightConstraint
-            self.yesPercentageLabel.alpha = 1
-            self.noPercentageLabel.alpha = 1
-            self.view.layoutIfNeeded()
-        }) { complete in
+        UIView.animateWithDuration(2.0, delay:0, options: [.AllowUserInteraction], animations: { [weak self] in
+            self?.yesPercentageHeightConstraint.constant = yesHeightConstraint
+            self?.noPercentageHeighConstraint.constant = noHeightConstraint
+            self?.yesPercentageLabel.alpha = 1
+            self?.noPercentageLabel.alpha = 1
+            self?.view.layoutIfNeeded()
+        }) { [weak self] complete in
             guard let settings = UIApplication.sharedApplication().currentUserNotificationSettings() else { return }
             guard settings.types == .None && !UserDefaultsManager.sharedManager.didDeclineLocalNotifications else { return }
             
@@ -125,7 +126,7 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
             alertController.addAction(noAction)
             alertController.addAction(yesAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self?.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
@@ -217,18 +218,18 @@ class ResultsViewController: UITableViewController, CommentInputDelegate, Commen
         NSOperationQueue.mainQueue().addOperationWithBlock {
             SVProgressHUD.show()
         }
-        QuestionManager.sharedManager.writeComment(comment, forQuestion: self.question) { error in
+        QuestionManager.sharedManager.writeComment(comment, forQuestion: self.question) { [weak self] error in
             NSOperationQueue.mainQueue().addOperationWithBlock {
                 SVProgressHUD.dismiss()
             }
             if error != nil {
                 print(error)
             } else {
-                self.moveCommentToTop()
-                self.tableView.beginUpdates()
-                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 1)], withRowAnimation: .None)
-                self.tableView.endUpdates()
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), atScrollPosition: .Top, animated: false)
+                self?.moveCommentToTop()
+                self?.tableView.beginUpdates()
+                self?.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 1)], withRowAnimation: .None)
+                self?.tableView.endUpdates()
+                self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), atScrollPosition: .Top, animated: false)
             }
         }
     }

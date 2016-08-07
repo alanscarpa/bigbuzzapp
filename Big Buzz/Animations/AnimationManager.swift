@@ -19,7 +19,7 @@ class AnimationManager {
         for circle in circles {
             circle.removeFromSuperview()
         }
-        circles = [UIImageView]()
+        circles.removeAll()
     }
     
     func addFloatingCirclesToView(view: UIView) {

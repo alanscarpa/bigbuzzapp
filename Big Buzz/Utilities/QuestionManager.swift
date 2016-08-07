@@ -41,11 +41,11 @@ class QuestionManager {
     // MARK: Public
     
     func getQuestionForDate(date: NSDate, completion: (Question?, NSError?) -> Void) {
-        questionRefForDate(date.dayMonthYear()).observeSingleEventOfType(.Value, withBlock: { snapshot in
+        questionRefForDate(date.dayMonthYear()).observeSingleEventOfType(.Value, withBlock: { [weak self] snapshot in
             if let questionDictionary = snapshot.value as? [String: AnyObject] {
                 let question = Question(questionDictionary: questionDictionary, withDate: date)
                 if question.articles.count == 0 {
-                    self.getArticlesFromBingForQuestion(question, completion: { (question, error) in
+                    self?.getArticlesFromBingForQuestion(question, completion: { (question, error) in
                         if error != nil {
                             completion(nil, error)
                         } else {
@@ -53,7 +53,7 @@ class QuestionManager {
                         }
                     })
                 } else {
-                    self.getArticlesFromFirebaseForQuestion(question, completion: { finished in
+                    self?.getArticlesFromFirebaseForQuestion(question, completion: { finished in
                         completion(question, nil)
                     })
                 }
@@ -94,14 +94,14 @@ class QuestionManager {
     }
     
     func getCommentsForQuestion(question: Question,  completion: (NSError?) -> Void) {
-        getLatestCommentsForQuestion(question) { question, error in
+        getLatestCommentsForQuestion(question) { [weak self] question, error in
             if error != nil {
                 completion(error)
             } else if let question = question {
                 let numberOfComments = question.comments.count
                 var commentsFetched = 0
                 for comment in question.comments {
-                    let commentRef = self.commentRef(comment.id)
+                    guard let commentRef = self?.commentRef(comment.id) else { return }
                     commentRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                         commentsFetched += 1
                         if let comment = question.comments.filter({ $0.id == snapshot.key }).first {
@@ -142,14 +142,14 @@ class QuestionManager {
     
     private func getArticlesFromBingForQuestion(question: Question, completion: (Question?, NSError?) -> Void) {
         Alamofire.request(.GET, "https://api.cognitive.microsoft.com/bing/v5.0/news/search", parameters: ["q": question.question], headers: ["Ocp-Apim-Subscription-Key": kBingNewsKey])
-            .responseJSON { response in
+            .responseJSON { [weak self] response in
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
                         var articleCount = 0
                         for (_, subJson):(String, JSON) in json["value"] {
-                            if articleCount < self.kMaxAmountOfArticles {
+                            if articleCount < self?.kMaxAmountOfArticles {
                                 var articleDictionary = [String: AnyObject]()
                                 articleDictionary["title"] = subJson["name"].string
                                 articleDictionary["lede"] = subJson["description"].string
@@ -161,7 +161,7 @@ class QuestionManager {
                                 articleCount += 1
                             }
                         }
-                        self.createArticlesOnFirebaseForQuestion(question, completion: { error in
+                        self?.createArticlesOnFirebaseForQuestion(question, completion: { error in
                             if error != nil {
                                 completion(nil, error)
                             } else {
