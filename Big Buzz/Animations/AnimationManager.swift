@@ -13,10 +13,19 @@ import Pulsator
 class AnimationManager {
     
     static var sharedManager = AnimationManager()
+    var circles = [UIImageView]()
+    
+    func removeCircles() {
+        for circle in circles {
+            circle.removeFromSuperview()
+        }
+        circles = [UIImageView]()
+    }
     
     func addFloatingCirclesToView(view: UIView) {
         for i in 0..<8 {
             let circle = UIImageView(image: UIImage(named: "Oval_Big"))
+            circles.append(circle)
             let percentageOfCircle = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (1 - 0.35) + 0.35
             let circleSize = CGFloat(200 * percentageOfCircle)
             let animationDuration = 4.0 + (Double(i) / 2)

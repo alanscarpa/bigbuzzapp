@@ -45,9 +45,17 @@ class QuestionViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        animateBackgroundColor()
+        AnimationManager.sharedManager.addFloatingCirclesToView(view)
         if question.question.isEmpty {
             getQuestionForToday()
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.layer.removeAllAnimations()
+        AnimationManager.sharedManager.removeCircles()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -70,17 +78,15 @@ class QuestionViewController: UIViewController {
         showResultsButton.layer.borderColor = UIColor.whiteColor().CGColor
         showResultsButton.layer.borderWidth = 2
         showResultsButton.layer.cornerRadius = showResultsButton.frame.size.height / 2
-        animateBackgroundColor()
         dateLabel.text = NSDate().fullMonthDayYear()
-        AnimationManager.sharedManager.addFloatingCirclesToView(view)
     }
     
     func animateBackgroundColor() {
-        UIView.animateWithDuration(5.0, delay: 0, options: .AllowUserInteraction, animations: { 
+        self.view.layoutIfNeeded()
+        UIView.animateWithDuration(5.0, delay:0, options: [.Repeat, .Autoreverse, .AllowUserInteraction], animations: {
             self.view.backgroundColor = UIColor.colorForNumber(Int(arc4random_uniform(6)))
-        }) { finished in
-            self.animateBackgroundColor()
-        }
+            self.view.layoutIfNeeded()
+            }, completion: nil)
     }
     
     func getQuestionForToday() {
