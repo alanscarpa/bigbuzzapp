@@ -41,30 +41,30 @@ class QuestionViewController: UIViewController {
         
         signIntoFirebaseAnonymously()
         setUpUI()
+        observeNotifications()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func observeNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(runAnimations), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(stopAnimations), name: UIApplicationWillResignActiveNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        animateBackgroundColor()
-        AnimationManager.sharedManager.addFloatingCirclesToView(view)
+        runAnimations()
         if question.question.isEmpty {
             getQuestionForToday()
             reAddNotificationForTomorrow()
         }
     }
     
-    func reAddNotificationForTomorrow() {
-        guard let settings = UIApplication.sharedApplication().currentUserNotificationSettings() else { return }
-        guard settings.types != .None && !UserDefaultsManager.sharedManager.didDeclineLocalNotifications else { return }
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        view.layer.removeAllAnimations()
-        AnimationManager.sharedManager.removeCircles()
+        stopAnimations()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -92,7 +92,7 @@ class QuestionViewController: UIViewController {
     
     func animateBackgroundColor() {
         self.view.layoutIfNeeded()
-        UIView.animateWithDuration(5.0, delay:0, options: [.Repeat, .Autoreverse, .AllowUserInteraction], animations: { [weak self] in
+        UIView.animateWithDuration(5.0, delay:0, options: [.Repeat, .Autoreverse, .AllowUserInteraction, .BeginFromCurrentState], animations: { [weak self] in
             self?.view.backgroundColor = UIColor.colorForNumber(Int(arc4random_uniform(6)))
             self?.view.layoutIfNeeded()
             }, completion: nil)
@@ -138,6 +138,25 @@ class QuestionViewController: UIViewController {
     }
     
     // MARK: Helpers
+    
+    func runAnimations() {
+        animateBackgroundColor()
+        AnimationManager.sharedManager.addFloatingCirclesToView(view)
+    }
+    
+    func stopAnimations() {
+        view.layer.removeAllAnimations()
+        AnimationManager.sharedManager.removeCircles()
+        AnimationManager.sharedManager.stopPulsator(self.pulsator)
+    }
+    
+    private func reAddNotificationForTomorrow() {
+        guard let settings = UIApplication.sharedApplication().currentUserNotificationSettings() else { return }
+        guard settings.types != .None && !UserDefaultsManager.sharedManager.didDeclineLocalNotifications else { return }
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+    }
     
     private func handleQuestion(question: Question?, error: NSError?) {
         if error != nil {

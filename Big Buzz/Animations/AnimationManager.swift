@@ -25,6 +25,7 @@ class AnimationManager {
     func addFloatingCirclesToView(view: UIView) {
         for i in 0..<8 {
             let circle = UIImageView(image: UIImage(named: "Oval_Big"))
+            circle.alpha = 0
             circles.append(circle)
             let percentageOfCircle = CGFloat(Float(arc4random()) / Float(UINT32_MAX)) * (1 - 0.35) + 0.35
             let circleSize = CGFloat(200 * percentageOfCircle)
@@ -46,10 +47,11 @@ class AnimationManager {
             rand2 = rand2 * multiplier
             
             view.layoutIfNeeded()
-            UIView.animateWithDuration(animationDuration, delay:0, options: [.Repeat, .Autoreverse], animations: {
+            UIView.animateWithDuration(animationDuration, delay:0, options: [.Repeat, .Autoreverse, .BeginFromCurrentState], animations: {
                 yLayoutConstraint.constant = rand1
                 xLayoutConstraint.constant = rand2
                 circle.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1.0)
+                circle.alpha = 1
                 view.layoutIfNeeded()
                 }, completion: nil)
         }
