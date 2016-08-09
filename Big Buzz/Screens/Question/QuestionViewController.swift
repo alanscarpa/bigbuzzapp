@@ -49,7 +49,16 @@ class QuestionViewController: UIViewController {
         AnimationManager.sharedManager.addFloatingCirclesToView(view)
         if question.question.isEmpty {
             getQuestionForToday()
+            reAddNotificationForTomorrow()
         }
+    }
+    
+    func reAddNotificationForTomorrow() {
+        guard let settings = UIApplication.sharedApplication().currentUserNotificationSettings() else { return }
+        guard settings.types != .None && !UserDefaultsManager.sharedManager.didDeclineLocalNotifications else { return }
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
     }
     
     override func viewWillDisappear(animated: Bool) {

@@ -1,7 +1,8 @@
 TODO
 
 - iOS
-  [] But on past questions
+  [] Only show notification if question has not been voted on today
+  [x] Bug on past questions
   [x] fix choppy uitableview scroll - maybe data binding is causing it? 
   [x] Add app logo
   [x] - Set up local notifications - everyday at 1pm?
